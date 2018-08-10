@@ -7,5 +7,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>javase-unit</module>
+    <module>tools-unit</module>
   </modules>
 </project>
