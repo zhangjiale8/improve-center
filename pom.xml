@@ -8,6 +8,8 @@
   <modules>
     <module>javase-unit</module>
     <module>tools-unit</module>
+    <module>widget-center</module>
+      <module>widget-unit</module>
   </modules>
   <dependencies>
   		<dependency>
