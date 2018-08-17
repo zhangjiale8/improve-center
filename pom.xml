@@ -10,6 +10,7 @@
     <module>tools-unit</module>
     <module>widget-center</module>
       <module>widget-unit</module>
+    <module>springmvc-unit</module>
   </modules>
   <dependencies>
   		<dependency>
