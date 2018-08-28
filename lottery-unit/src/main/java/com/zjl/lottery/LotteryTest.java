@@ -12,7 +12,7 @@ import org.apache.commons.lang.StringUtils;
 
 public class LotteryTest {
 	public static void main(String[] args) {
-		File file = new File("E:/Lottery/100/001.txt");
+		File file = new File("D:/Lottery/100/001.txt");
 		Map<String, Map<String, Integer>> map = txt2Map(file);
 		Map<String, Integer> redMap = map.get("Red");
 		if(null != redMap && redMap.size() > 0) {
