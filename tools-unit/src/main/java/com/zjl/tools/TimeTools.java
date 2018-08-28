@@ -16,6 +16,7 @@ public class TimeTools {
 	public static final String Y_M_D_H_M= "yyyy-MM-dd HH:mm";
 	public static final String Y_M_D_H= "yyyy-MM-dd HH";
 	public static final String Y_M_D= "yyyy-MM-dd";
+	public static final String Y= "yyyy";
 	public static final int SECONDS_IN_DAY = 60 * 60 * 24;
 	public static final long MILLIS_IN_DAY = 1000L * SECONDS_IN_DAY;
 	
@@ -244,5 +245,14 @@ public class TimeTools {
 	        return dateArrParam[min];
 		}
 		return null;
+	}
+	
+	/**
+	 * 获取当前年
+	 * @return
+	 */
+	public static String getCurrentYeart() {
+	
+		 return new SimpleDateFormat(Y).format(new Date());
 	}
 }
