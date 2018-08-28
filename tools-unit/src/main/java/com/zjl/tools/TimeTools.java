@@ -43,21 +43,21 @@ public class TimeTools {
 	
 	/**
 	 * 字符串转时间
-	 * @param start
+	 * @param dateStr
 	 * @param reg
 	 * @return
 	 */
-	public static Date DateFormate(String start, String reg) {
+	public static Date DateFormate(String dateStr, String reg) {
 		if(StringUtils.isNotEmpty(reg) && StringUtils.isNotEmpty(reg)){
 			try {
 				if(Y_M_D_H_M_S.equals(reg)){
-					return new SimpleDateFormat(Y_M_D_H_M_S).parse(start);
+					return new SimpleDateFormat(Y_M_D_H_M_S).parse(dateStr);
 				}else if(Y_M_D_H_M.equals(reg)){
-					return new SimpleDateFormat(Y_M_D_H_M).parse(start);
+					return new SimpleDateFormat(Y_M_D_H_M).parse(dateStr);
 				}else if(Y_M_D_H.equals(reg)){
-					return new SimpleDateFormat(Y_M_D_H).parse(start);
+					return new SimpleDateFormat(Y_M_D_H).parse(dateStr);
 				}else if(Y_M_D.equals(reg)){
-					return new SimpleDateFormat(Y_M_D).parse(start);
+					return new SimpleDateFormat(Y_M_D).parse(dateStr);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -220,5 +220,29 @@ public class TimeTools {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * 获取多个时间中距离某个时间最近的时间（只适用于数组中数据度不为空的情况）
+	 *时间间隔取绝对值
+	 * @param dateArrParam
+	 * @param param
+	 * @return
+	 */
+	public static Date getMinDistanceTime(Date[] dateArrParam, Date param) {
+		if(null != dateArrParam && dateArrParam.length > 0 && null != param) {
+			// 初始化最近时间，默认为第一个
+	        long minDiff = Math.abs(param.getTime() - dateArrParam[0].getTime());
+	        int min = 0;
+	        for (int i = 0; i < dateArrParam.length; i++) {
+	            long diff = Math.abs(param.getTime() - dateArrParam[i].getTime());
+	            if (diff < minDiff) {
+	                min = i;
+	                minDiff = diff;
+	            }
+	        }
+	        return dateArrParam[min];
+		}
+		return null;
 	}
 }

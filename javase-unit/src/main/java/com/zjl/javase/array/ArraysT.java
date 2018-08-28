@@ -39,6 +39,25 @@ public class ArraysT {
 		for (Object object : set) {
 			System.out.println(object.toString());
 		}
+		
+		//数组填充
+		int [] fillArr = new int[5]; 
+		ArrayTool.fill(fillArr,5);
+		for (int i = 0; i < fillArr.length; i++) {
+			System.out.println(fillArr[i]);
+		}
+		//sorts
+		int [] sortArr = {1,5,2,9,4,0};
+		sortArr = ArrayTool.sort(sortArr);
+		for (int i = 0; i < sortArr.length; i++) {
+			System.out.println(sortArr[i]);
+		}
+		//sorts
+		sortArr = ArrayTool.sort(sortArr,1,3);
+		for (int i = 0; i < sortArr.length; i++) {
+			System.out.println(sortArr[i]);
+		}
+		//复制数组
 	
 	}
 	

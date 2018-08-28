@@ -80,4 +80,39 @@ public class ArrayTool {
 		return 0;
 	}
 	
+	/**
+	 * 填充数组 (int数组)
+	 * @param paramArr
+	 * @param fill
+	 */
+	public static void fill(int[] paramArr, int fill) {
+		Arrays.fill(paramArr, fill);
+	}
+	
+	/**
+	 * 排序
+	 * @param paramArr
+	 * @return
+	 */
+	public static int[] sort(int[] paramArr) {
+		if(null != paramArr) {
+			Arrays.sort(paramArr);
+		}
+		return paramArr;
+	}
+	/**
+	 * 
+	 * @param sortArr
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	public static int[] sort(int[] paramArr, int start, int end) {
+		if(null != paramArr && start <= paramArr.length 
+			&& end <= paramArr.length && start <= end) {
+			Arrays.sort(paramArr,start,end);
+		}
+		return paramArr;
+	}
+	
 }
