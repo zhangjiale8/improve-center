@@ -11,6 +11,7 @@
     <module>widget-center</module>
       <module>widget-unit</module>
     <module>springmvc-unit</module>
+    <module>lottery-unit</module>
   </modules>
   <dependencies>
   		<dependency>
