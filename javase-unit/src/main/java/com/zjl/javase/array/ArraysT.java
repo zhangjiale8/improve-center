@@ -58,7 +58,41 @@ public class ArraysT {
 			System.out.println(sortArr[i]);
 		}
 		//复制数组
-	
+		int[] copyArr = {3,5,7,1,9};
+		int[] copyArr2 = ArrayTool.copyof(copyArr,10);
+		for (int i = 0; i < copyArr2.length; i++) {
+			int j = copyArr2[i];
+			System.out.println(j);
+			
+		}
+		int[] copyArr3 = {3,5,7,1,9};
+		int[] copyArr4 = ArrayTool.copyOfRange(copyArr3,1,3);
+		for (int i = 0; i < copyArr4.length; i++) {
+			int j = copyArr4[i];
+			System.out.println(j);
+		}
+		//比较数组
+		int[] comArr = {3,5,7,1,9};
+		int[] comArr2 = {3,5,7,6,9};
+		
+		boolean flag = ArrayTool.compareArr(comArr,comArr2);
+		System.out.println(flag);
+		
+		//去重
+		int[] removeArr = {1, 2, 3, 4,5,6,7,8,9,0,3,2,4,5,6,7,4,32,2,1,1,4,6,3};
+		
+		int[] removeArr2 = ArrayTool.removeRepeat(removeArr);
+		for (int i = 0; i < removeArr2.length; i++) {
+			System.out.println(removeArr2[i]);
+		}
+		//获取最大值
+		int[] maxArr = {10, 2, 3, 4,5,6,7,8,9,0,3,2,4,5,6,7,4,32,2,1,1,4,6,3};
+		int max = ArrayTool.getMaxInArr(maxArr);
+		System.out.println(max);
+		//获取最小值
+		int[] minArr = {10, 2, 3, 4,5,6,7,8,9,3,2,4,5,6,7,4,32,2,1,1,4,6,3};
+		int min = ArrayTool.getMinInArr(minArr);
+		System.out.println(min);
 	}
 	
 	/**

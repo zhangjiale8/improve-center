@@ -114,5 +114,98 @@ public class ArrayTool {
 		}
 		return paramArr;
 	}
+	/**
+	 * int数组复制
+	 * @param paramArr 原数组
+	 * @param length 新数组长度
+	 * @return
+	 */
+	public static int[] copyof(int[] paramArr, int length) {
+		if(null != paramArr && paramArr.length <= length) {
+			return Arrays.copyOf(paramArr, length);
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * @param paramArr 原数组
+	 * @param start 开始下标
+	 * @param end 结束下标
+	 * @return
+	 */
+	public static int[] copyOfRange(int[] paramArr, int start, int end) {
+		if(null != paramArr && start >= 0 && end < paramArr.length) {
+			
+			return Arrays.copyOfRange(paramArr, start, end);
+		}
+		return null;
+	}
+	/**
+	 * 
+	 * @param paramArr 原数组
+	 * @param compareArr 比较数组
+	 * @return
+	 */
+	public static boolean compareArr(int[] paramArr, int[] compareArr) {
+		return Arrays.equals(paramArr, compareArr);
+	}
+	
+	/**
+	 * 数组去重
+	 * @param paramArr 去重数组
+	 * @return
+	 */
+	public static int[] removeRepeat(int[] paramArr) {
+		if(null != paramArr) {
+			//利用set的特性(无序，不重复)
+			Set<Integer> set=new HashSet<Integer>();
+			for (int i = 0; i < paramArr.length; i++) {
+				set.add(paramArr[i]);
+			}
+			int [] result = new int[set.size()];
+			int j=0;
+			for (int i : set) {
+				result[j++] = i;
+			}
+			return result;
+		}
+		return null;
+	}
+	/**
+	 * 获取数组中最大值
+	 * @param paramArr 
+	 * @return
+	 */
+	public static int getMaxInArr(int[] paramArr) {
+		if(null != paramArr) {
+			int max = paramArr[0];
+			for (int i = 0; i < paramArr.length; i++) {
+				if(paramArr[i] > max) {
+					max = paramArr[i];
+				}
+			}
+			return max;
+		}
+		return 0;
+	}
+	
+	/**
+	 * 获取数组中最小值
+	 * @param paramArr
+	 * @return
+	 */
+	public static int getMinInArr(int[] paramArr) {
+		if(null != paramArr) {
+			int min = paramArr[0];
+			for (int i = 0; i < paramArr.length; i++) {
+				if(paramArr[i] < min) {
+					min = paramArr[i];
+				}
+			}
+			return min;
+		}
+		return 0;
+	}
 	
 }
