@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 
-public class LotteryTest {
+public class LotteryTest2 {
 	public static void main(String[] args) {
-		URL url = LotteryTest.class.getClassLoader().getResource("101/001.txt");
+		URL url = LotteryTest2.class.getClassLoader().getResource("101/002.txt");
 		File file = new File(url.getFile());
 		Map<String, Map<String, Integer>> map = txt2Map(file);
 		Map<String, Integer> redMap = map.get("Red");
@@ -49,8 +49,7 @@ public class LotteryTest {
 	                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
 	                Matcher m = p.matcher(line);
 	                String temp = m.replaceAll("");
-	                String[] tempArr = temp.split(":");
-	                String[] strArr = tempArr[1].split("\\|");
+	                String[] strArr = temp.split("\\|");
 	                if(null != strArr && strArr.length == 2) {
 	                	String redStr = strArr[0];
 	                	String blueStr = strArr[1];
