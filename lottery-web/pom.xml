@@ -8,10 +8,10 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.zjl</groupId>
-  <artifactId>lottery-unit</artifactId>
+  <artifactId>lottery-web</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>lottery-unit Maven Webapp</name>
+  <name>lottery-web Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -27,6 +27,6 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>lottery-unit</finalName>
+    <finalName>lottery-web</finalName>
   </build>
 </project>

@@ -9,9 +9,9 @@
     <module>javase-unit</module>
     <module>tools-unit</module>
     <module>widget-center</module>
-      <module>widget-unit</module>
+    <module>widget-unit</module>
     <module>springmvc-unit</module>
-    <module>lottery-unit</module>
+    <module>lottery-web</module>
   </modules>
   <dependencies>
   		<dependency>
