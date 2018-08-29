@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjl.lottery.dao.UserMapper">
+	<!--登录  -->
+	<select id="getUserInfo" resultType="com.zjl.lottery.vo.User">
+		<![CDATA[
+			SELECT * FROM user WHERE username=#{0} 
+        ]]>  
+	</select>
+</mapper>
