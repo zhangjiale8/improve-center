@@ -3,6 +3,7 @@ package com.zjl.lottery;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -12,7 +13,8 @@ import org.apache.commons.lang.StringUtils;
 
 public class LotteryTest {
 	public static void main(String[] args) {
-		File file = new File("D:/Lottery/100/001.txt");
+		URL url = LotteryTest.class.getClassLoader().getResource("100/001.txt");
+		File file = new File(url.getFile());
 		Map<String, Map<String, Integer>> map = txt2Map(file);
 		Map<String, Integer> redMap = map.get("Red");
 		if(null != redMap && redMap.size() > 0) {
