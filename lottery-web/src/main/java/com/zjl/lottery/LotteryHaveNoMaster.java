@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 
-public class LotteryTest2 {
+public class LotteryHaveNoMaster {
 	public static void main(String[] args) {
-		URL url = LotteryTest2.class.getClassLoader().getResource("101/003.txt");
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource("101/004.txt");
 		File file = new File(url.getFile());
 		Map<String, Map<String, Integer>> map = txt2Map(file);
 		Map<String, Integer> redMap = map.get("Red");
