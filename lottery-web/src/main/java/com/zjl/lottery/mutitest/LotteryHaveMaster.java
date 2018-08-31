@@ -1,4 +1,4 @@
-package com.zjl.lottery;
+package com.zjl.lottery.mutitest;
 
 import java.io.BufferedReader;
 import java.io.File;

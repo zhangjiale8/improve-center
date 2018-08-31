@@ -1,4 +1,4 @@
-package com.zjl.lottery;
+package com.zjl.lottery.mutitest;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,9 +11,9 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 
-public class LotteryHaveNoMaster {
+public class LotteryTest {
 	public static void main(String[] args) {
-		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource("101/004.txt");
+		URL url = LotteryTest.class.getClassLoader().getResource("Z22/001.txt");
 		File file = new File(url.getFile());
 		Map<String, Map<String, Integer>> map = txt2Map(file);
 		Map<String, Integer> redMap = map.get("Red");
@@ -49,7 +49,8 @@ public class LotteryHaveNoMaster {
 	                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
 	                Matcher m = p.matcher(line);
 	                String temp = m.replaceAll("");
-	                String[] strArr = temp.split("\\|");
+	                String[] tempArr = temp.split(":");
+	                String[] strArr = tempArr[1].split("\\|");
 	                if(null != strArr && strArr.length == 2) {
 	                	String redStr = strArr[0];
 	                	String blueStr = strArr[1];
