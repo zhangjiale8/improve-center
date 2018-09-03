@@ -1,4 +1,4 @@
-package com.zjl.lottery.mutitest;
+package com.zjl.lottery.mutitZ22;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,7 +13,7 @@ import org.apache.commons.lang.StringUtils;
 
 public class LotteryHaveMaster {
 	public static void main(String[] args) {
-		URL url = LotteryHaveMaster.class.getClassLoader().getResource("101/001.txt");
+		URL url = LotteryHaveMaster.class.getClassLoader().getResource("Z22/001.txt");
 		File file = new File(url.getFile());
 		Map<String, Map<String, Integer>> map = txt2Map(file);
 		Map<String, Integer> redMap = map.get("Red");
@@ -23,14 +23,6 @@ public class LotteryHaveMaster {
 				System.out.println(entry.getKey() + " : " + entry.getValue());
 			}
 			System.out.println("-------------red打印结束------------");
-		}
-		Map<String, Integer> blueMap = map.get("Blue");
-		if(null != blueMap && blueMap.size() > 0) {
-			System.out.println("-------------blue打印开始------------");
-			for(Map.Entry<String, Integer> entry : blueMap.entrySet()) {
-				System.out.println(entry.getKey() + " : " + entry.getValue());
-			}
-			System.out.println("-------------blue打印结束------------");
 		}
 	}
 
@@ -42,7 +34,6 @@ public class LotteryHaveMaster {
 			//构造一个BufferedReader类来读取文件
 			try {
 				Map<String, Integer> redMap = new HashMap<String, Integer>();
-				Map<String, Integer> blueMap = new HashMap<String, Integer>();
 				BufferedReader br = new BufferedReader(new FileReader(file));
 				String line = null;
 				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
@@ -50,10 +41,8 @@ public class LotteryHaveMaster {
 	                Matcher m = p.matcher(line);
 	                String temp = m.replaceAll("");
 	                String[] tempArr = temp.split(":");
-	                String[] strArr = tempArr[1].split("\\|");
-	                if(null != strArr && strArr.length == 2) {
-	                	String redStr = strArr[0];
-	                	String blueStr = strArr[1];
+	                if(null != tempArr[1]) {
+	                	String redStr = tempArr[1];
 	                	//red处理
 	                	Map<String, Integer> redMapTemp = dealRedOrBlueStr(redStr);
 	                	for(Map.Entry<String, Integer> entry : redMapTemp.entrySet()) {
@@ -65,19 +54,7 @@ public class LotteryHaveMaster {
 	                			redMap.put(key, 1);
 	                		}
 	                	}
-	                	//blue处理
-	                	Map<String, Integer> blueMapTemp = dealRedOrBlueStr(blueStr);
-	                	for(Map.Entry<String, Integer> entry : blueMapTemp.entrySet()) {
-	                		String key = entry.getKey();
-	                		Integer sum = blueMap.get(key);
-	                		if(null != sum && sum != 0) {
-	                			blueMap.put(key, sum + 1);
-	                		}else {
-	                			blueMap.put(key, 1);
-	                		}
-	                	}
 	                	result.put("Red", redMap);
-	            		result.put("Blue", blueMap);
 	                	
 	                }
 	            }
