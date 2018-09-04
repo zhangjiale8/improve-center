@@ -38,7 +38,11 @@ public class CompreWithZ22 {
 		//103期
 		//int [] param = {1,2,4,7,8,10,12,14,18,19,20,22,23,25,26,27,29,30,31,33};
 		//int [] param = {1,3,6,8,9,11,13,15,17,18,19,22,23,25,26,27,28,31,32,33};
-		int [] param = {2,9,12,23,29,31};
+		//int [] param = {2,9,15,22,23,24};
+		//104期
+		//int [] param = {2,5,6,7,8,11,13,15,17,19,21,22,23,25,27,28,29,30,32,33};
+		int [] param = {2,4,5,7,8,10,12,13,15,17,18,21,22,24,25,27,29,31,32,33};
+		//int [] param = {2,9,15,22,23,24};
 		Map<String, Map<String, String>> result = compare(param);
 	}
 
@@ -57,8 +61,14 @@ public class CompreWithZ22 {
                 String[] redArr = reStr.replaceAll("，", ",").split(",");
                 int [] redTemp = ArrayTool.strArr2InArr(redArr);
                 int[] same = ArrayTool.getSameElements(param,redTemp);
-                System.out.println(id+":"+ArrayUtils.toString(same, ","));
-                int length = same.length;
+                int length = 0;
+                if(null  != same){
+                      length = same.length;
+                	  System.out.println(id+":"+ArrayUtils.toString(same, ","));
+                }else{
+                	System.out.println(id+":null");
+                }
+              
                 System.out.println("百分百:"+(double)length/20);	
                 	
             }
