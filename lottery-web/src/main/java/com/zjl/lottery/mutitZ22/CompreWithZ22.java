@@ -42,7 +42,7 @@ public class CompreWithZ22 {
 		//104期
 		//int [] param = {2,5,6,7,8,11,13,15,17,19,21,22,23,25,27,28,29,30,32,33};
 		//int [] param = {2,4,5,7,8,10,12,13,15,17,18,21,22,24,25,27,29,31,32,33};
-		int [] param = {2,5,6,7,8,11,17,22,28,30,32,33};
+		int [] param = {3,5,14,17,22,31};
 		//int [] param = {5,6,8,11,28,30};
 		Map<String, Map<String, String>> result = compare(param);
 	}
