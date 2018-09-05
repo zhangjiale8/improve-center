@@ -1,6 +1,6 @@
 package com.zjl.javase.notion;
 
-public class javBasicsGgrammar02 {
+public class javaBasicsGgrammar03 {
 	/**
 	 * 
 		5.语句：
