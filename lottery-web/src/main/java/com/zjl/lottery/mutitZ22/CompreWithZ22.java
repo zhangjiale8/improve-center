@@ -17,10 +17,11 @@ import com.zjl.tools.ArrayTool;
 public class CompreWithZ22 {
 	public static void main(String[] args) {
 		
-		//107期
-		//int [] param = {1,3,5,7,9,10,13,14,16,17,19,21,23,25,26,27,29,30,31,32};
-		//int [] param = {2,6,7,9,10,11,13,15,16,17,18,19,21,23,24,26,27,28,31};
-		int [] param = {7,9,11,12,20,29};
+	
+		//109期
+		//int [] param = {1,2,3,5,7,9,11,13,15,16,17,20,22,24,27,28,29,30,31,32};
+		int [] param = {2,4,6,8,9,11,13,14,15,16,17,20,21,22,23,24,26,29,30,33};
+		//int [] param = {10,11,18,23,31,33};
 		Map<String, Map<String, String>> result = compare(param);
 	}
 
