@@ -18,10 +18,8 @@ public class CompreWithZ22 {
 	public static void main(String[] args) {
 		
 	
-		//109期
-		//int [] param = {1,2,3,5,7,9,11,13,15,16,17,20,22,24,27,28,29,30,31,32};
-		//int [] param = {2,4,68,,8,9,11,13,14,15,16,17,20,21,22,23,24,26,29,30,33};
-		int [] param = {1,7,14,24,25,28};
+		
+		int [] param = {1,2,10,15,25,30};
 		Map<String, Map<String, String>> result = compare(param);
 	}
 
