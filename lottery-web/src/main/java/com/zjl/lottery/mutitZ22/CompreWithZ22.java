@@ -19,7 +19,7 @@ public class CompreWithZ22 {
 		
 	
 		
-		int [] param = {1,2,10,15,25,30};
+		int [] param = {2,11,13,14,19,27};
 		Map<String, Map<String, String>> result = compare(param);
 	}
 
