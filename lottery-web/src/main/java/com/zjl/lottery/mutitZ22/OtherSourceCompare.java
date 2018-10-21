@@ -17,13 +17,13 @@ import com.zjl.tools.ArrayTool;
 public class OtherSourceCompare {
 	public static void main(String[] args) {
 		
-		int [] param = {2,3,6,19,25,29};
+		int [] param = {};
 		Map<String, Map<String, String>> result = compare(param);
 	}
 
 	private static Map<String, Map<String, String>> compare(int[] param) {
 		Map<String, Map<String, String>> result = new HashMap<String, Map<String,String>>();
-		URL url = LotteryHaveMaster.class.getClassLoader().getResource("othersource/104/10402.txt");
+		URL url = LotteryHaveMaster.class.getClassLoader().getResource("122/00401.txt");
 		File file = new File(url.getFile());
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
