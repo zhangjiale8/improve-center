@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class CombineTest {
 	private static ArrayList<Integer> tmpArr = new ArrayList<Integer>();
 	public static void main(String[] args) {
-		//int [] param = {1,3,7,8,11,13,21,28,31,32,33};
-		int [] param = {3,4,8,10,11,14,15,18,21,26,28,30,32,33};
+		int [] param = {10,11,21,30,32,33};
 		int nums = 6;
 		System.out.println("组合结果：");
         combine(0 ,nums ,param);
