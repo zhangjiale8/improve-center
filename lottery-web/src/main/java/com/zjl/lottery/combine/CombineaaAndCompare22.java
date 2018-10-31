@@ -21,7 +21,7 @@ public class CombineaaAndCompare22 {
 	private static ArrayList<Integer> tmpArr = new ArrayList<Integer>();
 	public static void main(String[] args) {
 		//int [] param = {1,3,7,8,11,13,21,28,31,32,33};
-		int [] param = {2,5,8,9,10,11,15,16,18,19,22,23,24,25,27,28,29,33};
+		int [] param = {2,5,6,7,8,13,15,18,19,20,22,25,26,32,33};
 		int nums = 6;
 		System.out.println("组合结果：");
         combine(0 ,nums ,param);
