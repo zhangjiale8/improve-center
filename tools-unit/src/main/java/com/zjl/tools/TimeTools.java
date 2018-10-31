@@ -3,6 +3,8 @@ package com.zjl.tools;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -254,5 +256,137 @@ public class TimeTools {
 	public static String getCurrentYeart() {
 	
 		 return new SimpleDateFormat(Y).format(new Date());
+	}
+	
+	/**
+	 * 时间段交集
+	 * 规则描述： 如果时间段1开始时间早于时间段2开始时间 ，则开始时间取时间段2开始时间
+	 * 		  如果时间段1结束时间迟于时间段2的结束时间，则取时间段2结束时间
+	 * 		如果时间段1开始时间，时间段1结束时间 都超过时间段2开始时间和结束时间，则取时间段1时间
+	 * @param periodPre 时间段1
+	 * @param periodAft 时间段2
+	 * @return
+	 */
+	public static JSONObject timeIntersection(JSONObject periodPre,JSONObject periodAft) {
+		JSONObject JSONObject = new JSONObject();
+		if(null != periodPre && null != periodAft) {
+			Date preSt = DateFormate(periodPre.getString("start"),Y_M_D_H_M_S);
+			Date aftSt = DateFormate(periodAft.getString("start"),Y_M_D_H_M_S);
+			Date preEd = DateFormate(periodPre.getString("end"),Y_M_D_H_M_S);
+			Date aftEd = DateFormate(periodAft.getString("end"),Y_M_D_H_M_S);
+			boolean stFlg = compareTime(preSt,aftSt);
+			boolean edFlg = compareTime(preEd,aftEd);
+			if(stFlg && edFlg) {
+				JSONObject.put("start", periodAft.getString("start"));
+				JSONObject.put("end", periodPre.getString("end"));
+			}else if(!stFlg && !edFlg) {
+				JSONObject.put("start", periodPre.getString("start"));
+				JSONObject.put("end", periodAft.getString("end"));
+			}else if(stFlg && !edFlg) {
+				JSONObject.put("start", periodAft.getString("start"));
+				JSONObject.put("end", periodAft.getString("end"));
+			}else if(!stFlg && edFlg) {
+				JSONObject.put("start", periodPre.getString("start"));
+				JSONObject.put("end", periodPre.getString("end"));
+			}
+		}
+		
+		return JSONObject;		
+		 
+	}
+	
+	/**
+	 * 判断两个时间段是否有交集
+	 * @param busy
+	 * @param empty
+	 * @return
+	 */
+	public static boolean isPeriodOccr(JSONObject busy,JSONObject empty) {
+		if(null != busy && null != empty) {
+			Date leftSt = DateFormate(busy.getString("start"),Y_M_D_H_M_S);
+			Date leftEd = DateFormate(busy.getString("end"),Y_M_D_H_M_S);
+			Date rightSt = DateFormate(empty.getString("start"),Y_M_D_H_M_S);
+			Date rightEd = DateFormate(empty.getString("end"),Y_M_D_H_M_S);
+			return (leftSt.getTime() >= rightSt.getTime() && leftSt.getTime() < rightEd.getTime())
+				||(leftSt.getTime() > rightSt.getTime() && leftSt.getTime() <= rightEd.getTime())
+				||(rightSt.getTime() >= leftSt.getTime() && rightSt.getTime() < leftEd.getTime())
+				||(rightSt.getTime() > leftSt.getTime() && rightSt.getTime() <= leftEd.getTime());
+		}
+		return false;
+	}
+	
+	/**
+	 * 时间刨除，获取所有空闲时间段
+	 * @param list 忙碌时间段
+	 * @param start 开始时间
+	 * @param end 结束时间
+	 * @return
+	 */
+	public static JSONArray emptyTimeReduce(List<JSONObject> list,Date start,Date end) {
+		if(null != start && null != end) {
+			List<JSONArray> listEmpty = new LinkedList<JSONArray>();
+			JSONArray initEmpty = new JSONArray();
+			JSONObject jsonEmpty = new JSONObject();
+			jsonEmpty.put("start", DateStr(start,Y_M_D_H_M_S));
+			jsonEmpty.put("end", DateStr(end,Y_M_D_H_M_S));
+			initEmpty.add(jsonEmpty);
+			listEmpty.add(initEmpty);
+			if(null != list && list.size() > 0) {
+				if(null != listEmpty && listEmpty.size() > 0) {
+					int i = 0;
+					do {
+						JSONObject param = list.get(i);
+						Date stBusy =  DateFormate(param.getString("start"),Y_M_D_H_M_S); 
+						Date edBusy =  DateFormate(param.getString("end"),Y_M_D_H_M_S);
+						initEmpty = listEmpty.get(listEmpty.size() - 1);
+						if(null != initEmpty && initEmpty.size()  > 0) {
+							JSONArray emptyTempArr = new JSONArray();
+							for (int j = 0; j < initEmpty.size(); j++) {
+								JSONObject emptyTemp = initEmpty.getJSONObject(j);
+								Date stEmpty = DateFormate(emptyTemp.getString("start"),Y_M_D_H_M_S);
+								Date edEmpty =  DateFormate(emptyTemp.getString("end"),Y_M_D_H_M_S);
+								boolean occr = isPeriodOccr(param, emptyTemp);
+								if(occr) {
+									if(stEmpty.getTime() >= stBusy.getTime()
+									 && stEmpty.getTime() <= edBusy.getTime()) {
+										if(edBusy.getTime() != edEmpty.getTime()) {
+											JSONObject empty = new JSONObject();
+											empty.put("start", param.getString("end"));
+											empty.put("end", emptyTemp.getString("end"));
+											emptyTempArr.add(empty);
+										}
+									}else if(edEmpty.getTime() >= stBusy.getTime()
+											&& edEmpty.getTime() <= edBusy.getTime()) {
+										if(stBusy.getTime() != stEmpty.getTime()) {
+											JSONObject empty = new JSONObject();
+											empty.put("start", emptyTemp.getString("start"));
+											empty.put("end", param.getString("start"));
+											emptyTempArr.add(empty);
+										}
+									}else if(stBusy.getTime() > stEmpty.getTime()
+											&& edBusy.getTime() < edEmpty.getTime()) {
+										JSONObject emptypre = new JSONObject();
+										emptypre.put("start", emptyTemp.getString("start"));
+										emptypre.put("end", param.getString("start"));
+										emptyTempArr.add(emptypre);
+										JSONObject emptylst = new JSONObject();
+										emptylst.put("start", param.getString("end"));
+										emptylst.put("end", emptyTemp.getString("end"));
+										emptyTempArr.add(emptylst);
+									}
+								}else {
+									emptyTempArr.add(emptyTemp);
+								}
+							}
+						}
+						i++;
+					} while (i < list.size());
+				}
+				return listEmpty.get(listEmpty.size() - 1);
+			}
+		}
+		return null;
+		
+		
 	}
 }
