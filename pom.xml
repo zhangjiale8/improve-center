@@ -15,6 +15,7 @@
 		<module>ocr-unit</module>
     	<module>designmodel-center</module>
     	<module>daily-unit</module>
+    <module>leecode-unit</module>
   </modules>
 	<properties>
 		<!-- spring版本号 -->
