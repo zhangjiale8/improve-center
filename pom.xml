@@ -13,7 +13,8 @@
 		<module>springmvc-unit</module>
 		<module>lottery-web</module>
 		<module>ocr-unit</module>
-    <module>designmodel-center</module>
+    	<module>designmodel-center</module>
+    	<module>daily-unit</module>
   </modules>
 	<properties>
 		<!-- spring版本号 -->
@@ -28,6 +29,12 @@
 		<jackjson.version>2.8.8</jackjson.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.2</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
