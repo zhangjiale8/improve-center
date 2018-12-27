@@ -1,4 +1,4 @@
-package com.zjl.daily.javavoice.day20181217.designModel.FactoryMethod;
+package com.zjl.daily.javavoice.day20181217.designModel.FactoryMethod.common;
 
 public abstract class Enemy {
      //敌人的坐标，会被子类继承。
