@@ -1,4 +1,4 @@
-package com.zjl.leecode.algorithms.maths;
+package com.zjl.leecode;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.zjl.leecode.algorithms.maths;
+package com.zjl.leecode;
 
 /**
  * 11. 盛最多水的容器
@@ -13,6 +13,23 @@ package com.zjl.leecode.algorithms.maths;
  */
 public class Solution11 {
 	public static void main(String[] args) {
-		
+		int [] height = {2,6,3,8,9,5,7};
+		int area = maxArea(height);
+		System.out.println(area);
+	}
+
+	private static int maxArea(int[] height) {
+		int left = 0;
+		int right = height.length - 1;
+		int max = 0;
+		while(left < right) {
+			 max = Math.max(max, Math.min(height[left], height[right])*(right-left));
+			 if(height[left]<height[right]){
+				 left++;
+		     }else{
+		    	 right--;
+		     }
+		}
+		return 0;
 	}
 }
