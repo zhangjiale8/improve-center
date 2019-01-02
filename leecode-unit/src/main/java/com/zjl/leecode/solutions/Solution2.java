@@ -1,4 +1,4 @@
-package com.zjl.leecode.day20181228;
+package com.zjl.leecode.solutions;
 
 
 
