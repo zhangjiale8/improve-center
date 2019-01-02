@@ -4,7 +4,7 @@ import com.zjl.leecode.common.entity.ListNode;
 
 /**
  * 
- * @Description:TODO 2.两数相加 
+ * @Description: 2.两数相加 
  * 					   给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序
  *                   的方式存储的，并且它们的每个节点只能存储 一位 数字。
  * 
@@ -23,7 +23,16 @@ import com.zjl.leecode.common.entity.ListNode;
  * @Copyright: 2019
  */
 public class Solution2 {
-
+	/**
+	 * 
+	 * @Title: addTwoNumbers   
+	 * @Description: 利用求和整除   
+	 * @param: @param l1
+	 * @param: @param l2
+	 * @param: @return      
+	 * @return: ListNode      
+	 * @throws
+	 */
 	public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 		ListNode result = new ListNode(0);
         ListNode tmp = result;
@@ -46,7 +55,16 @@ public class Solution2 {
         }
 		return result.getVal() == 0 ? result.getNext() : result;
 	}
-
+	/**
+	 * 
+	 * @Title: addTwoNumbers2   
+	 * @Description:利用取余  
+	 * @param: @param l1
+	 * @param: @param l2
+	 * @param: @return      
+	 * @return: ListNode      
+	 * @throws
+	 */
 	public static ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
 		ListNode pre = new ListNode(-1);
         ListNode head = new ListNode(0);

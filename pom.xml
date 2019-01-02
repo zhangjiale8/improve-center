@@ -16,6 +16,7 @@
     	<module>designmodel-center</module>
     	<module>daily-unit</module>
     <module>leecode-unit</module>
+    <module>spring-unit</module>
   </modules>
 	<properties>
 		<!-- spring版本号 -->
