@@ -17,6 +17,7 @@
     	<module>daily-unit</module>
     <module>leecode-unit</module>
     <module>spring-unit</module>
+    <module>book-unit</module>
   </modules>
 	<properties>
 		<!-- spring版本号 -->
