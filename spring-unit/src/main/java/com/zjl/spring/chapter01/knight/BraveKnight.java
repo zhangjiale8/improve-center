@@ -1,17 +1,17 @@
 package com.zjl.spring.chapter01.knight;
 /**
  * 
- * @Description:探险指示 
+ * @Description:勇敢骑士  
  * @author: zhangjiale
- * @date:   2019年1月7日 上午10:33:22   
+ * @date:   2019年1月7日 上午10:32:27   
  *     
  * @Copyright: 2019
  */
-public class DamselRescuingKnight implements Knight{
-	private RescueDamselQuest quest;
+public class BraveKnight implements Knight {
 	
-	public DamselRescuingKnight() {
-		this.quest = new RescueDamselQuest();
+	private Quest quest;
+	public BraveKnight(Quest quest) {
+		this.quest = quest;
 	}
 
 	public Object embarkOnQuest() throws QuestFailedException {
@@ -20,7 +20,7 @@ public class DamselRescuingKnight implements Knight{
 	}
 
 	public String getName() {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
 
