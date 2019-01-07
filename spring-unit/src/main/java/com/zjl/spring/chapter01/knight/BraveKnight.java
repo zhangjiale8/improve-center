@@ -10,13 +10,17 @@ package com.zjl.spring.chapter01.knight;
 public class BraveKnight implements Knight {
 	
 	private Quest quest;
-	public BraveKnight(Quest quest) {
+	private Minstrel minstrel;
+	public BraveKnight(Quest quest,Minstrel minstrel) {
 		this.quest = quest;
+		this.minstrel = minstrel;
 	}
 
 	public Object embarkOnQuest() throws QuestFailedException {
-		
-		return quest.embark();
+		minstrel.singBeforeQuest();
+		quest.embark();
+		minstrel.singAfterQuest();
+		return null;
 	}
 
 	public String getName() {
