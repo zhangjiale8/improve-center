@@ -15,11 +15,13 @@ public class BraveKnight implements Knight {
 		this.quest = quest;
 		this.minstrel = minstrel;
 	}
+	
+	public BraveKnight(Quest quest) {
+		this.quest = quest;
+	}
 
 	public Object embarkOnQuest() throws QuestFailedException {
-		minstrel.singBeforeQuest();
 		quest.embark();
-		minstrel.singAfterQuest();
 		return null;
 	}
 
