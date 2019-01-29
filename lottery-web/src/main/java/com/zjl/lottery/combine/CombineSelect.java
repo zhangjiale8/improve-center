@@ -7,7 +7,7 @@ public class CombineSelect {
 	private static ArrayList<Integer> tmpArr = new ArrayList<Integer>();
 	private static ArrayList<String> loterryLsit = new ArrayList<String>();
 	public static void main(String[] args) {
-		int [] param = {2,4,5,6,7,8,9,10,11,14,16,17,18,19,21,27,28,29,30,33};
+		int [] param = {5,7,11,14,16,17,18,27,29,30};
 		int nums = 6;
 		System.out.println("组合结果：");
         combine(0 ,nums ,param);
@@ -17,11 +17,21 @@ public class CombineSelect {
         int res66 = (int) (totalSize * 0.66);
         int res88 = (int) (totalSize * 0.88);
         int res99 = (int) (totalSize * 0.99);
+        System.out.println(totalSize);
         System.out.println(loterryLsit.get(res8));
         System.out.println(loterryLsit.get(res18));
         System.out.println(loterryLsit.get(res66));
         System.out.println(loterryLsit.get(res88));
         System.out.println(loterryLsit.get(res99));
+        System.out.println(loterryLsit.get(8));
+        System.out.println(loterryLsit.get(88));
+        //System.out.println(loterryLsit.get(888));
+        //System.out.println(loterryLsit.get(188));
+        //System.out.println(loterryLsit.get(1888));
+        System.out.println(loterryLsit.get(66));
+       // System.out.println(loterryLsit.get(666));
+        System.out.println(loterryLsit.get(99));
+       // System.out.println(loterryLsit.get(999));
         
 	}
 
