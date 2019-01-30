@@ -7,7 +7,7 @@ public class CombineSelect {
 	private static ArrayList<Integer> tmpArr = new ArrayList<Integer>();
 	private static ArrayList<String> loterryLsit = new ArrayList<String>();
 	public static void main(String[] args) {
-		int [] param = {9,12,13,14,15,16,18,19,20,21,22,23,25,26,28,29,30,31};
+		int [] param = {9,12,13,14,15,16,18,19,20,22,23,25,26,28,29,30,31};
 
 		int nums = 6;
 		System.out.println("组合结果：");
