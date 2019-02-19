@@ -8,7 +8,7 @@ public class CombineSelect {
 	private static ArrayList<String> loterryLsit = new ArrayList<String>();
 	public static void main(String[] args) {
 		int [] param = {1,2,3,4,7,8,9,11,12,13,14,15,16,18,20,21,22,23,25,26,31,32,33};
-		
+	
 		int nums = 6;
 		System.out.println("组合结果：");
         combine(0 ,nums ,param);
