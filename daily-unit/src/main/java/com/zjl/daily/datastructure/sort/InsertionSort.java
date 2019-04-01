@@ -2,11 +2,11 @@ package com.zjl.daily.datastructure.sort;
 
 public class InsertionSort {
 	public static void main(String[] args) {
-		 int[] paramArr = { 49, 38, 65, 97, 76, 13, 27, 50 };
-	        insertionSort(paramArr);
-	        for (int i : paramArr) {
-	            System.out.print(i + " ");
-	        }
+		int[] paramArr = { 49, 38, 65, 97, 76, 13, 27, 50 };
+		insertionSort(paramArr);
+		for (int i : paramArr) {
+			System.out.print(i + " ");
+		}
 	}
 	/**
 	 * 
