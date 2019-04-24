@@ -7,7 +7,7 @@ public class CombineSelect {
 	private static ArrayList<Integer> tmpArr = new ArrayList<Integer>();
 	private static ArrayList<String> loterryLsit = new ArrayList<String>();
 	public static void main(String[] args) {
-		int [] param = {1,2,3,4,7,8,9,11,12,13,14,15,16,18,20,21,22,23,25,26,31,32,33};
+		int [] param = {1,2,4,5,7,8,9,12,13,14,15,16,17,18,19,21,22,23,24,25,26,28,29,30,31,33};
 	
 		int nums = 6;
 		System.out.println("组合结果：");
@@ -24,7 +24,7 @@ public class CombineSelect {
         System.out.println(loterryLsit.get(res66));
         System.out.println(loterryLsit.get(res88));
         System.out.println(loterryLsit.get(res99));
-        System.out.println(loterryLsit.get(8));
+       /* System.out.println(loterryLsit.get(8));
         System.out.println(loterryLsit.get(88));
         System.out.println(loterryLsit.get(888));
         System.out.println(loterryLsit.get(188));
@@ -32,7 +32,7 @@ public class CombineSelect {
         System.out.println(loterryLsit.get(66));
         System.out.println(loterryLsit.get(666));
         System.out.println(loterryLsit.get(99));
-        System.out.println(loterryLsit.get(999));
+        System.out.println(loterryLsit.get(999));*/
         
 	}
 
