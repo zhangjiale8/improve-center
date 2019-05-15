@@ -1,8 +1,22 @@
 package com.zjl.lottery.combine.vo;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
+import com.zjl.tools.ArrayTool;
 
 public class LotteryCombine {
+	private String ticketPath;
 	private int index;//从第几个开始选择
 	private int [] redArr;//红球数组
 	private int redtotal;//红球总数
@@ -20,9 +34,10 @@ public class LotteryCombine {
 	private static ArrayList<Integer> bluetmpArr = new ArrayList<Integer>();
 	private static ArrayList<String> blueloterryLsit = new ArrayList<String>();
 	
-	public LotteryCombine(int index, int[] redArr, int redtotal, int redscreennum, int[] blueArr, int bluetotal,
-			int bluescreennum, LotteryTypEnum lotterytyp, ScreenTypEnum screenTypEnum) {
+	public LotteryCombine(String ticketPath, int index, int[] redArr, int redtotal, int redscreennum, int[] blueArr,
+			int bluetotal, int bluescreennum, LotteryTypEnum lotterytyp, ScreenTypEnum screenTypEnum) {
 		super();
+		this.ticketPath = ticketPath;
 		this.index = index;
 		this.redArr = redArr;
 		this.redtotal = redtotal;
@@ -33,6 +48,15 @@ public class LotteryCombine {
 		this.lotterytyp = lotterytyp;
 		this.screenTypEnum = screenTypEnum;
 	}
+
+	public String getTicketPath() {
+		return ticketPath;
+	}
+
+	public void setTicketPath(String ticketPath) {
+		this.ticketPath = ticketPath;
+	}
+
 	public ScreenTypEnum getScreenTypEnum() {
 		return screenTypEnum;
 	}
@@ -138,14 +162,19 @@ public class LotteryCombine {
         		if(screenTypEnum == ScreenTypEnum.RED) {
         			for (int i = index; i < param.length; i++) {
 	          			  redtmpArr.add(param[i]);
-	          			  boolean screenflg  = screenLimit(redtmpArr);
-	          			  redloterryLsit.add(redtmpArr.toString());
+	          			  boolean screenflg  = screenRedLimit(redtmpArr);
+	          			  if(screenflg){
+		          			  redloterryLsit.add(redtmpArr.toString());
+	          			  }
 	                      redtmpArr.remove((Object)param[i]);
                     }
         		}else if(screenTypEnum == ScreenTypEnum.BLUE) {
         			for (int i = index; i < param.length; i++) {
             			  bluetmpArr.add(param[i]);
-            			  blueloterryLsit.add(bluetmpArr.toString());
+            			  boolean screenflg  = bluescreenLimit(bluetmpArr);
+	          			  if(screenflg){
+	          				  blueloterryLsit.add(bluetmpArr.toString());
+	          			  }
                           bluetmpArr.remove((Object)param[i]);
                       }
           		}
@@ -184,6 +213,11 @@ public class LotteryCombine {
             return ;
         }
     }
+	private boolean bluescreenLimit(ArrayList<Integer> bluetmpArr2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	/**
 	 * 
 	 * @Title: screenLimit   
@@ -194,20 +228,59 @@ public class LotteryCombine {
 	 * @return: boolean      
 	 * @throws
 	 */
-	public boolean screenLimit(ArrayList<Integer> paramList) {
+	public boolean screenRedLimit(ArrayList<Integer> paramList) {
+		boolean limitflg = false;
 		if(null != paramList && paramList.size() > 0) {
 			Integer[] listarr = new Integer[paramList.size()];
 			paramList.toArray(listarr);
-			if(lotterytyp == LotteryTypEnum.DOUBLE_BALL) {
-				
-			}else if(lotterytyp == LotteryTypEnum.DOUBLE_BALL) {
-				
-			}
-			
+			limitflg = redCompareWithTxt(listarr);
 			
 		}
 		
-		return false;
+		return limitflg;
 	}
+
+	public boolean redCompareWithTxt(Integer[] listarr) {
+		boolean limitflg = false;
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(ticketPath);
+		File file = new File(url.getFile());
+		if(null != file && file.exists()) {
+			//构造一个BufferedReader类来读取文件
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
+	                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+	                Matcher m = p.matcher(line);
+	                String temp = m.replaceAll("");
+	                String[] strArr = temp.split("\\|");
+	                if(null != strArr && strArr.length == 2) {
+	                	String redStr = strArr[0];
+	                	redStr = redStr.replaceAll("，", ",");
+	        			String [] redArr = redStr.split(",");
+	                	int nums = 0;
+	                	for (int i = 0; i < listarr.length; i++) {
+	                		String param = listarr[i] + "";
+	                		boolean flg = ArrayTool.isContains(param, redArr);
+	                		if(flg){
+	                			nums ++;
+	                		}
+							
+						}
+	                	
+	                	if(nums == listarr.length){
+	                		limitflg = true;
+	                	}
+	                	
+	                }
+	            }
+	            br.close();  
+			} catch (Exception e) {
+				e.getStackTrace();
+			}
+		}
+		return limitflg;
+	}
+	
 	
 }
