@@ -162,7 +162,7 @@ public class LotteryCombine {
         		if(screenTypEnum == ScreenTypEnum.RED) {
         			for (int i = index; i < param.length; i++) {
 	          			  redtmpArr.add(param[i]);
-	          			  boolean screenflg  = screenRedLimit(redtmpArr);
+	          			  boolean screenflg = screenRedLimit(redtmpArr);
 	          			  if(screenflg){
 		          			  redloterryLsit.add(redtmpArr.toString());
 	          			  }
@@ -234,7 +234,6 @@ public class LotteryCombine {
 			Integer[] listarr = new Integer[paramList.size()];
 			paramList.toArray(listarr);
 			limitflg = redCompareWithTxt(listarr);
-			
 		}
 		
 		return limitflg;
