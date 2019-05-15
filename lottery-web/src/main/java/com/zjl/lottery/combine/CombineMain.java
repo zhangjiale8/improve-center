@@ -62,7 +62,6 @@ public class CombineMain {
 				}
 	            out.close();
 		    }
-		    String str = "aaa"+System.getProperty("line.separator")+"";
 	    } catch (IOException e) {
 			e.printStackTrace();
 		}
