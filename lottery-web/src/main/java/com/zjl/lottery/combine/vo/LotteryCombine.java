@@ -268,8 +268,9 @@ public class LotteryCombine {
 							
 						}
 	                	
-	                	if(nums == listarr.length){
+	                	if(nums < listarr.length){
 	                		limitflg = true;
+	                		break;
 	                	}
 	                	
 	                }

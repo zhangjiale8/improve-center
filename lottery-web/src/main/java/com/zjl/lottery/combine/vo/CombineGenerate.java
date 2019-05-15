@@ -7,6 +7,12 @@ public class CombineGenerate extends LotteryCombine{
 			int bluetotal, int bluescreennum, LotteryTypEnum lotterytyp, ScreenTypEnum screenTypEnum) {
 		super(ticketPath, index, redArr, redtotal, redscreennum, blueArr, bluetotal, bluescreennum, lotterytyp, screenTypEnum);
 	}
+
+	public void redgenerate() {
+		super.combine(this.getIndex(), this.getRedscreennum(), this.getRedArr());
+		
+	}
+	
 	
    
 }
