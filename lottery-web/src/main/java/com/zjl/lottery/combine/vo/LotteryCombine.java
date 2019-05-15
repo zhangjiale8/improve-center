@@ -1,5 +1,7 @@
 package com.zjl.lottery.combine.vo;
 
+import java.util.ArrayList;
+
 public class LotteryCombine {
 	private int index;//从第几个开始选择
 	private int [] redArr;//红球数组
@@ -9,6 +11,71 @@ public class LotteryCombine {
 	private int bluetotal;//篮球总数
 	private int bluescreennum;//篮选择数
 	private LotteryTypEnum lotterytyp;
+	private ScreenTypEnum screenTypEnum;
+	
+	private static ArrayList<Integer> tmpArr = new ArrayList<Integer>();
+	private static ArrayList<String> loterryLsit = new ArrayList<String>();
+	private static ArrayList<Integer> redtmpArr = new ArrayList<Integer>();
+	private static ArrayList<String> redloterryLsit = new ArrayList<String>();
+	private static ArrayList<Integer> bluetmpArr = new ArrayList<Integer>();
+	private static ArrayList<String> blueloterryLsit = new ArrayList<String>();
+	
+	public LotteryCombine(int index, int[] redArr, int redtotal, int redscreennum, int[] blueArr, int bluetotal,
+			int bluescreennum, LotteryTypEnum lotterytyp, ScreenTypEnum screenTypEnum) {
+		super();
+		this.index = index;
+		this.redArr = redArr;
+		this.redtotal = redtotal;
+		this.redscreennum = redscreennum;
+		this.blueArr = blueArr;
+		this.bluetotal = bluetotal;
+		this.bluescreennum = bluescreennum;
+		this.lotterytyp = lotterytyp;
+		this.screenTypEnum = screenTypEnum;
+	}
+	public ScreenTypEnum getScreenTypEnum() {
+		return screenTypEnum;
+	}
+	public void setScreenTypEnum(ScreenTypEnum screenTypEnum) {
+		this.screenTypEnum = screenTypEnum;
+	}
+	public static ArrayList<Integer> getTmpArr() {
+		return tmpArr;
+	}
+	public static void setTmpArr(ArrayList<Integer> tmpArr) {
+		LotteryCombine.tmpArr = tmpArr;
+	}
+	public static ArrayList<String> getLoterryLsit() {
+		return loterryLsit;
+	}
+	public static void setLoterryLsit(ArrayList<String> loterryLsit) {
+		LotteryCombine.loterryLsit = loterryLsit;
+	}
+	public static ArrayList<Integer> getRedtmpArr() {
+		return redtmpArr;
+	}
+	public static void setRedtmpArr(ArrayList<Integer> redtmpArr) {
+		LotteryCombine.redtmpArr = redtmpArr;
+	}
+	public static ArrayList<String> getRedloterryLsit() {
+		return redloterryLsit;
+	}
+	public static void setRedloterryLsit(ArrayList<String> redloterryLsit) {
+		LotteryCombine.redloterryLsit = redloterryLsit;
+	}
+	public static ArrayList<Integer> getBluetmpArr() {
+		return bluetmpArr;
+	}
+	public static void setBluetmpArr(ArrayList<Integer> bluetmpArr) {
+		LotteryCombine.bluetmpArr = bluetmpArr;
+	}
+	public static ArrayList<String> getBlueloterryLsit() {
+		return blueloterryLsit;
+	}
+	public static void setBlueloterryLsit(ArrayList<String> blueloterryLsit) {
+		LotteryCombine.blueloterryLsit = blueloterryLsit;
+	}
+	
 	public int getIndex() {
 		return index;
 	}
@@ -57,4 +124,90 @@ public class LotteryCombine {
 	public void setLotterytyp(LotteryTypEnum lotterytyp) {
 		this.lotterytyp = lotterytyp;
 	}
+	
+	/**
+     * 组合
+     * 按一定的顺序取出元素，就是组合,元素个数[C arr.len 3]
+     * @param index 元素位置
+     * @param k 选取的元素个数
+     * @param arr 数组
+     */
+	public void combine(int index,int nums,int [] param) {
+        if(nums == 1){
+        	if(null != screenTypEnum) {
+        		if(screenTypEnum == ScreenTypEnum.RED) {
+        			for (int i = index; i < param.length; i++) {
+	          			  redtmpArr.add(param[i]);
+	          			  boolean screenflg  = screenLimit(redtmpArr);
+	          			  redloterryLsit.add(redtmpArr.toString());
+	                      redtmpArr.remove((Object)param[i]);
+                    }
+        		}else if(screenTypEnum == ScreenTypEnum.BLUE) {
+        			for (int i = index; i < param.length; i++) {
+            			  bluetmpArr.add(param[i]);
+            			  blueloterryLsit.add(bluetmpArr.toString());
+                          bluetmpArr.remove((Object)param[i]);
+                      }
+          		}
+        	}else {
+        		  for (int i = index; i < param.length; i++) {
+	        			  tmpArr.add(param[i]);
+	        			  loterryLsit.add(tmpArr.toString());
+	                      tmpArr.remove((Object)param[i]);
+                  }
+        	}
+          
+        }else if(nums > 1){
+        	if(null != screenTypEnum) {
+        		if(screenTypEnum == ScreenTypEnum.RED) {
+        			for (int i = index; i <= param.length - nums; i++) {
+                     	 redtmpArr.add(param[i]); //tmpArr都是临时性存储一下
+                         combine(i + 1,nums - 1, param); //索引右移，内部循环，自然排除已经选择的元素
+                         redtmpArr.remove((Object)param[i]); //tmpArr因为是临时存储的，上一个组合找出后就该释放空间，存储下一个元素继续拼接组合了
+                     }
+        		}else if(screenTypEnum == ScreenTypEnum.BLUE) {
+        			 for (int i = index; i <= param.length - nums; i++) {
+                      	bluetmpArr.add(param[i]); //tmpArr都是临时性存储一下
+                        combine(i + 1,nums - 1, param); //索引右移，内部循环，自然排除已经选择的元素
+                        bluetmpArr.remove((Object)param[i]); //tmpArr因为是临时存储的，上一个组合找出后就该释放空间，存储下一个元素继续拼接组合了
+                      }
+          		}
+        	}else {
+        		 for (int i = index; i <= param.length - nums; i++) {
+                 	tmpArr.add(param[i]); //tmpArr都是临时性存储一下
+                    combine(i + 1,nums - 1, param); //索引右移，内部循环，自然排除已经选择的元素
+                    tmpArr.remove((Object)param[i]); //tmpArr因为是临时存储的，上一个组合找出后就该释放空间，存储下一个元素继续拼接组合了
+                 }
+        	}
+          
+        }else{
+            return ;
+        }
+    }
+	/**
+	 * 
+	 * @Title: screenLimit   
+	 * @Description: 与实体票数据对比 
+	 * 默认是全部不出
+	 * @param: @param paramList
+	 * @param: @return      
+	 * @return: boolean      
+	 * @throws
+	 */
+	public boolean screenLimit(ArrayList<Integer> paramList) {
+		if(null != paramList && paramList.size() > 0) {
+			Integer[] listarr = new Integer[paramList.size()];
+			paramList.toArray(listarr);
+			if(lotterytyp == LotteryTypEnum.DOUBLE_BALL) {
+				
+			}else if(lotterytyp == LotteryTypEnum.DOUBLE_BALL) {
+				
+			}
+			
+			
+		}
+		
+		return false;
+	}
+	
 }
