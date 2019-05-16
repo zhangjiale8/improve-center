@@ -240,7 +240,7 @@ public class LotteryCombine {
 	}
 
 	public boolean redCompareWithTxt(Integer[] listarr) {
-		boolean limitflg = false;
+		boolean limitflg = true;
 		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(ticketPath);
 		File file = new File(url.getFile());
 		if(null != file && file.exists()) {
@@ -267,8 +267,8 @@ public class LotteryCombine {
 							
 						}
 	                	
-	                	if(nums < listarr.length){
-	                		limitflg = true;
+	                	if(nums == redscreennum){
+	                		limitflg = false;
 	                		break;
 	                	}
 	                	
