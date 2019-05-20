@@ -17,7 +17,7 @@ import com.zjl.tools.ArrayTool;
 public class InitCombineParam {
 
 	public static CombineGenerate init(LotteryTypEnum lotteryTyp, ScreenTypEnum screenTypEnum, Integer screenNum,
-			int[] otherArr) {
+			int[] otherArr, String periods) {
 		CombineGenerate combineGenerate = null;
 	    try {
 	    	Properties properties = new Properties();
@@ -34,7 +34,7 @@ public class InitCombineParam {
 				//获取key对应的value值
 				LotteryTypEnum lotterytyp = LotteryTypEnum.getEnumByKey(properties.getProperty("lottery.lotterytyp"));
 				int index = 0;
-			    String ticketpath = properties.getProperty("lottery.ticketpath");
+			    String ticketpath = periods+"/"+properties.getProperty("lottery.ticketpath");
 			    String redStr = properties.getProperty("lottery.redarr");
 			    int[] redArr = Str2IntArr(redStr);
 			    int redscreennum = Integer.valueOf(properties.getProperty("lottery.redscreennum"));
