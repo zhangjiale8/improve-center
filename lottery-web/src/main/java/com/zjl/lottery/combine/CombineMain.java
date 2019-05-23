@@ -18,14 +18,14 @@ public class CombineMain {
 	public static void main(String[] args) {
 		
 	    try {
-			LotteryTypEnum lotteryTyp = LotteryTypEnum.GREAT_LOTTO;
+			LotteryTypEnum lotteryTyp = LotteryTypEnum.DOUBLE_BALL;
 			ScreenTypEnum screenTypEnum = ScreenTypEnum.RED;
-			Integer screenNum = 5;
-			int[] otherArr = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35};
+			Integer screenNum = 6;
+			int[] otherArr = {1,2,3,5,6,11,13,14,15,16,18,19,20,21,22,23,24,25,27,28,29,30,31,33};
 			//期数
-			String periods = "057";
+			String periods = "059";
 			CombineGenerate combineGenerate = InitCombineParam.init(lotteryTyp,screenTypEnum,screenNum,otherArr,periods);
-			int maxSame = 3;
+			int maxSame = 4;
 			InitCombineParam.screenRedTxt(combineGenerate,maxSame);
 		   
 	    } catch (Exception e) {

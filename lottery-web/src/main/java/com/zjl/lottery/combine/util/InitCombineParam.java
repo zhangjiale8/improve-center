@@ -84,7 +84,6 @@ public class InitCombineParam {
 		int size = combineGenerate.getRedloterryLsit().size();
 	    System.out.println(size);
 	    ArrayList<String> redloterryLsit = combineGenerate.getRedloterryLsit();
-	    InitCombineParam.screenRedTxt(combineGenerate,maxSame);
 	    if(null != redloterryLsit && redloterryLsit.size() > 0){
 	    	 File file = new File("D:" + File.separator + "demo" + File.separator + "test.txt");
 	         if(!file.getParentFile().exists()){
@@ -112,7 +111,7 @@ public class InitCombineParam {
 	private static boolean filterResult(String[] arry, CombineGenerate combineGenerate, int maxSame) throws Exception {
 		boolean limitflg = true;
 		String path = combineGenerate.getTicketPath();
-		path = path.substring(0, path.length()-3)+"008";
+		path = path.substring(0, path.length()-7)+"008.txt";
 		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
 		File file = new File(url.getFile());
 		if(null != file && file.exists()) {

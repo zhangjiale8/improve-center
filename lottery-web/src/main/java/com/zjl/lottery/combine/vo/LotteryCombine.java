@@ -164,7 +164,7 @@ public class LotteryCombine {
 	          			  if(screenflg){
 	          				String temp = redtmpArr.toString();
 	          				temp = temp.substring(1, temp.length());
-	          				temp = temp.substring(0, temp.length()-1);
+	          				temp = temp.substring(0, temp.length()-1).replaceAll(" ", "");
 		          			redloterryLsit.add(temp);
 	          			  }
 	                      redtmpArr.remove((Object)param[i]);
