@@ -1,17 +1,26 @@
 package com.zjl.lottery.combine.util;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.combine.CombineMain;
 import com.zjl.lottery.combine.vo.CombineGenerate;
 import com.zjl.lottery.combine.vo.LotteryTypEnum;
 import com.zjl.lottery.combine.vo.ScreenTypEnum;
+import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
 import com.zjl.tools.ArrayTool;
 
 public class InitCombineParam {
@@ -69,5 +78,74 @@ public class InitCombineParam {
 		str = str.replaceAll("，", ",");
 		String [] arr = str.split(",");
 		return ArrayTool.strArr2InArr(arr);
+	}
+
+	public static void screenRedTxt(CombineGenerate combineGenerate, int maxSame) throws Exception {
+		int size = combineGenerate.getRedloterryLsit().size();
+	    System.out.println(size);
+	    ArrayList<String> redloterryLsit = combineGenerate.getRedloterryLsit();
+	    InitCombineParam.screenRedTxt(combineGenerate,maxSame);
+	    if(null != redloterryLsit && redloterryLsit.size() > 0){
+	    	 File file = new File("D:" + File.separator + "demo" + File.separator + "test.txt");
+	         if(!file.getParentFile().exists()){
+                file.getParentFile().mkdirs();
+            }
+            
+            //2：准备输出流
+            Writer out = new FileWriter(file);
+            for (int i = 0; i < redloterryLsit.size(); i++) {
+            	String temp = redloterryLsit.get(i);
+            	String [] arry = temp.split(",");
+            	boolean printFlg = filterResult(arry,combineGenerate,maxSame);
+            	if(printFlg){
+                	out.write(temp+System.getProperty("line.separator"));
+
+            	}
+			}
+            out.close();
+            
+	    }
+		
+	}
+
+
+	private static boolean filterResult(String[] arry, CombineGenerate combineGenerate, int maxSame) throws Exception {
+		boolean limitflg = true;
+		String path = combineGenerate.getTicketPath();
+		path = path.substring(0, path.length()-3)+"008";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if(null != file && file.exists()) {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line = null;
+			while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
+                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+                Matcher m = p.matcher(line);
+                String temprp = m.replaceAll("");
+                String[] strArr = temprp.split("\\|");
+                if(null != strArr && strArr.length == 2) {
+                	String redStr = strArr[0];
+                	redStr = redStr.replaceAll("，", ",");
+        			String [] redArr = redStr.split(",");
+                	int nums = 0;
+                	for (int i = 0; i < arry.length; i++) {
+                		String param = arry[i] + "";
+                		boolean flg = ArrayTool.isContains(param, redArr);
+                		if(flg){
+                			nums ++;
+                		}
+						
+					}
+                	
+                	if(nums > maxSame){
+                		limitflg = false;
+                		break;
+                	}
+                	
+                }
+            }
+            br.close();
+		}
+		return limitflg;
 	}
 }

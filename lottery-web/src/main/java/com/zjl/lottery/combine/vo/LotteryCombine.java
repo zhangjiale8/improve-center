@@ -162,7 +162,10 @@ public class LotteryCombine {
 	          			  redtmpArr.add(param[i]);
 	          			  boolean screenflg = screenRedLimit(redtmpArr);
 	          			  if(screenflg){
-		          			  redloterryLsit.add(redtmpArr.toString());
+	          				String temp = redtmpArr.toString();
+	          				temp = temp.substring(1, temp.length());
+	          				temp = temp.substring(0, temp.length()-1);
+		          			redloterryLsit.add(temp);
 	          			  }
 	                      redtmpArr.remove((Object)param[i]);
                     }

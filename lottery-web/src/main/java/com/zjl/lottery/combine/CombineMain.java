@@ -25,27 +25,15 @@ public class CombineMain {
 			//期数
 			String periods = "057";
 			CombineGenerate combineGenerate = InitCombineParam.init(lotteryTyp,screenTypEnum,screenNum,otherArr,periods);
-		    int size = combineGenerate.getRedloterryLsit().size();
-		    System.out.println(size);
-		    ArrayList<String> redloterryLsit = combineGenerate.getRedloterryLsit();
-		    if(null != redloterryLsit && redloterryLsit.size() > 0){
-		    	 File file = new File("D:" + File.separator + "demo" + File.separator + "test.txt");
-		         if(!file.getParentFile().exists()){
-	                file.getParentFile().mkdirs();
-	            }
-	            
-	            //2：准备输出流
-	            Writer out = new FileWriter(file);
-	            for (int i = 0; i < redloterryLsit.size(); i++) {
-	            	String temp = redloterryLsit.get(i);
-	            	out.write(temp+System.getProperty("line.separator"));
-				}
-	            out.close();
-		    }
-	    } catch (IOException e) {
+			int maxSame = 3;
+			InitCombineParam.screenRedTxt(combineGenerate,maxSame);
+		   
+	    } catch (Exception e) {
 			e.printStackTrace();
 		}
 	    
 	}
+
+	
 
 }
