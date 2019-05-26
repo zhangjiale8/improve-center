@@ -1,5 +1,6 @@
 package com.zjl.tools;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -389,4 +390,16 @@ public class TimeTools {
 		
 		
 	}
+	/**
+	 * Java中Date转化成数据库中Timestamp
+	 * @param date
+	 * @return
+	 */
+	public static Timestamp DbTypeTranse(Date date) {
+		if(null != date){
+			return new java.sql.Timestamp(date.getTime());
+		}
+		return null;
+	}
+	
 }
