@@ -6,10 +6,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.zjl.lottery.db.DoubleBallDTO;
+import com.zjl.lottery.db.test.vo.CombineVo;
 import com.zjl.tools.TimeTools;
 
 public class JDBCPatchUtil {
-
+	/**
+	 * 插入开奖结果
+	 * @param list
+	 */
 	public static void insertDrawBatch(ArrayList<DoubleBallDTO> list) {
 		if(null != list && list.size() > 0){
 			Connection conn = null;
@@ -40,6 +44,102 @@ public class JDBCPatchUtil {
 	        }
 			
 		}
+		
+	}
+	/**
+	 * 双色球插入所有组合
+	 * @param list
+	 */
+	public static void insertDoubleBallCombineBatch(ArrayList<CombineVo> list) {
+
+		if(null != list && list.size() > 0){
+			Connection conn = null;
+	        PreparedStatement ps = null;
+	        ResultSet rs = null;
+
+	        try {
+	        	conn = JDBCUtil.getMysqlConn();
+	        	conn.setAutoCommit(false);
+	            String insertSql = "insert into DOUBLEBALLCOMBINE (REDCODE_VAl,BLUECODE_VAl) values(?,?)";
+	            ps = conn.prepareStatement(insertSql);
+	            for (int i = 0; i < list.size(); i++) {
+	            	CombineVo param = list.get(i);
+		            ps.setString(1, param.getRedcodeVal());
+		            ps.setString(2, param.getBluecodeVal());
+		            ps.addBatch();//添加到批次
+		            // 每1000条记录插入一次
+		            if (i % 1000 == 0){
+		                ps.executeBatch();
+		                conn.commit();
+		                ps.clearBatch();
+		            }
+
+				}
+	            // 剩余数量不足1000
+	            ps.executeBatch();
+	            conn.commit();
+	            ps.clearBatch();
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally{
+	            JDBCUtil.close(rs, ps, conn);
+	        }
+			
+		}
+		
+	}
+	
+	/**
+	 * 初始化双色球筛选所有组合
+	 * @param list
+	 */
+	public static void initDoubleBallScreenBatch(ArrayList<CombineVo> list) {
+
+		if(null != list && list.size() > 0){
+			Connection conn = null;
+	        PreparedStatement ps = null;
+	        ResultSet rs = null;
+
+	        try {
+	        	conn = JDBCUtil.getMysqlConn();
+	        	conn.setAutoCommit(false);
+	            String insertSql = "insert into DOUBLEBALLSCREENDATA (REDCODE_VAl,BLUECODE_VAl) values(?,?)";
+	            ps = conn.prepareStatement(insertSql);
+	            for (int i = 0; i < list.size(); i++) {
+	            	CombineVo param = list.get(i);
+		            ps.setString(1, param.getRedcodeVal());
+		            ps.setString(2, param.getBluecodeVal());
+		            ps.addBatch();//添加到批次
+		            // 每1000条记录插入一次
+		            if (i % 1000 == 0){
+		                ps.executeBatch();
+		                conn.commit();
+		                ps.clearBatch();
+		            }
+
+				}
+	            // 剩余数量不足1000
+	            ps.executeBatch();
+	            conn.commit();
+	            ps.clearBatch();
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally{
+	            JDBCUtil.close(rs, ps, conn);
+	        }
+			
+		}
+		
+	}
+	
+	/**
+	 * 大乐透插入所有组合
+	 * @param list
+	 */
+	public static void insertGreatLottoCombineBatch(ArrayList<CombineVo> list) {
+		
 		
 	}
 
