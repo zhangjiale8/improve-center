@@ -19,7 +19,7 @@ public class MainTest {
 
         try {
            
-            DoubleBallDTO doubleballdto = new DoubleBallDTO("2019061", TimeTools.DateFormate("2019-05-28 21:15:00", TimeTools.Y_M_D_H_M_S), new Date(), "2019", "061", "3,17,19,24,27,31", "12");
+            DoubleBallDTO doubleballdto = new DoubleBallDTO("2019062", TimeTools.DateFormate("2019-05-30 21:15:00", TimeTools.Y_M_D_H_M_S), new Date(), "2019", "062", "7,13,16,23,26,30", "1");
             doubleballdto.insertDrawRecord();
             /*ArrayList<DoubleBallDTO> list = new ArrayList<DoubleBallDTO>();
             list.add(doubleballdto);

@@ -94,10 +94,10 @@ public class InitCombineParam {
             	String temp = redloterryLsit.get(i);
             	String [] arry = temp.split(",");
             	boolean printFlg = filterResult(arry,combineGenerate,maxSame);
-            	//if(printFlg){
+            	if(printFlg){
                 	out.write(temp+System.getProperty("line.separator"));
 
-            	//}
+            	}
 			}
             out.close();
             
