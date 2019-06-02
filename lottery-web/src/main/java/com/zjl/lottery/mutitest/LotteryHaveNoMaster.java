@@ -13,7 +13,7 @@ import org.apache.commons.lang.StringUtils;
 
 public class LotteryHaveNoMaster {
 	public static void main(String[] args) {
-		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource("059/0309.txt");
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource("060/0301.txt");
 		File file = new File(url.getFile());
 		Map<String, Map<String, Integer>> map = txt2Map(file);
 		Map<String, Integer> redMap = map.get("Red");

@@ -133,6 +133,79 @@ public class JDBCPatchUtil {
 		}
 		
 	}
+	/**
+	 * 批量筛选，把不满足条件的数据删除
+	 * @param list
+	 */
+	public static void screenDoubleBallBatch(ArrayList<CombineVo> list) {
+
+
+		if(null != list && list.size() > 0){
+			Connection conn = null;
+	        PreparedStatement ps = null;
+	        ResultSet rs = null;
+
+	        try {
+	        	conn = JDBCUtil.getMysqlConn();
+	        	conn.setAutoCommit(false);
+	            String delSql = "delete from DOUBLEBALLSCREENDATA where REDCODE_VAl = ?";
+	            ps = conn.prepareStatement(delSql);
+	            for (int i = 0; i < list.size(); i++) {
+	            	CombineVo param = list.get(i);
+		            ps.setString(1, param.getRedcodeVal());
+		            ps.addBatch();//添加到批次
+		            // 每1000条记录执行一次
+		            if (i > 0 && i % 300 == 0){
+		                ps.executeBatch();
+		                conn.commit();
+		                ps.clearBatch();
+		            }
+
+				}
+	            // 剩余数量不足1000
+	            ps.executeBatch();
+	            conn.commit();
+	            ps.clearBatch();
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally{
+	            JDBCUtil.close(rs, ps, conn);
+	        }
+			
+		}			
+		
+	}
+	
+	/**
+	 * 筛选，把不满足条件的数据删除
+	 * @param list
+	 */
+	public static void screenDoubleBall(CombineVo param) {
+
+		if(null != param){
+			Connection conn = null;
+	        PreparedStatement ps = null;
+	        ResultSet rs = null;
+
+	        try {
+	        	conn = JDBCUtil.getMysqlConn();
+	        	conn.setAutoCommit(false);
+	            String delSql = "delete from DOUBLEBALLSCREENDATA where REDCODE_VAl = ?";
+	            ps = conn.prepareStatement(delSql);
+		        ps.setString(1, param.getRedcodeVal());
+	            ps.execute();
+	            conn.commit();
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally{
+	            JDBCUtil.close(rs, ps, conn);
+	        }
+			
+		}			
+		
+	}
 	
 	/**
 	 * 大乐透插入所有组合
@@ -142,5 +215,7 @@ public class JDBCPatchUtil {
 		
 		
 	}
+	
+
 
 }

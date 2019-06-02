@@ -80,9 +80,7 @@ public class InitCombineParam {
 		return ArrayTool.strArr2InArr(arr);
 	}
 
-	public static void screenRedTxt(CombineGenerate combineGenerate, int maxSame) throws Exception {
-		int size = combineGenerate.getRedloterryLsit().size();
-	    System.out.println(size);
+	public static void screenRedTxt(CombineGenerate combineGenerate, int maxSame) throws Exception {		
 	    ArrayList<String> redloterryLsit = combineGenerate.getRedloterryLsit();
 	    if(null != redloterryLsit && redloterryLsit.size() > 0){
 	    	 File file = new File("D:" + File.separator + "demo" + File.separator + "test.txt");
@@ -96,10 +94,10 @@ public class InitCombineParam {
             	String temp = redloterryLsit.get(i);
             	String [] arry = temp.split(",");
             	boolean printFlg = filterResult(arry,combineGenerate,maxSame);
-            	if(printFlg){
+            	//if(printFlg){
                 	out.write(temp+System.getProperty("line.separator"));
 
-            	}
+            	//}
 			}
             out.close();
             

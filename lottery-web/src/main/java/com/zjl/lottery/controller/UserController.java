@@ -2,7 +2,6 @@ package com.zjl.lottery.controller;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,7 @@ public class UserController extends Controller_ {
 	/**
 	 * 登录
 	 * */
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping(value = "/login.ctrl", produces = "application/json")
 	public Map<String, Object> login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession httpSession) {
 	
@@ -35,5 +34,5 @@ public class UserController extends Controller_ {
 			error = e.getMessage();
 		}
 		return result(error, object);
-	}
+	}*/
 }

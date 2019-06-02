@@ -19,16 +19,16 @@ public class MainTest {
 
         try {
            
-            DoubleBallDTO doubleballdto = new DoubleBallDTO("2019059", new Date(), new Date(), "2019", "059", "1,2,3,5,8", "5");
-            //doubleballdto.insertDrawRecord();
-            ArrayList<DoubleBallDTO> list = new ArrayList<DoubleBallDTO>();
+            DoubleBallDTO doubleballdto = new DoubleBallDTO("2019061", TimeTools.DateFormate("2019-05-28 21:15:00", TimeTools.Y_M_D_H_M_S), new Date(), "2019", "061", "3,17,19,24,27,31", "12");
+            doubleballdto.insertDrawRecord();
+            /*ArrayList<DoubleBallDTO> list = new ArrayList<DoubleBallDTO>();
             list.add(doubleballdto);
             list.add(doubleballdto);
             list.add(doubleballdto);
             list.add(doubleballdto);
             list.add(doubleballdto);
             list.add(doubleballdto);
-            JDBCPatchUtil.insertDrawBatch(list);
+            JDBCPatchUtil.insertDrawBatch(list);*/
         } catch (Exception e) {
             e.printStackTrace();
         } finally{
