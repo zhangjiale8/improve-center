@@ -215,7 +215,172 @@ public class JDBCPatchUtil {
 		
 		
 	}
-	
+	/**
+	 * 插入数据
+	 * @param list
+	 */
+	public static void insertDoubleBallBatch(ArrayList<String> list) {
+
+		if(null != list && list.size() > 0){
+			Connection conn = null;
+	        PreparedStatement ps = null;
+	        ResultSet rs = null;
+
+	        try {
+	        	conn = JDBCUtil.getMysqlConn();
+	        	conn.setAutoCommit(false);
+	            String insertSql = "insert into drawa (REDVAL) values(?)";
+	            ps = conn.prepareStatement(insertSql);
+	            for (int i = 0; i < list.size(); i++) {
+	            	String param = list.get(i);
+		            ps.setString(1, param);
+		            ps.addBatch();//添加到批次
+		            // 每1000条记录插入一次
+		            if (i % 1000 == 0){
+		                ps.executeBatch();
+		                conn.commit();
+		                ps.clearBatch();
+		            }
+
+				}
+	            // 剩余数量不足1000
+	            ps.executeBatch();
+	            conn.commit();
+	            ps.clearBatch();
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally{
+	            JDBCUtil.close(rs, ps, conn);
+	        }
+			
+		}
+		
+	}
+	/**
+	 * 获取所有组合（已过滤4连）
+	 * @return
+	 */
+	public static ArrayList<String> getCombineList() {
+		Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<String> list = new ArrayList<String>();
+        try {
+        	
+        	conn = JDBCUtil.getMysqlConn();
+            String getSql = "SELECT A.`REDCODE_VAl` FROM doubleballscreendatatemp A";
+            ps = conn.prepareStatement(getSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+            	String param = rs.getString(1);
+            	list.add(param);
+            }
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            JDBCUtil.close(rs, ps, conn);
+        }
+        
+		return list;
+	}
+	/**
+	 * 获取历史数据
+	 * @return
+	 */
+	public static ArrayList<String> getHistoryList() {
+		Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<String> list = new ArrayList<String>();
+        try {
+        	
+        	conn = JDBCUtil.getMysqlConn();
+            String getSql = "SELECT A.`REDCODE_VAl` FROM prelotterydraw A";
+            ps = conn.prepareStatement(getSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+            	String param = rs.getString(1);
+            	list.add(param);
+            }
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            JDBCUtil.close(rs, ps, conn);
+        }
+        
+		return list;
+	}
+	/**
+	 * 插入临时筛选表中
+	 * @param list
+	 */
+	public static void insertScreenTempPatch(ArrayList<String> list) {
+
+		if(null != list && list.size() > 0){
+			Connection conn = null;
+	        PreparedStatement ps = null;
+	        ResultSet rs = null;
+
+	        try {
+	        	conn = JDBCUtil.getMysqlConn();
+	        	conn.setAutoCommit(false);
+	            String insertSql = "insert into screenTemp (REDVAL) values(?)";
+	            ps = conn.prepareStatement(insertSql);
+	            for (int i = 0; i < list.size(); i++) {
+	            	String param = list.get(i);
+		            ps.setString(1, param);
+		            ps.addBatch();//添加到批次
+		            // 每1000条记录插入一次
+		            if (i % 1000 == 0){
+		                ps.executeBatch();
+		                conn.commit();
+		                ps.clearBatch();
+		            }
+
+				}
+	            // 剩余数量不足1000
+	            ps.executeBatch();
+	            conn.commit();
+	            ps.clearBatch();
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally{
+	            JDBCUtil.close(rs, ps, conn);
+	        }
+			
+		}
+		
+	}
+	/**
+	 * 清空临时筛选表
+	 */
+	public static void emptyScreenTemp() {
+		Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+        	conn = JDBCUtil.getMysqlConn();
+        	conn.setAutoCommit(false);
+            String delSql = "delete from screenTemp";
+            ps = conn.prepareStatement(delSql);
+            ps.execute();
+            conn.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            JDBCUtil.close(rs, ps, conn);
+        }
+			
+		
+	}
 
 
 }

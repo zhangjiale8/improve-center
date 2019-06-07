@@ -20,6 +20,7 @@ import com.zjl.lottery.combine.CombineMain;
 import com.zjl.lottery.combine.vo.CombineGenerate;
 import com.zjl.lottery.combine.vo.LotteryTypEnum;
 import com.zjl.lottery.combine.vo.ScreenTypEnum;
+import com.zjl.lottery.db.util.JDBCPatchUtil;
 import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
 import com.zjl.tools.ArrayTool;
 
@@ -82,6 +83,7 @@ public class InitCombineParam {
 
 	public static void screenRedTxt(CombineGenerate combineGenerate, int maxSame) throws Exception {		
 	    ArrayList<String> redloterryLsit = combineGenerate.getRedloterryLsit();
+	    ArrayList<String> list = new ArrayList<String>();
 	    if(null != redloterryLsit && redloterryLsit.size() > 0){
 	    	 File file = new File("D:" + File.separator + "demo" + File.separator + "test.txt");
 	         if(!file.getParentFile().exists()){
@@ -93,14 +95,14 @@ public class InitCombineParam {
             for (int i = 0; i < redloterryLsit.size(); i++) {
             	String temp = redloterryLsit.get(i);
             	String [] arry = temp.split(",");
-            	boolean printFlg = filterResult(arry,combineGenerate,maxSame);
-            	if(printFlg){
+            	/*boolean printFlg = filterResult(arry,combineGenerate,maxSame);
+            	if(printFlg){*/
                 	out.write(temp+System.getProperty("line.separator"));
-
-            	}
+                	list.add(temp);
+            	/*}*/
 			}
             out.close();
-            
+            //JDBCPatchUtil.insertDoubleBallBatch(list);
 	    }
 		
 	}
