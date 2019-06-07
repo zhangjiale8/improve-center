@@ -6,6 +6,7 @@ import java.util.Iterator;
 import com.zjl.lottery.db.DoubleBallDTO;
 import com.zjl.lottery.db.test.vo.CombineVo;
 import com.zjl.lottery.db.util.JDBCPatchUtil;
+import com.zjl.lottery.main.MainUtil;
 
 public class InitScreenCombine {
 	private static ArrayList<Integer> tmpArr = new ArrayList<Integer>();
@@ -16,17 +17,41 @@ public class InitScreenCombine {
 		int nums = 6;
 		System.out.println("组合结果：");
         combine(0 ,nums ,param);
-        ArrayList<CombineVo> list = new ArrayList<CombineVo>();
-        for (int i = 0; i < loterryLsit.size(); i++) {
+        //insertDb();
+        inserFile("screen201906072052");
+        
+	}
+	
+	/**
+	 * 插入文件
+	 * @param fileName
+	 */
+	private static void inserFile(String fileName) {
+		 ArrayList<String> screenlist = new ArrayList<String>();
+	        for (int i = 0; i < loterryLsit.size(); i++) {
+	        	String redStr = loterryLsit.get(i);
+	        	screenlist.add(redStr);
+			}
+	        if(null != screenlist && screenlist.size() > 0){
+	        	MainUtil.createScreenTxt(screenlist,fileName);
+	        }
+		
+	}
+	/**
+	 * 插入数据库
+	 */
+	private static void insertDb() {
+		ArrayList<CombineVo> list = new ArrayList<CombineVo>();
+		 for (int i = 0; i < loterryLsit.size(); i++) {
         	String redStr = loterryLsit.get(i);
         	CombineVo combineVo = new CombineVo(redStr,"1,2");
         	list.add(combineVo);
 		}
-        if(null != list && list.size() > 0){
-        	 //JDBCPatchUtil.insertDoubleBallCombineBatch(list);
-        	 JDBCPatchUtil.initDoubleBallScreenBatch(list);
+		 
+		 if(null != list && list.size() > 0){
+        	 JDBCPatchUtil.insertDoubleBallCombineBatch(list);
+        	 //JDBCPatchUtil.initDoubleBallScreenBatch(list);
         }
-        
 	}
 
 	/**
