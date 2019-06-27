@@ -7,7 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -162,6 +165,45 @@ public class MainUtil {
 			}
 		}
 		return list;
+	}
+	/**
+	 * @param screenNum 
+	 * 多组数据筛选法
+	 * @Title: tenParamArrScreen   
+	 * @Description:多组数据筛选法
+	 * 时间复杂度： 
+	 * 空间复杂度： 
+	 * @param: @param list      
+	 * @return: void      
+	 * @throws
+	 */
+	public static void tenParamArrScreen(ArrayList<int[]> list, int screenNum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		for (int[] paramArr : list) {
+			ArrayList<String> screenList = CombineUtil.getScreenList(paramArr,screenNum);
+			if(null != screenList && screenList.size() > 0) {
+				for (int i = 0; i < screenList.size(); i++) {
+					String combine = screenList.get(i);
+					if(StringUtils.isNotEmpty(combine)) {
+						int count = (null == map.get(combine)) ? 0 : map.get(combine) + 1;
+						map.put(combine, count);
+					}
+					
+				}
+			}
+			
+		}
+		ArrayList<String> screenlist = new ArrayList<String>();
+		for (Entry<String, Integer> entry : map.entrySet()) {
+			int count = entry.getValue();
+			if(count < 3) {
+				screenlist.add(entry.getKey());
+			}
+		
+		}
+		
+		createScreenTxt(screenlist, "tenarrscreen");
+		
 	}
 	
 

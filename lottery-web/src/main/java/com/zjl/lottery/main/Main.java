@@ -1,6 +1,7 @@
 package com.zjl.lottery.main;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class Main {
 	public static void main(String[] args) {
@@ -9,7 +10,28 @@ public class Main {
 		//复试数据过滤
 		//MainUtil.compoundScreen();
 		//数据过滤
-		screenCombinebydata();
+		//screenCombinebydata();
+		//十组数据预测法
+		tenParamArrScreen();
+	}
+	/**
+	 * 
+	 * @Title: tenParamArrScreen   
+	 * @Description: 十组数据预测法
+	 * 时间复杂度： 
+	 * 空间复杂度： 
+	 * @param:       
+	 * @return: void      
+	 * @throws
+	 */
+	private static void tenParamArrScreen() {
+		int[] paramArr1 = {};
+		int[] paramArr2 = {};
+		int[] paramArr3 = {};
+		int[] paramArr4 = {};
+		ArrayList<int[]> list = new ArrayList<int[]>();
+		int screenNum = 6;
+		MainUtil.tenParamArrScreen(list,screenNum);
 	}
 
 	private static void screenCombinebydata() {
