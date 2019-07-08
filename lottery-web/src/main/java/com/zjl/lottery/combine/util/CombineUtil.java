@@ -47,6 +47,8 @@ public class CombineUtil {
      * @return
      */
 	public static ArrayList<String> getScreenList(int[] paramArr, int screenNum) {
+		tmpArr = new ArrayList<Integer>();
+		loterryLsit = new ArrayList<String>();
 		combine(0 ,screenNum ,paramArr);
 		return loterryLsit;
 	}

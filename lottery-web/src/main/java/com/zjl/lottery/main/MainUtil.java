@@ -6,9 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
@@ -18,6 +20,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.combine.util.CombineUtil;
 import com.zjl.lottery.db.util.JDBCPatchUtil;
+import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
 import com.zjl.tools.ArrayTool;
 
 public class MainUtil {
@@ -196,7 +199,7 @@ public class MainUtil {
 		ArrayList<String> screenlist = new ArrayList<String>();
 		for (Entry<String, Integer> entry : map.entrySet()) {
 			int count = entry.getValue();
-			if(count < 3) {
+			if(count < 4) {
 				screenlist.add(entry.getKey());
 			}
 		
@@ -205,7 +208,129 @@ public class MainUtil {
 		createScreenTxt(screenlist, "tenarrscreen");
 		
 	}
-	
 
+	public static void initDoubleBallHistory() {
+		ArrayList<String> historyListTemp = JDBCPatchUtil.getDoubleBallHistoryList();
+		ArrayList<String> historyList = new ArrayList<String>();
+		for (int i = 0; i < historyListTemp.size(); i++) {
+			String param = historyListTemp.get(i);
+			/*String [] paramArr = param.split("@");
+			String temp = paramArr[2];*/
+			historyList.add(param);
+		}
+		createScreenTxt(historyList, "doubleballhistorydrawinfo");
+	}
+	
+	/**
+	 * @param screenNum 
+	 * 多组数据筛选法
+	 * @Title: tenParamArrScreen   
+	 * @Description:多组数据筛选法
+	 * 时间复杂度： 
+	 * 空间复杂度： 
+	 * @param: @param list      
+	 * @return: void      
+	 * @throws
+	 */
+	public static void tenParamArrScreenHistoryAndThree(ArrayList<int[]> list, int screenNum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		for (int[] paramArr : list) {
+			ArrayList<String> screenList = CombineUtil.getScreenList(paramArr,screenNum);
+			if(null != screenList && screenList.size() > 0) {
+				for (int i = 0; i < screenList.size(); i++) {
+					String combine = screenList.get(i);
+					if(StringUtils.isNotEmpty(combine)) {
+						int count = (null == map.get(combine)) ? 1 : map.get(combine) + 1;
+						map.put(combine, count);
+					}
+					
+				}
+			}
+			
+		}
+		ArrayList<String> screenlist = new ArrayList<String>();
+		for (Entry<String, Integer> entry : map.entrySet()) {
+			int count = entry.getValue();
+			if(count < 4) {
+				screenlist.add(entry.getKey());
+			}
+		
+		}
+		
+		createScreenTxt(screenlist, "tenarrscreen");
+		Map<String, Integer> afterHistorymap =  screenHistory(map);
+		
+		
+	}
+
+	public static Map<String, Integer> screenHistory(Map<String, Integer> map) {
+		Map<String, Integer> screenmap = new HashMap<String, Integer>();
+		String path = "";
+		path = "data/doubleballhistorydrawinfo.txt";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if(null != file && file.exists()) {
+		 try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
+	                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+	                Matcher m = p.matcher(line);
+	                String temprp = m.replaceAll("");
+	                String[] strArr = temprp.split("@");
+	                String[] params = strArr[2].split("\\|");
+	                if(null != params && params.length == 2) {
+	                	String redStr = params[0];
+	                	redStr = redStr.replaceAll("，", ",");
+	        			String [] redArr = redStr.split(",");
+	        			int[] paramArr = ArrayTool.strArr2InArr(redArr);
+	        			ArrayList<String> tempList = CombineUtil.getScreenList(paramArr,5);
+	        			for (Entry<String, Integer> entry : map.entrySet()) {
+	        				String combine = entry.getKey();
+	        				String [] combineArr = combine.split(",");
+	        				for (String temp : tempList) {
+	        					String [] tempArr = temp.split(",");
+	        					int nums = 0;
+	                        	for (int i = 0; i < tempArr.length; i++) {
+	                        		String param = tempArr[i] + "";
+	                        		boolean flg = ArrayTool.isContains(param, combineArr);
+	                        		if(flg){
+	                        			nums ++;
+	                        		}
+	                        		
+	        					}
+	                        	if(nums > 4){
+	                        		screenmap.put(entry.getKey(), entry.getValue());
+	                        		break;
+	                        	}
+	                        	
+	                        	
+							}
+	        			
+	        			}
+	                	
+	                	
+	                }
+	            }
+	            br.close();
+		} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		for (Entry<String, Integer> entry : screenmap.entrySet()) {
+			map.remove(entry.getKey());
+		}
+		ArrayList<String> screenlist = new ArrayList<String>();
+		for (Entry<String, Integer> entry : map.entrySet()) {
+			int count = entry.getValue();
+			if(count < 4) {
+				screenlist.add(entry.getKey());
+			}
+		
+		}
+		createScreenTxt(screenlist, "historyscreen");
+		return map;
+	}
 
 }

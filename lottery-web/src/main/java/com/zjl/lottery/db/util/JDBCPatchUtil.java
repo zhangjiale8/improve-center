@@ -381,6 +381,39 @@ public class JDBCPatchUtil {
 			
 		
 	}
+	/**
+	 * 获取双色球历史信息
+	 * @return
+	 */
+	public static ArrayList<String> getDoubleBallHistoryList() {
+		Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<String> list = new ArrayList<String>();
+        try {
+        	
+        	conn = JDBCUtil.getMysqlConn();
+        String getSql = "SELECT A.`REDCODE_VAl`,A.`BLUECODE_VAl`,A.`DRAW_DTM`,A.`DRAW_ID` FROM prelotterydraw A ORDER BY A.`DRAW_NO` DESC";
+            ps = conn.prepareStatement(getSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+            	String red = rs.getString("REDCODE_VAl");
+            	String blue = rs.getString("BLUECODE_VAl");
+            	String drawdtm = TimeTools.DateStr(rs.getDate("DRAW_DTM"), TimeTools.Y_M_D_H_M_S);
+            	String drawid = rs.getString("DRAW_ID");
+            	String param = drawid+"@"+drawdtm+"@"+red+"|"+blue;
+            	list.add(param);
+            }
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally{
+            JDBCUtil.close(rs, ps, conn);
+        }
+        
+		return list;
+	}
 
 
 }
