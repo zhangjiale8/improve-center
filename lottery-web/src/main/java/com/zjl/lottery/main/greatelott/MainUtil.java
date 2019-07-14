@@ -1,4 +1,4 @@
-package com.zjl.lottery.main;
+package com.zjl.lottery.main.greatelott;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -24,61 +24,7 @@ import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
 import com.zjl.tools.ArrayTool;
 
 public class MainUtil {
-	/**
-	 * 复试数据过滤
-	 */
-	public static void compoundScreen() {
-		
-		
-	}
-
-	public static void historyScreen() {
-		try {
-			ArrayList<String> combineList = JDBCPatchUtil.getCombineList();
-			ArrayList<String> historyList = JDBCPatchUtil.getHistoryList();
-			ArrayList<String> resultList = JDBCPatchUtil.getHistoryList();
-			for (String combineparam : combineList) {
-				String[] combineparamArr = combineparam.split(",");
-				int numsMax = 0;
-				for (String history : historyList) {
-					String[] historyArr = history.split(",");
-					int nums = 0;
-					for (int i = 0; i < combineparamArr.length; i++) {
-						boolean flg = ArrayTool.isContains(combineparamArr[i], historyArr);
-						if(flg){
-							nums ++;
-						}
-					}
-					if(nums > numsMax){
-						numsMax = nums;
-					}
-				}
-				if(numsMax < 5){
-					resultList.add(combineparam);
-				}
-			}
-			
-			if(null != resultList && resultList.size() > 0){
-				File file = new File("E:" + File.separator + "screen" + File.separator + "result.txt");
-		         if(!file.getParentFile().exists()){
-	               file.getParentFile().mkdirs();
-	           }
-	           
-	           //2：准备输出流
-	           Writer out = new FileWriter(file);
-	           for (int i = 0; i < resultList.size(); i++) {
-		           	String temp = resultList.get(i);
-		            out.write(temp+System.getProperty("line.separator"));
-	           }
-	           out.close();
-	           JDBCPatchUtil.emptyScreenTemp();
-	           JDBCPatchUtil.insertScreenTempPatch(resultList);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+	
 	/**
 	 * 创建过滤后文件
 	 * @param screenlist
@@ -180,7 +126,7 @@ public class MainUtil {
 	 * @return: void      
 	 * @throws
 	 */
-	public static void tenParamArrScreen(ArrayList<int[]> list, int screenNum) {
+	public static Map<String, Integer> tenParamArrScreen(ArrayList<int[]> list, int screenNum) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		for (int[] paramArr : list) {
 			ArrayList<String> screenList = CombineUtil.getScreenList(paramArr,screenNum);
@@ -199,7 +145,7 @@ public class MainUtil {
 		ArrayList<String> screenlist = new ArrayList<String>();
 		for (Entry<String, Integer> entry : map.entrySet()) {
 			int count = entry.getValue();
-			if(count < 4) {
+			if(count < 3) {
 				screenlist.add(entry.getKey());
 			}
 		
@@ -207,65 +153,19 @@ public class MainUtil {
 		
 		createScreenTxt(screenlist, "tenarrscreen");
 		
-	}
-
-	public static void initDoubleBallHistory() {
-		ArrayList<String> historyListTemp = JDBCPatchUtil.getDoubleBallHistoryList();
-		ArrayList<String> historyList = new ArrayList<String>();
-		for (int i = 0; i < historyListTemp.size(); i++) {
-			String param = historyListTemp.get(i);
-			/*String [] paramArr = param.split("@");
-			String temp = paramArr[2];*/
-			historyList.add(param);
-		}
-		createScreenTxt(historyList, "doubleballhistorydrawinfo");
-	}
-	
-	/**
-	 * @param screenNum 
-	 * 多组数据筛选法
-	 * @Title: tenParamArrScreen   
-	 * @Description:多组数据筛选法
-	 * 时间复杂度： 
-	 * 空间复杂度： 
-	 * @param: @param list      
-	 * @return: void      
-	 * @throws
-	 */
-	public static Map<String, Integer> tenParamArrScreenHistoryAndThree(ArrayList<int[]> list, int screenNum) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		for (int[] paramArr : list) {
-			ArrayList<String> screenList = CombineUtil.getScreenList(paramArr,screenNum);
-			if(null != screenList && screenList.size() > 0) {
-				for (int i = 0; i < screenList.size(); i++) {
-					String combine = screenList.get(i);
-					if(StringUtils.isNotEmpty(combine)) {
-						int count = (null == map.get(combine)) ? 1 : map.get(combine) + 1;
-						map.put(combine, count);
-					}
-					
-				}
-			}
-			
-		}
-		ArrayList<String> screenlist = new ArrayList<String>();
-		for (Entry<String, Integer> entry : map.entrySet()) {
-			int count = entry.getValue();
-			if(count < 4) {
-				screenlist.add(entry.getKey());
-			}
-		
-		}
-		
-		createScreenTxt(screenlist, "tenarrscreen");
 		return map;
 		
 	}
-	
+
+	/**
+	 * 三连过滤
+	 * @param map
+	 * @return
+	 */
 	public static Map<String, Integer> screenThree(Map<String, Integer> map) {
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
 		String path = "";
-		path = "data/threecontinue.txt";
+		path = "data/greatelott/threecontinue.txt";
 		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
 		File file = new File(url.getFile());
 		if(null != file && file.exists()) {
@@ -320,11 +220,16 @@ public class MainUtil {
 		createScreenTxt(screenlist, "threescreen");
 		return map;
 	}
-
-	public static Map<String, Integer> screenHistory(Map<String, Integer> map) {
+	
+	/**
+	 * 二连过滤
+	 * @param map
+	 * @return
+	 */
+	public static Map<String, Integer> screenTwo(Map<String, Integer> map) {
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
 		String path = "";
-		path = "data/doubleballhistorydrawinfo.txt";
+		path = "data/greatelott/twocontinue.txt";
 		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
 		File file = new File(url.getFile());
 		if(null != file && file.exists()) {
@@ -335,40 +240,32 @@ public class MainUtil {
 	                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
 	                Matcher m = p.matcher(line);
 	                String temprp = m.replaceAll("");
-	                String[] strArr = temprp.split("@");
-	                String[] params = strArr[2].split("\\|");
-	                if(null != params && params.length == 2) {
-	                	String redStr = params[0];
-	                	redStr = redStr.replaceAll("，", ",");
-	        			String [] redArr = redStr.split(",");
-	        			int[] paramArr = ArrayTool.strArr2InArr(redArr);
-	        			ArrayList<String> tempList = CombineUtil.getScreenList(paramArr,5);
-	        			for (Entry<String, Integer> entry : map.entrySet()) {
-	        				String combine = entry.getKey();
-	        				String [] combineArr = combine.split(",");
-	        				for (String temp : tempList) {
-	        					String [] tempArr = temp.split(",");
-	        					int nums = 0;
-	                        	for (int i = 0; i < tempArr.length; i++) {
-	                        		String param = tempArr[i] + "";
-	                        		boolean flg = ArrayTool.isContains(param, combineArr);
-	                        		if(flg){
-	                        			nums ++;
-	                        		}
-	                        		
-	        					}
-	                        	if(nums > 4){
-	                        		screenmap.put(entry.getKey(), entry.getValue());
-	                        		break;
-	                        	}
-	                        	
-	                        	
-							}
-	        			
-	        			}
-	                	
-	                	
-	                }
+	                String[] redArr = temprp.split(",");
+        			int[] paramArr = ArrayTool.strArr2InArr(redArr);
+        			ArrayList<String> tempList = CombineUtil.getScreenList(paramArr,2);
+        			for (Entry<String, Integer> entry : map.entrySet()) {
+        				String combine = entry.getKey();
+        				String [] combineArr = combine.split(",");
+        				for (String temp : tempList) {
+        					String [] tempArr = temp.split(",");
+        					int nums = 0;
+                        	for (int i = 0; i < tempArr.length; i++) {
+                        		String param = tempArr[i] + "";
+                        		boolean flg = ArrayTool.isContains(param, combineArr);
+                        		if(flg){
+                        			nums ++;
+                        		}
+                        		
+        					}
+                        	if(nums > 1){
+                        		screenmap.put(entry.getKey(), entry.getValue());
+                        		break;
+                        	}
+                        	
+						}
+        			
+        			}
+                	
 	            }
 	            br.close();
 		} catch (Exception e) {
@@ -381,13 +278,10 @@ public class MainUtil {
 		}
 		ArrayList<String> screenlist = new ArrayList<String>();
 		for (Entry<String, Integer> entry : map.entrySet()) {
-			int count = entry.getValue();
-			if(count < 4) {
-				screenlist.add(entry.getKey());
-			}
-		
+			screenlist.add(entry.getKey());		
 		}
-		createScreenTxt(screenlist, "historyscreen");
+		
+		createScreenTxt(screenlist, "twoscreen");
 		return map;
 	}
 
