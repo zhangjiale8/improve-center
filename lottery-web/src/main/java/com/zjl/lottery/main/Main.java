@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -92,7 +93,11 @@ public class Main {
 		list.add(paramArr2);
 		list.add(paramArr1);
 		int screenNum = 6;
-		MainUtil.tenParamArrScreenHistoryAndThree(list,screenNum);
+		Map<String, Integer> combineMap = MainUtil.tenParamArrScreenHistoryAndThree(list,screenNum);
+		Map<String, Integer> ThreeMap = MainUtil.screenThree(combineMap);
+		Map<String, Integer> twoMap = MainUtil.screenTwo(ThreeMap);
+		Map<String, Integer> historyMap = MainUtil.screenHistory(twoMap);
+		
 	}
 	
 	private static void pramsArr() {
