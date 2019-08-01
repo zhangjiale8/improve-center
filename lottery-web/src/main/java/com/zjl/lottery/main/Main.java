@@ -22,7 +22,7 @@ public class Main {
 		//历史数据五分过滤
 		//screenCombinebyHistorydata();
 		//十组数据预测法
-		tenParamArrScreen();
+		//tenParamArrScreen();
 		//多组数据组合过滤法
 		//mutipleArrScreen();
 		//初始化双色球历史数据
