@@ -22,6 +22,7 @@ public class SerTest01{
 			ois.close();
 			System.out.println(ted.getFirstname());
 			System.out.println(ted.getGender());
+			System.out.println(ted.getAge());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
