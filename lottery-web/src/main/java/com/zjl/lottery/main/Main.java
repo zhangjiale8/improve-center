@@ -18,11 +18,11 @@ public class Main {
 		//复试数据过滤
 		//MainUtil.compoundScreen();
 		//数据过滤
-		//screenCombinebydata();
+		screenCombinebydata();
 		//历史数据五分过滤
-		//screenCombinebyHistorydata();
+		screenCombinebyHistorydata();
 		//十组数据预测法
-		tenParamArrScreen();
+		//tenParamArrScreen();
 		//多组数据组合过滤法
 		//mutipleArrScreen();
 		//初始化双色球历史数据
@@ -70,18 +70,21 @@ public class Main {
 	 * @throws
 	 */
 	private static void tenParamArrScreen() {
-		int[] paramArr1 = {1,3,5,7,8,10,11,13,14,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,33};
-		int[] paramArr2 = {1,2,3,5,6,8,9,11,12,13,14,15,16,17,18,20,23,24,25,26,27,28,29,31,33};
-		int[] paramArr3 = {1,2,3,4,5,6,8,9,10,11,12,13,16,20,21,22,23,24,25,26,28,30,31,32};
-		int[] paramArr4 = {1,2,3,4,5,6,7,8,9,10,11,12,13,17,18,19,20,22,23,24,25,26,27,30,32};
-		int[] paramArr5 = {1,2,4,6,7,9,11,12,13,14,15,17,18,20,21,22,23,24,25,27,28,29,30,32,33};
-		int[] paramArr6 = {1,2,3,4,5,6,8,9,10,11,14,15,16,17,20,22,24,25,27,28,29,30,31,32,33};
-		int[] paramArr7 = {1,2,3,4,5,8,9,10,11,12,13,14,15,16,17,18,20,21,22,23,24,26,27,29,33};
-		int[] paramArr8 = {1,2,4,5,6,7,8,9,10,12,13,14,15,16,17,20,21,24,25,27,29,30,31,32,33};
-		int[] paramArr9 = {1,4,5,7,8,9,11,12,13,15,17,18,19,20,21,22,23,24,25,26,28,30,31,32,33};
-		int[] paramArr10 = {4,6,7,9,10,11,13,14,15,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32};
+		int[] paramArr1 = {2,3,4,5,6,7,8,9,13,14,16,17,18,19,20,21,22,23,25,26,29,30,31,32,33};
+		int[] paramArr2 = {1,3,5,6,7,8,9,11,12,13,14,15,18,20,21,22,23,24,25,26,27,30,31,32,33};
+		int[] paramArr3 = {1,2,4,5,6,7,9,10,11,12,15,16,18,19,20,21,22,23,24,25,26,28,29,31,33};
+		int[] paramArr4 = {2,4,5,7,8,9,11,12,13,14,17,18,19,20,21,22,23,25,27,28,29,30,31,32,33};
+		int[] paramArr5 = {1,2,4,5,7,8,9,10,11,14,15,16,18,19,21,22,23,24,25,26,27,29,30,31,33};
+		int[] paramArr6 = {1,2,4,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,26,27,29,31,32};
+		int[] paramArr7 = {1,2,4,5,6,7,8,9,13,14,15,16,17,18,20,21,22,23,24,26,27,28,29,30,31};
+		int[] paramArr8 = {3,4,5,6,7,8,10,11,12,13,15,17,18,19,20,21,24,25,26,27,28,30,31,32,33};
+		int[] paramArr9 = {1,2,4,5,6,8,9,10,11,14,15,16,17,18,20,21,23,24,25,26,27,28,29,31,32};
+		int[] paramArr10 = {1,3,5,8,10,12,13,14,15,16,17,19,20,21,22,24,25,26,27,28,29,30,31,32,33};
+		int[] paramArr11 = {2,3,6,7,8,10,12,13,14,15,17,18,20,21,22,23,24,25,27,28,29,30,31,32,33};
+		int[] paramArr12 = {1,2,3,4,6,7,8,9,10,11,13,14,16,17,18,21,22,23,24,25,28,29,30,32,33};
 		ArrayList<int[]> list = new ArrayList<int[]>();
-		//list.add(paramArr11);
+		list.add(paramArr12);
+		list.add(paramArr11);
 		list.add(paramArr10);
 		list.add(paramArr9);
 		list.add(paramArr8);
@@ -99,7 +102,9 @@ public class Main {
 	}
 	private static void screenDetermined(ArrayList<int[]> list, int screenNum) {
 		Map<String, Integer> combineMap = MainUtil.tenParamArrcombine(list,screenNum);
-		MainUtil.screenDetermined(combineMap);
+		Map<String, Integer> determinedmap = MainUtil.screenDetermined(combineMap);
+		Map<String, Integer> ThreeMap = MainUtil.screenThree(determinedmap);
+		
 		
 	}
 	/**
@@ -128,12 +133,12 @@ public class Main {
 	}
 
 	private static void screenCombinebydata() {
-		String fileName = "tenarrscreen00026";
+		String fileName = "tenarrscreen00001";
 		String filePath = "E:" + File.separator + "screen" + File.separator +fileName+ ".txt";
-		int[] paramArr = {13,14,15};
-		int screenNum = 3;
-		int maxNum = 3;
-		String saveFileName = "tenarrscreen00027";
+		int[] paramArr = {7,22,23};
+		int screenNum = 2;
+		int maxNum = 2;
+		String saveFileName = "tenarrscreen00002";
 		MainUtil.screenCombinebydata(filePath,paramArr,screenNum,maxNum,saveFileName);
 	}
 	

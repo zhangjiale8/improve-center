@@ -564,7 +564,7 @@ public class MainUtil {
 		return map;
 	}
 
-	public static void screenDetermined(Map<String, Integer> combineMap) {
+	public static Map<String, Integer> screenDetermined(Map<String, Integer> combineMap) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		String determinedpath = LotteryHaveNoMaster.class.getClassLoader().getResource("data/disticombinedetermined.txt").getPath();
 		determinedpath = determinedpath.substring(1, determinedpath.length());
@@ -577,7 +577,8 @@ public class MainUtil {
 			 	}
 	            
         }
-		 createScreenTxtMap(map, "screendetermined"); 
+		 createScreenTxtMap(map, "screendetermined");
+		return map; 
 		
 	}
 
