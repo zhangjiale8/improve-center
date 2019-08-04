@@ -138,5 +138,28 @@ public class ScreenUtil {
 		MapTxtUtil.createScreenTxtMap(map, "twoscreen");
 		return map;
 	}
+	
+	/**
+	 * 双色球固定组合过滤
+	 * @param combineMap
+	 * @return
+	 */
+	public static Map<String, Integer> screenDetermined(Map<String, Integer> combineMap) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String determinedpath = LotteryHaveNoMaster.class.getClassLoader().getResource("data/disticombinedetermined.txt").getPath();
+		determinedpath = determinedpath.substring(1, determinedpath.length());
+		Map<String, Integer> determinedmap = MapTxtUtil.getDataMap(determinedpath);
+		 for (Entry<String, Integer> entry : combineMap.entrySet()) {
+			 	String combine = entry.getKey();
+			 	Integer nums =  entry.getValue();
+			 	if( null != determinedmap.get(combine) ){
+			 		map.put(combine, nums);
+			 	}
+	            
+        }
+		 MapTxtUtil.createScreenTxtMap(map, "screendetermined");
+		return map; 
+		
+	}
 
 }

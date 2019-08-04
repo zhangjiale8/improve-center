@@ -104,7 +104,7 @@ public class Main {
 	}
 	private static void screenDetermined(ArrayList<int[]> list, int screenNum) {
 		Map<String, Integer> combineMap = MainUtil.tenParamArrcombine(list,screenNum);
-		Map<String, Integer> determinedmap = MainUtil.screenDetermined(combineMap);
+		Map<String, Integer> determinedmap = ScreenUtil.screenDetermined(combineMap);
 		Map<String, Integer> ThreeMap = ScreenUtil.screenThree(determinedmap);
 		
 		
