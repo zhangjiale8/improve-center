@@ -518,8 +518,8 @@ public class MainUtil {
 					while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
 						String[] lineArr = line.split("\\|");
 						if(lineArr.length > 1){
-							int num = Integer.valueOf(lineArr[2]);
-							map.put(lineArr[1],num);
+							int num = Integer.valueOf(lineArr[1]);
+							map.put(lineArr[0],num);
 						}else{
 							map.put(line, 1);
 
@@ -537,6 +537,47 @@ public class MainUtil {
 
 	public static void combineDetermined() {
 		
+		
+	}
+	/**
+	 * 多组数据全部组合
+	 * @param list
+	 * @param screenNum
+	 * @return
+	 */
+	public static Map<String, Integer> tenParamArrcombine(ArrayList<int[]> list, int screenNum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		for (int[] paramArr : list) {
+			ArrayList<String> screenList = CombineUtil.getScreenList(paramArr,screenNum);
+			if(null != screenList && screenList.size() > 0) {
+				for (int i = 0; i < screenList.size(); i++) {
+					String combine = screenList.get(i);
+					if(StringUtils.isNotEmpty(combine)) {
+						int count = (null == map.get(combine)) ? 1 : map.get(combine) + 1;
+						map.put(combine, count);
+					}
+					
+				}
+			}
+			
+		}		
+		return map;
+	}
+
+	public static void screenDetermined(Map<String, Integer> combineMap) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String determinedpath = LotteryHaveNoMaster.class.getClassLoader().getResource("data/disticombinedetermined.txt").getPath();
+		determinedpath = determinedpath.substring(1, determinedpath.length());
+		Map<String, Integer> determinedmap = getDataMap(determinedpath);
+		 for (Entry<String, Integer> entry : combineMap.entrySet()) {
+			 	String combine = entry.getKey();
+			 	Integer nums =  entry.getValue();
+			 	if( null != determinedmap.get(combine) ){
+			 		map.put(combine, nums);
+			 	}
+	            
+        }
+		 createScreenTxtMap(map, "screendetermined"); 
 		
 	}
 

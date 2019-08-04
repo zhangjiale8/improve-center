@@ -22,7 +22,7 @@ public class Main {
 		//历史数据五分过滤
 		//screenCombinebyHistorydata();
 		//十组数据预测法
-		//tenParamArrScreen();
+		tenParamArrScreen();
 		//多组数据组合过滤法
 		//mutipleArrScreen();
 		//初始化双色球历史数据
@@ -93,13 +93,27 @@ public class Main {
 		list.add(paramArr2);
 		list.add(paramArr1);
 		int screenNum = 6;
+		//screencommon(list,screenNum);	
+		screenDetermined(list,screenNum);	
+		
+	}
+	private static void screenDetermined(ArrayList<int[]> list, int screenNum) {
+		Map<String, Integer> combineMap = MainUtil.tenParamArrcombine(list,screenNum);
+		MainUtil.screenDetermined(combineMap);
+		
+	}
+	/**
+	 * 正常数据过滤
+	 * @param list
+	 * @param screenNum
+	 */
+	private static void screencommon(ArrayList<int[]> list, int screenNum) {
 		Map<String, Integer> combineMap = MainUtil.tenParamArrScreenHistoryAndThree(list,screenNum);
 		Map<String, Integer> ThreeMap = MainUtil.screenThree(combineMap);
 		Map<String, Integer> twoMap = MainUtil.screenTwo(ThreeMap);
 		Map<String, Integer> historyMap = MainUtil.screenHistory(twoMap);
 		
 	}
-	
 	private static void pramsArr() {
 		int[] paramArr1 = {};
 		int[] paramArr2 = {};
