@@ -8,7 +8,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.zjl.lottery.db.util.HistoryUtil;
 import com.zjl.lottery.db.util.JDBCPatchUtil;
+import com.zjl.lottery.db.util.ScreenUtil;
 import com.zjl.tools.ArrayTool;
 
 public class Main {
@@ -103,7 +105,7 @@ public class Main {
 	private static void screenDetermined(ArrayList<int[]> list, int screenNum) {
 		Map<String, Integer> combineMap = MainUtil.tenParamArrcombine(list,screenNum);
 		Map<String, Integer> determinedmap = MainUtil.screenDetermined(combineMap);
-		Map<String, Integer> ThreeMap = MainUtil.screenThree(determinedmap);
+		Map<String, Integer> ThreeMap = ScreenUtil.screenThree(determinedmap);
 		
 		
 	}
@@ -114,9 +116,9 @@ public class Main {
 	 */
 	private static void screencommon(ArrayList<int[]> list, int screenNum) {
 		Map<String, Integer> combineMap = MainUtil.tenParamArrScreenHistoryAndThree(list,screenNum);
-		Map<String, Integer> ThreeMap = MainUtil.screenThree(combineMap);
-		Map<String, Integer> twoMap = MainUtil.screenTwo(ThreeMap);
-		Map<String, Integer> historyMap = MainUtil.screenHistory(twoMap);
+		Map<String, Integer> ThreeMap = ScreenUtil.screenThree(combineMap);
+		Map<String, Integer> twoMap = ScreenUtil.screenTwo(ThreeMap);
+		Map<String, Integer> historyMap = HistoryUtil.screenHistory(twoMap);
 		
 	}
 	private static void pramsArr() {
