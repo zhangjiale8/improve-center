@@ -157,7 +157,7 @@ public class HistoryUtil {
 			map.remove(entry.getKey());
 		}
 		
-		MapTxtUtil.createScreenTxtMap(map, "historyscreen");
+		//MapTxtUtil.createScreenTxtMap(map, "historyscreen");
 		return map;
 	}
 	/**
@@ -205,28 +205,28 @@ public class HistoryUtil {
 		path = "data/doubleballhistorydrawinfo.txt";
 		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
 		File file = new File(url.getFile());
-		if(null != file && file.exists()) {
-		 try {
+		if (null != file && file.exists()) {
+			try {
 				BufferedReader br = new BufferedReader(new FileReader(file));
 				String line = null;
-				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
-	                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
-	                Matcher m = p.matcher(line);
-	                String temprp = m.replaceAll("");
-	                String[] strArr = temprp.split("@");
-	                String[] params = strArr[2].split("\\|");
-	                if(null != params && params.length == 2) {
-	                	String redStr = params[0];
-	                	redStr = redStr.replaceAll("，", ",");
-	                	map.put(redStr, 1);	                	
-	                }
-	            }
-	            br.close();
-		} catch (Exception e) {
+				while ((StringUtils.isNotEmpty(line = br.readLine()))) {// 使用readLine方法，一次读一行
+					Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+					Matcher m = p.matcher(line);
+					String temprp = m.replaceAll("");
+					String[] strArr = temprp.split("@");
+					String[] params = strArr[2].split("\\|");
+					if (null != params && params.length == 2) {
+						String redStr = params[0];
+						redStr = redStr.replaceAll("，", ",");
+						map.put(redStr, 1);
+					}
+				}
+				br.close();
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
-		}		
+
+		}
 		return map;
 	}
 

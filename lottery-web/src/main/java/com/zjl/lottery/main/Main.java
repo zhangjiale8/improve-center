@@ -2,15 +2,19 @@ package com.zjl.lottery.main;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.db.util.HistoryUtil;
 import com.zjl.lottery.db.util.JDBCPatchUtil;
+import com.zjl.lottery.db.util.MapTxtUtil;
 import com.zjl.lottery.db.util.ScreenUtil;
+import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
 import com.zjl.tools.ArrayTool;
 
 public class Main {
@@ -20,9 +24,9 @@ public class Main {
 		//复试数据过滤
 		//MainUtil.compoundScreen();
 		//数据过滤
-		screenCombinebydata();
+		//screenCombinebydata();
 		//历史数据五分过滤
-		screenCombinebyHistorydata();
+		//screenCombinebyHistorydata();
 		//十组数据预测法
 		//tenParamArrScreen();
 		//多组数据组合过滤法
@@ -31,6 +35,61 @@ public class Main {
 		//MainUtil.initDoubleBallHistory();
 		//初始化大乐透历史数据
 		//initGreatLottoHistory();
+		//temp();
+		for (int i = 0; i < 5; i++) {
+			System.out.println((int)((Math.random()*9+1)*1000));
+
+		}
+		//单组数据过滤
+		//screenCombineMapbydata();
+		
+	}
+	private static void temp() {
+		/*String determinedpath = "E:" + File.separator + "screen" + File.separator +"tenarrscreen00002.txt";;
+		Map<String, Integer> determinedmap = MapTxtUtil.getDataMap(determinedpath );
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		 for (Entry<String, Integer> entry : determinedmap.entrySet()) {
+		 	String combine = entry.getKey();
+		 	int nums = entry.getValue();
+           	if(nums < 3){
+           		map.put(combine, nums);
+           	}
+        }
+		MapTxtUtil.createScreenTxtMap(map, "tenarrscreen00003");*/
+		/*String determinedpath = "E:" + File.separator + "screen" + File.separator +"tenarrscreen00003.txt";
+		Map<String, Integer> determinedmap = MapTxtUtil.getDataMap(determinedpath );
+		Map<String, Integer> historyMap = HistoryUtil.getHistoryMap();
+		for (Entry<String, Integer> entry : historyMap.entrySet()) {
+		 	String combine = entry.getKey();
+		 	if(null != determinedmap.get(combine)){
+		 		determinedmap.remove(combine);
+		 	}
+        }
+		MapTxtUtil.createScreenTxtMap(determinedmap, "tenarrscreen00004");*/
+		/*String determinedpath = "E:" + File.separator + "screen" + File.separator +"tenarrscreen00004.txt";
+		Map<String, Integer> determinedmap = MapTxtUtil.getDataMap(determinedpath);
+		String path1 = LotteryHaveNoMaster.class.getClassLoader().getResource("0000/single.txt").getPath();
+		path1 = path1.substring(1, path1.length());
+		String path2 = LotteryHaveNoMaster.class.getClassLoader().getResource("0000/mutipul.txt").getPath();
+		path2 = path2.substring(1, path2.length());
+		ArrayList<String> pathList = new ArrayList<String>();
+		pathList.add(path1);
+		pathList.add(path2);		
+		Map<String, Integer> datamap = MapTxtUtil.getDataMap(pathList,6);
+		for (Entry<String, Integer> entry : datamap.entrySet()) {
+		 	String combine = entry.getKey();
+		 	if(null != determinedmap.get(combine)){
+		 		determinedmap.remove(combine);
+		 	}
+        }
+		MapTxtUtil.createScreenTxtMap(determinedmap, "tenarrscreen00005");*/
+		String determinedpath = "E:" + File.separator + "screen" + File.separator +"tenarrscreen00006.txt";
+		Map<String, Integer> determinedmap = MapTxtUtil.getDataMap(determinedpath);
+		String path2 = LotteryHaveNoMaster.class.getClassLoader().getResource("0000/single.txt").getPath();
+		path2 = path2.substring(1, path2.length());
+		Map<String, Integer> map = ScreenUtil.screenFile(determinedmap,path2,5);
+		MapTxtUtil.createScreenTxtMap(determinedmap, "tenarrscreen00007");
+		
 	}
 	private static void mutipleArrScreen() {
 		String fileName = "tenarrscreen0703914";
@@ -72,18 +131,18 @@ public class Main {
 	 * @throws
 	 */
 	private static void tenParamArrScreen() {
-		int[] paramArr1 = {2,3,4,5,6,7,8,9,13,14,16,17,18,19,20,21,22,23,25,26,29,30,31,32,33};
-		int[] paramArr2 = {1,3,5,6,7,8,9,11,12,13,14,15,18,20,21,22,23,24,25,26,27,30,31,32,33};
-		int[] paramArr3 = {1,2,4,5,6,7,9,10,11,12,15,16,18,19,20,21,22,23,24,25,26,28,29,31,33};
-		int[] paramArr4 = {2,4,5,7,8,9,11,12,13,14,17,18,19,20,21,22,23,25,27,28,29,30,31,32,33};
-		int[] paramArr5 = {1,2,4,5,7,8,9,10,11,14,15,16,18,19,21,22,23,24,25,26,27,29,30,31,33};
-		int[] paramArr6 = {1,2,4,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,26,27,29,31,32};
-		int[] paramArr7 = {1,2,4,5,6,7,8,9,13,14,15,16,17,18,20,21,22,23,24,26,27,28,29,30,31};
-		int[] paramArr8 = {3,4,5,6,7,8,10,11,12,13,15,17,18,19,20,21,24,25,26,27,28,30,31,32,33};
-		int[] paramArr9 = {1,2,4,5,6,8,9,10,11,14,15,16,17,18,20,21,23,24,25,26,27,28,29,31,32};
-		int[] paramArr10 = {1,3,5,8,10,12,13,14,15,16,17,19,20,21,22,24,25,26,27,28,29,30,31,32,33};
-		int[] paramArr11 = {2,3,6,7,8,10,12,13,14,15,17,18,20,21,22,23,24,25,27,28,29,30,31,32,33};
-		int[] paramArr12 = {1,2,3,4,6,7,8,9,10,11,13,14,16,17,18,21,22,23,24,25,28,29,30,32,33};
+		int[] paramArr1 = {2,3,4,5,6,7,8,9,10,11,14,15,17,19,20,21,22,23,24,26,28,29,30,31,32};
+		int[] paramArr2 = {1,2,4,5,9,10,11,12,13,15,16,17,18,19,21,23,24,25,26,28,29,30,31,32,33};
+		int[] paramArr3 = {1,3,4,6,8,9,10,11,13,14,15,16,18,19,20,21,22,25,26,28,29,30,31,32,33};
+		int[] paramArr4 = {1,3,4,5,7,8,10,11,12,13,14,15,17,18,20,21,22,24,25,26,28,29,30,31,32};
+		int[] paramArr5 = {1,2,3,4,5,6,7,9,10,11,15,17,18,20,21,22,23,24,25,26,27,28,29,31,32};
+		int[] paramArr6 = {3,4,5,9,10,11,12,13,14,16,17,18,19,20,21,23,24,25,26,27,28,30,31,32,33};
+		int[] paramArr7 = {2,3,4,5,6,7,8,9,13,14,15,16,18,20,21,22,23,24,26,27,28,29,30,31,32};
+		int[] paramArr8 = {3,4,5,6,7,8,11,12,13,14,15,16,18,20,21,22,24,25,27,28,29,30,31,32,33};
+		int[] paramArr9 = {3,4,5,6,8,10,11,12,13,14,15,17,19,20,21,24,25,26,27,28,29,30,31,32,33};
+		int[] paramArr10 = {1,3,6,7,8,9,11,12,13,15,16,17,18,19,20,21,24,25,26,27,28,29,30,31,32};
+		int[] paramArr11 = {1,2,3,4,5,8,9,10,11,13,14,16,18,19,21,23,24,25,26,28,29,30,31,32,33};
+		int[] paramArr12 = {1,2,3,4,6,7,10,11,12,13,14,15,16,17,18,20,22,24,26,28,29,30,31,32,33};
 		ArrayList<int[]> list = new ArrayList<int[]>();
 		list.add(paramArr12);
 		list.add(paramArr11);
@@ -106,6 +165,19 @@ public class Main {
 		Map<String, Integer> combineMap = MainUtil.tenParamArrcombine(list,screenNum);
 		Map<String, Integer> determinedmap = ScreenUtil.screenDetermined(combineMap);
 		Map<String, Integer> ThreeMap = ScreenUtil.screenThree(determinedmap);
+		Map<String, Integer> historyMap = HistoryUtil.screenHistory(ThreeMap);
+		/*
+		String path1 = LotteryHaveNoMaster.class.getClassLoader().getResource("0000/single.txt").getPath();
+		ArrayList<String> pathList = new ArrayList<String>();
+		pathList.add(path1);
+		Map<String, Integer> datamap = MapTxtUtil.getDataMap(pathList,6);
+		for (Entry<String, Integer> entry : datamap.entrySet()) {
+		 	String combine = entry.getKey();
+		 	if(null != historyMap.get(combine)){
+		 		historyMap.remove(combine);
+		 	}
+        }*/
+		MapTxtUtil.createScreenTxtMap(historyMap, "tenarrscreen20190806");
 		
 		
 	}
@@ -142,6 +214,21 @@ public class Main {
 		int maxNum = 2;
 		String saveFileName = "tenarrscreen00002";
 		MainUtil.screenCombinebydata(filePath,paramArr,screenNum,maxNum,saveFileName);
+	}
+	
+	private static void screenCombineMapbydata() {
+		/*String fileName = "tenarrscreen00006";
+		String filePath = "E:" + File.separator + "screen" + File.separator +fileName+ ".txt";
+		int[] paramArr = {32};
+		int screenNum = 1;
+		int maxNum = 1;
+		String saveFileName = "tenarrscreen00007";
+		ScreenUtil.screenCombineMapbydata(filePath,paramArr,screenNum,maxNum,saveFileName);*/
+		String fileName = "tenarrscreen00007";
+		String filePath = "E:" + File.separator + "screen" + File.separator +fileName+ ".txt";
+		int screenNum = 3;
+		String saveFileName = "tenarrscreen00008";
+		ScreenUtil.screenCombineMapbycount(filePath,screenNum,saveFileName);
 	}
 	
 }

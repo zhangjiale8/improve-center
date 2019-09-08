@@ -11,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.combine.util.CombineUtil;
 import com.zjl.lottery.db.util.JDBCPatchUtil;
+import com.zjl.lottery.db.util.MapTxtUtil;
 import com.zjl.tools.ArrayTool;
 
 public class Main {
@@ -34,7 +35,7 @@ public class Main {
 		}
 		Map<String, Integer> threemap = MainUtil.screenThree(map);
 		Map<String, Integer> twomap = MainUtil.screenTwo(threemap);
-		com.zjl.lottery.main.MainUtil.createScreenTxtMap(map, "tenarrscreenquan");
+		MapTxtUtil.createScreenTxtMap(map, "tenarrscreenquan");
 
 	}
 

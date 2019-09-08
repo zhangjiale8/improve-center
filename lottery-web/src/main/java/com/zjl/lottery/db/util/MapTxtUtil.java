@@ -5,11 +5,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
+
+import com.zjl.lottery.combine.util.CombineUtil;
+import com.zjl.tools.ArrayTool;
 
 public class MapTxtUtil {
 	/**
@@ -56,8 +61,13 @@ public class MapTxtUtil {
 					while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
 						String[] lineArr = line.split("\\|");
 						if(lineArr.length > 1){
-							int num = Integer.valueOf(lineArr[1]);
-							map.put(lineArr[0],num);
+							int  length = lineArr[1].split(",").length;
+							if(length > 1){
+								map.put(lineArr[0], 1);
+							}else{								
+								int num = Integer.valueOf(lineArr[1]);
+								map.put(lineArr[0],num);
+							}
 						}else{
 							map.put(line, 1);
 
@@ -66,6 +76,47 @@ public class MapTxtUtil {
 		            br.close();
 				
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
+	
+	/**
+	 * 返回Map集合
+	 * @param filePath
+	 * @return
+	 */
+	public static Map<String, Integer> getDataMap(List<String> filepathlist,int screennum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		if (null != filepathlist && filepathlist.size() > 0) {
+			try {
+				for (String filepath : filepathlist) {
+					File file = new File(filepath);
+					if (null != file && file.exists()) {
+
+						BufferedReader br = new BufferedReader(new FileReader(file));
+						String line = null;
+						while ((StringUtils.isNotEmpty(line = br.readLine()))) {// 使用readLine方法，一次读一行
+							String[] lineArr = line.split("\\|");
+							String redStr = lineArr[0];
+							if(StringUtils.isNotEmpty(redStr)){
+								String[] redArr = redStr.split(",");
+								int[] redIntArr = ArrayTool.strArr2InArr(redArr);
+								ArrayList<String> combineList = CombineUtil.getScreenList(redIntArr, 6);
+								for (String combine : combineList) {
+									map.put(combine, 1);
+
+								}
+							}
+							
+						}
+						br.close();
+
+					}
+				}
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

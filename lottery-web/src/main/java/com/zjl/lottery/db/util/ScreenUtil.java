@@ -162,4 +162,99 @@ public class ScreenUtil {
 		
 	}
 
+
+	public static Map<String, Integer> screenFile(Map<String, Integer> determinedmap, String filepath, int screennum) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+		for (Entry<String, Integer> entry : datamap.entrySet()) {
+			String redStr = entry.getKey();
+			if(StringUtils.isNotEmpty(redStr)){
+				String[] redArr = redStr.split(",");								
+				for (Entry<String, Integer> determineentry : determinedmap.entrySet()) {
+					String determine = determineentry.getKey();
+					String[] determineArr = determine.split(",");
+					int count = 0;
+					for (int i = 0; i < redArr.length; i++) {
+						String temp = redArr[i];
+						boolean flg = ArrayTool.isContains(temp, determineArr);
+						if(flg){
+							count++;
+						}
+					}
+					if(count >= screennum){
+						map.put(determine,1);
+					}
+				}
+				
+			}
+		}
+		for (Entry<String, Integer> entry : map.entrySet()) {
+			determinedmap.remove(entry.getKey());
+		}
+		return determinedmap;
+	}
+	/**
+	 * 单组数据过滤
+	 * @param filePath
+	 * @param paramArr
+	 * @param screenNum
+	 * @param maxNum
+	 * @param saveFileName
+	 */
+	public static void screenCombineMapbydata(String filePath, int[] paramArr, int screenNum, int maxNum, String saveFileName) {
+		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filePath);
+		ArrayList<String> screenList = CombineUtil.getScreenList(paramArr,screenNum);
+		Map<String, Integer> resultmap = new HashMap<String, Integer>();
+		for (Entry<String, Integer> entry : datamap.entrySet()) {
+			String [] combineparamArr = entry.getKey().split(",");
+			int maxsame= 0;
+			for (String screenparam : screenList) {
+				String [] screenparamArr = screenparam.split(",");
+				int nums = 0;
+				for (int i = 0; i < combineparamArr.length; i++) {
+					boolean flg = ArrayTool.isContains(combineparamArr[i], screenparamArr);
+					if(flg){
+						nums ++;
+					}
+				}
+				if(nums > maxsame){
+					maxsame = nums;
+				}
+			}
+			
+			if(maxsame < maxNum){
+				resultmap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		
+		if(null != resultmap && resultmap.size() > 0){
+			 MapTxtUtil.createScreenTxtMap(resultmap, saveFileName);
+		}
+	}
+
+	/**
+	 * 根据出现次数过滤
+	 * @param fileName
+	 * @param screenNum
+	 * @param saveFileName
+	 */
+	public static void screenCombineMapbycount(String filePath, int screenNum, String saveFileName) {
+
+		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filePath);
+		Map<String, Integer> resultmap = new HashMap<String, Integer>();
+		for (Entry<String, Integer> entry : datamap.entrySet()) {
+			int count = entry.getValue();
+			
+			if(count < screenNum){
+				resultmap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		
+		if(null != resultmap && resultmap.size() > 0){
+			 MapTxtUtil.createScreenTxtMap(resultmap, saveFileName);
+		}
+	
+		
+	}
+
 }
