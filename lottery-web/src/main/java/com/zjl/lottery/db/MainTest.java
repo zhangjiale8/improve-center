@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.zjl.lottery.db.util.JDBCPatchUtil;
-import com.zjl.lottery.db.util.JDBCUtil;
+import com.zjl.lottery.util.JDBCPatchUtil;
+import com.zjl.lottery.util.JDBCUtil;
 import com.zjl.tools.TimeTools;
 
 public class MainTest {

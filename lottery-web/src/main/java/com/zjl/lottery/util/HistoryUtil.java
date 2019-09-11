@@ -1,4 +1,4 @@
-package com.zjl.lottery.db.util;
+package com.zjl.lottery.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,8 +20,8 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.combine.util.CombineUtil;
-import com.zjl.lottery.db.util.JDBCPatchUtil;
 import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
+import com.zjl.lottery.util.JDBCPatchUtil;
 import com.zjl.tools.ArrayTool;
 
 public class HistoryUtil {
@@ -228,6 +228,13 @@ public class HistoryUtil {
 
 		}
 		return map;
+	}
+	
+	public static void main(String[] args) {
+		List<String> list = HistoryUtil.getHistoryList();
+		for (int i = 0; i <list.size(); i++) {
+			
+		}
 	}
 
 }

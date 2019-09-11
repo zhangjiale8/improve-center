@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.db.test.vo.CombineVo;
-import com.zjl.lottery.db.util.JDBCPatchUtil;
+import com.zjl.lottery.util.JDBCPatchUtil;
 import com.zjl.tools.ArrayTool;
 
 public class ScreenByTxt {

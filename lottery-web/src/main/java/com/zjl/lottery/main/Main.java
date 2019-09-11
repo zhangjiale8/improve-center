@@ -10,11 +10,11 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.zjl.lottery.db.util.HistoryUtil;
-import com.zjl.lottery.db.util.JDBCPatchUtil;
-import com.zjl.lottery.db.util.MapTxtUtil;
-import com.zjl.lottery.db.util.ScreenUtil;
 import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
+import com.zjl.lottery.util.HistoryUtil;
+import com.zjl.lottery.util.JDBCPatchUtil;
+import com.zjl.lottery.util.MapTxtUtil;
+import com.zjl.lottery.util.ScreenUtil;
 import com.zjl.tools.ArrayTool;
 
 public class Main {

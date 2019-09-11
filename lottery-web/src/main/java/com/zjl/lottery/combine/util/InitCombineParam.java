@@ -20,8 +20,8 @@ import com.zjl.lottery.combine.CombineMain;
 import com.zjl.lottery.combine.vo.CombineGenerate;
 import com.zjl.lottery.combine.vo.LotteryTypEnum;
 import com.zjl.lottery.combine.vo.ScreenTypEnum;
-import com.zjl.lottery.db.util.JDBCPatchUtil;
 import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
+import com.zjl.lottery.util.JDBCPatchUtil;
 import com.zjl.tools.ArrayTool;
 
 public class InitCombineParam {

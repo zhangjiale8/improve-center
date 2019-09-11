@@ -1,4 +1,4 @@
-package com.zjl.lottery.db.util;
+package com.zjl.lottery.util;
 
 import java.io.IOException;
 import java.sql.Connection;

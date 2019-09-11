@@ -16,9 +16,9 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.zjl.lottery.db.util.JDBCPatchUtil;
-import com.zjl.lottery.db.util.JDBCUtil;
 import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
+import com.zjl.lottery.util.JDBCPatchUtil;
+import com.zjl.lottery.util.JDBCUtil;
 import com.zjl.tools.ArrayTool;
 import com.zjl.tools.TimeTools;
 

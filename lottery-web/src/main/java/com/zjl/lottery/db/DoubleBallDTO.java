@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
 
-import com.zjl.lottery.db.util.JDBCUtil;
+import com.zjl.lottery.util.JDBCUtil;
 import com.zjl.tools.TimeTools;
 
 public class DoubleBallDTO {

@@ -10,8 +10,8 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.combine.util.CombineUtil;
-import com.zjl.lottery.db.util.JDBCPatchUtil;
-import com.zjl.lottery.db.util.MapTxtUtil;
+import com.zjl.lottery.util.JDBCPatchUtil;
+import com.zjl.lottery.util.MapTxtUtil;
 import com.zjl.tools.ArrayTool;
 
 public class Main {

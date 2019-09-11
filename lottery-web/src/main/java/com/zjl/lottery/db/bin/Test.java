@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import com.zjl.lottery.db.DoubleBallDTO;
-import com.zjl.lottery.db.util.JDBCUtil;
+import com.zjl.lottery.util.JDBCUtil;
 import com.zjl.tools.TimeTools;
 
 public class Test {
