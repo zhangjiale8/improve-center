@@ -280,7 +280,7 @@ public class ArrayTool {
 	public static int[] strArr2InArr(String[] paramArr) {
 		int[] ints = new int[paramArr.length];
 		for (int i = 0; i < paramArr.length; i++) {
-			ints[i] = Integer.parseInt(paramArr[i]);
+			ints[i] = Integer.parseInt(paramArr[i].trim());
 		}
 		return ints;
 	
