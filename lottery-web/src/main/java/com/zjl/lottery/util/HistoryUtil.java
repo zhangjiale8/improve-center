@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -20,9 +21,11 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.combine.util.CombineUtil;
+import com.zjl.lottery.dto.LotteryDto;
 import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
 import com.zjl.lottery.util.JDBCPatchUtil;
 import com.zjl.tools.ArrayTool;
+import com.zjl.tools.TimeTools;
 
 public class HistoryUtil {
 	
@@ -196,6 +199,46 @@ public class HistoryUtil {
 	}
 	
 	/**
+	 * 获取历史开奖List
+	 * @return
+	 */
+	public static List<LotteryDto> getHistorydtoList() {
+		List<LotteryDto> list = new ArrayList<LotteryDto>();
+		String path = "";
+		path = "data/doubleballhistorydrawinfo.txt";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if(null != file && file.exists()) {
+		 try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
+	               
+	                String[] strArr = line.split("@");
+	                String period = strArr[0];
+	                Date drawdtm = TimeTools.DateFormate(strArr[1], TimeTools.Y_M_D_H_M_S);
+	                String red = "";
+	                String blue = "";
+	                String[] params = strArr[2].split("\\|");
+	                if(null != params && params.length == 2) {
+	                	red = params[0];
+	                	blue = params[1];
+	                	red = red.replaceAll("，", ",");
+	                	blue = blue.replaceAll("，", ",");
+	                }
+	                LotteryDto lotterydto = new LotteryDto(period, red, blue, drawdtm);
+                	list.add(lotterydto);	                	
+	            }
+	            br.close();
+		} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}		
+		return list;
+	}
+	
+	/**
 	 * 获取历史开奖Map
 	 * @return
 	 */
@@ -231,9 +274,71 @@ public class HistoryUtil {
 	}
 	
 	public static void main(String[] args) {
-		List<String> list = HistoryUtil.getHistoryList();
+		ArrayList<String> analysislist = new ArrayList<String>();
+		List<LotteryDto> list = HistoryUtil.getHistorydtoList();
+		int total = 0;
 		for (int i = 0; i <list.size(); i++) {
-			
+			LotteryDto lotterydto = list.get(i);
+			if(null != lotterydto){
+				int surplus = list.size()-i;
+				StringBuffer analysis = new StringBuffer();
+				String period = lotterydto.getPeriod();
+				String drawdtm = TimeTools.DateStr(lotterydto.getDrawdtm(), TimeTools.Y_M_D_H_M_S);
+				String red = lotterydto.getRed();
+				String blue = lotterydto.getBlue();
+				String result = "0";
+				if(surplus/11 > 0){
+					Map<String, Integer> redmap = new HashMap<String, Integer>();
+					Map<String, Integer> bluemap = new HashMap<String, Integer>();
+					for (int j = 1; j < 11; j++) {
+						LotteryDto lotterydtotemp = list.get(i+j);
+						String redtemp = lotterydtotemp.getRed();
+						String[] redtempArr = redtemp.split(",");
+						for (int k = 0; k < redtempArr.length; k++) {
+							String redstr = redtempArr[k];
+							int nums = null == redmap.get(redstr) ?0:redmap.get(redstr);
+							nums += 1;
+							redmap.put(redstr, nums);
+							
+						}
+						String bluetemp = lotterydtotemp.getRed();
+						String[] bluetempArr = bluetemp.split(",");
+						for (int k = 0; k < bluetempArr.length; k++) {
+							String bluestr = bluetempArr[k];
+							int nums = null == bluemap.get(bluestr) ?0:bluemap.get(bluestr);
+							nums += 1;
+							bluemap.put(bluestr, nums);
+							
+						}
+					}
+					String[] redArr = red.split(",");
+					int nums = 0;
+					for (int j = 0; j < redArr.length; j++) {
+						String retemp = redArr[j];
+						boolean flg = redmap.containsKey(retemp);
+						if(flg){
+							nums ++;
+						}
+					}
+					if(nums > 5){
+						result = "1";
+						total ++;
+					}
+					
+				}
+				
+				analysis.append(" period = "+period);
+				analysis.append(" ;drawdtm = "+drawdtm);
+				analysis.append(" ;red = "+red);
+				analysis.append(" ;blue = "+blue);
+				analysis.append(" ;result = "+result);
+				analysislist.add(analysis.toString());
+			}
+		}
+		
+		System.out.println(total);
+		if(null != analysislist && analysislist.size() > 0){
+			ListTxtUtil.createScreenTxt(analysislist,"analysislist");
 		}
 	}
 
