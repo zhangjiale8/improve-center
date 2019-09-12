@@ -137,7 +137,7 @@ public class HistoryUtil {
 	                        		}
 	                        		
 	        					}
-	                        	if(nums > 5){
+	                        	if(nums > 4){
 	                        		screenmap.put(entry.getKey(), entry.getValue());
 	                        		break;
 	                        	}
@@ -160,7 +160,7 @@ public class HistoryUtil {
 			map.remove(entry.getKey());
 		}
 		
-		//MapTxtUtil.createScreenTxtMap(map, "historyscreen");
+		MapTxtUtil.createScreenTxtMap(map, "historyscreen");
 		return map;
 	}
 	/**
