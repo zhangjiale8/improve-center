@@ -70,7 +70,7 @@ public class ParamsListUtil {
 		
 		MapTxtUtil.createScreenTxtMap(resultmap, "resultmapdetermined");
 		//ScreenUtil.screenTwo(ScreenUtil.screenThree(resultmap));
-		ScreenUtil.screenTwo(HistoryUtil.screenHistory(ScreenUtil.screenThree(resultmap)));
+		ScreenUtil.screenTwo(HistoryUtil.screenHistory(ScreenUtil.screenOtherTickets(ScreenUtil.screenThree(resultmap))));
 	}
 
 }

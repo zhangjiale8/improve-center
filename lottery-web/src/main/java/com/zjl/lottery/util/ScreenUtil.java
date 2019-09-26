@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
@@ -255,6 +256,124 @@ public class ScreenUtil {
 		}
 	
 		
+	}
+
+	/**
+	 * 实体票信息过滤
+	 * @param screenhistory
+	 * @return
+	 */
+	public static Map<String, Integer> screenTickets(Map<String, Integer> screenhistory) {
+		Map<String, Integer> tickets = MapTxtUtil.getTickets();
+		Map<String, Integer> screen = new HashMap<String, Integer>();
+		for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
+			screen.put(historyentry.getKey(), historyentry.getValue());
+		}
+		for (Entry<String, Integer> entry : tickets.entrySet()) {
+			String ticket = entry.getKey();
+			String[] ticketArr = ticket.split(",");
+			if(StringUtils.isNotEmpty(ticket)){
+				for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
+					String history = historyentry.getKey();
+					String[] historyArr = history.split(",");
+					int nums = 0;
+					for (String ticketstr : ticketArr) {
+						boolean flg = ArrayTool.isContains(ticketstr, historyArr);
+						if(flg){
+							nums++;
+						}
+					}
+					if(nums > 4){
+						screen.remove(history);
+					}
+				}
+			}
+			
+			
+		}
+		
+		MapTxtUtil.createScreenTxtMap(screen, "ticketsscreen");
+		return screen;
+	}
+	/**
+	 * 其他实体票信息过滤
+	 * @param screenhistory
+	 * @return
+	 */
+	public static Map<String, Integer> screenOtherTickets(Map<String, Integer> screenhistory) {
+		Map<String, Integer> tickets = MapTxtUtil.getOtherTickets();
+		Map<String, Integer> screen = new HashMap<String, Integer>();
+		for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
+			screen.put(historyentry.getKey(), historyentry.getValue());
+		}
+		for (Entry<String, Integer> entry : tickets.entrySet()) {
+			String ticket = entry.getKey();
+			String[] ticketArr = ticket.split(",");
+			if(StringUtils.isNotEmpty(ticket)){
+				for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
+					String history = historyentry.getKey();
+					String[] historyArr = history.split(",");
+					int nums = 0;
+					for (String ticketstr : ticketArr) {
+						boolean flg = ArrayTool.isContains(ticketstr, historyArr);
+						if(flg){
+							nums++;
+						}
+					}
+					if(nums > 4){
+						screen.remove(history);
+					}
+				}
+			}
+			
+			
+		}
+		
+		MapTxtUtil.createScreenTxtMap(screen, "otherticketsscreen");
+		return screen;
+	}
+
+
+	public static Map<String, Integer> screenRandomTickets(Map<String, Integer> screenhistory) {
+		Map<String, Integer> tickets = new HashMap<String, Integer>();
+		List<String> list = new ArrayList<String>();
+		for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
+			list.add(historyentry.getKey());
+		}
+		for (int i = 0; i < 1000; i++) {
+			int random = (int)((Math.random()*9+1)*1000)/10000*80453;
+			String temp = list.get(random);
+			tickets.put(temp, 1);
+		}
+		Map<String, Integer> screen = new HashMap<String, Integer>();
+		for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
+			screen.put(historyentry.getKey(), historyentry.getValue());
+		}
+		for (Entry<String, Integer> entry : tickets.entrySet()) {
+			String ticket = entry.getKey();
+			String[] ticketArr = ticket.split(",");
+			if(StringUtils.isNotEmpty(ticket)){
+				for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
+					String history = historyentry.getKey();
+					String[] historyArr = history.split(",");
+					int nums = 0;
+					for (String ticketstr : ticketArr) {
+						boolean flg = ArrayTool.isContains(ticketstr, historyArr);
+						if(flg){
+							nums++;
+						}
+					}
+					if(nums > 4){
+						screen.remove(history);
+					}
+				}
+			}
+			
+			
+		}
+		
+		MapTxtUtil.createScreenTxtMap(screen, "randomticketsscreen");
+		return screen;
 	}
 
 }
