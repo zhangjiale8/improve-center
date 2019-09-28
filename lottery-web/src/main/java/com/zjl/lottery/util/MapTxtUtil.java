@@ -153,7 +153,10 @@ public class MapTxtUtil {
 		
 		return map;
 	}
-	
+	/**
+	 * 获取购买的实体票信息
+	 * @return
+	 */
 	public static Map<String, Integer> getOtherTickets() {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		String path = "";
