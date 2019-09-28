@@ -337,6 +337,7 @@ public class HistoryUtil {
 		}
 		
 		System.out.println(total);
+		System.out.println(list.size() - total);
 		if(null != analysislist && analysislist.size() > 0){
 			ListTxtUtil.createScreenTxt(analysislist,"analysislist");
 		}
