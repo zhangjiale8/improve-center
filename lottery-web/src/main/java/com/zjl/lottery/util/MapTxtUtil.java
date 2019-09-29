@@ -180,4 +180,58 @@ public class MapTxtUtil {
 		
 		return map;
 	}
+	/**
+	 * 获取三连数据
+	 */
+	public static Map<String, Integer> getThreeMap() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String path = "";
+		path = "data/threecontinue.txt";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if(null != file && file.exists()) {
+		 try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
+	                Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+	                Matcher m = p.matcher(line);
+	                String temprp = m.replaceAll("");
+	                map.put(temprp, 1);
+	            }
+	            br.close();
+		} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return map;
+	}
+	/**
+	 * 获取二连数据
+	 */
+	public static Map<String, Integer> getTwoMap() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String path = "";
+		path = "data/twocontinue.txt";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if(null != file && file.exists()) {
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
+					Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+					Matcher m = p.matcher(line);
+					String temprp = m.replaceAll("");
+					map.put(temprp, 1);
+				}
+				br.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return map;
+	}
 }

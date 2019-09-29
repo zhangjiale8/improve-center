@@ -9,6 +9,8 @@ import com.zjl.lottery.util.MapTxtUtil;
 import com.zjl.lottery.util.MultipParamsListUtil;
 import com.zjl.lottery.util.OtherTicketScreenUtil;
 import com.zjl.lottery.util.ParamsListUtil;
+import com.zjl.lottery.util.ThreeSreenUtil;
+import com.zjl.lottery.util.TwoSreenUtil;
 
 public class MultipParamsListTest {
 	public static void main(String[] args) {
@@ -43,8 +45,11 @@ public class MultipParamsListTest {
 		//MultipParamsListUtil.screenDetermined(screenlist, screenarray);
 		//historyscreen();
 		//otherticketscreen();
+		//threeScreen();
+		twoScreen();
 	}
 	
+
 	/**
 	 * 历史开奖信息过滤
 	 */
@@ -72,6 +77,52 @@ public class MultipParamsListTest {
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
 			OtherTicketScreenUtil.screenotherticket(datamap,filename);
+		}
+		
+	}
+	/**
+	 * 三连过滤
+	 * @param:       
+	 */
+	private static void threeScreen() {
+		String [] filenameArr = {
+				"resultmapdeterminedcludehistorycludeotherticketclude",
+				"resultmapdeterminedcludehistorycludeotherticketunclude",
+				"resultmapdeterminedcludehistoryuncludeotherticketclude",
+				"resultmapdeterminedcludehistoryuncludeotherticketunclude",
+				"resultmapdetermineduncludehistorycludeotherticketclude",
+				"resultmapdetermineduncludehistorycludeotherticketunclude",
+				"resultmapdetermineduncludehistoryuncludeotherticketclude",
+				"resultmapdetermineduncludehistoryuncludeotherticketunclude"
+				};
+		for (String filename : filenameArr) {
+			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
+			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			ThreeSreenUtil.threeScreen(datamap,filename);
+		}
+		
+	}
+	
+	/**
+	 * 
+	 * @param:       
+	 */
+	private static void twoScreen() {
+		String [] filenameArr = {
+				"resultmapdeterminedcludehistorycludeotherticketclude",
+				"resultmapdeterminedcludehistorycludeotherticketunclude",
+				"resultmapdeterminedcludehistoryuncludeotherticketclude",
+				"resultmapdeterminedcludehistoryuncludeotherticketunclude",
+				"resultmapdetermineduncludehistorycludeotherticketclude",
+				"resultmapdetermineduncludehistorycludeotherticketunclude",
+				"resultmapdetermineduncludehistoryuncludeotherticketclude",
+				"resultmapdetermineduncludehistoryuncludeotherticketunclude"
+				};
+		for (String filename : filenameArr) {
+			filename += "threescreen";
+			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
+			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			TwoSreenUtil.twoScreen(datamap,filename);
 		}
 		
 	}
