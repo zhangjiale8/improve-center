@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.zjl.lottery.combine.util.CombineUtil;
+import com.zjl.tools.ArrayTool;
 
 public class MultipParamsListUtil {	
 
@@ -24,12 +25,42 @@ public class MultipParamsListUtil {
 	public static void screenDeterminedUncolude(ArrayList<int[]> list, int[] screenarray) {
 		Map<String, Integer> screenmap = MultipParamsListUtil.getScreenMap(screenarray);
 		Map<String, Integer> combinemaps = new HashMap<String,Integer>();
+		Map<String, Integer> resultTemp = new HashMap<String,Integer>();
+		Map<String, Integer> resultmap = new HashMap<String,Integer>();
 		for (int[] conbineArr : list) {
 			Map<String, Integer> combinemap = MultipParamsListUtil.getScreenMap(conbineArr);
 			for (Entry<String, Integer> entry : combinemap.entrySet()) {
-				
+				String combine = entry.getKey();
+				int count = null == combinemaps.get(combine)?0:combinemaps.get(combine);
+				combinemaps.put(combine, count+1);
 			} 
 		}
+		
+		for (Entry<String, Integer> entry : combinemaps.entrySet()) {
+			String combine = entry.getKey();
+			int count = entry.getValue();
+			boolean flg = screenmap.containsKey(combine);
+			if(count < 3 && flg) {
+				resultTemp.put(combine, count);
+			}
+		}
+		for (Entry<String, Integer> entry : resultTemp.entrySet()) {
+			String result = entry.getKey();
+			Integer value = entry.getValue();
+			String [] tempArr = result.split(",");
+			int min = 3;
+			for (int[] combineArr : list) {
+				String[] combinestrArr = ArrayTool.intArr2StrArr(combineArr);
+				String[] intersectArr = ArrayTool.getIntersectArr(tempArr, combinestrArr);
+				if(min > intersectArr.length) {
+					min = intersectArr.length;
+				}
+			}
+			if(min < 3) {
+				resultmap.put(result, value);
+			}
+		}
+		MapTxtUtil.createScreenTxtMap(resultmap, "resultmapdeterminedunclude");
 		
 	}
 	/**
@@ -51,6 +82,44 @@ public class MultipParamsListUtil {
 	 * @param screenarray
 	 */
 	public static void screenDeterminedClude(ArrayList<int[]> list, int[] screenarray) {
+		Map<String, Integer> screenmap = MultipParamsListUtil.getScreenMap(screenarray);
+		Map<String, Integer> combinemaps = new HashMap<String,Integer>();
+		Map<String, Integer> resultTemp = new HashMap<String,Integer>();
+		Map<String, Integer> resultmap = new HashMap<String,Integer>();
+		for (int[] conbineArr : list) {
+			Map<String, Integer> combinemap = MultipParamsListUtil.getScreenMap(conbineArr);
+			for (Entry<String, Integer> entry : combinemap.entrySet()) {
+				String combine = entry.getKey();
+				int count = null == combinemaps.get(combine)?0:combinemaps.get(combine);
+				combinemaps.put(combine, count+1);
+			} 
+		}
+		
+		for (Entry<String, Integer> entry : combinemaps.entrySet()) {
+			String combine = entry.getKey();
+			int count = entry.getValue();
+			boolean flg = screenmap.containsKey(combine);
+			if(count < 3 && !flg) {
+				resultTemp.put(combine, count);
+			}
+		}
+		for (Entry<String, Integer> entry : resultTemp.entrySet()) {
+			String result = entry.getKey();
+			Integer value = entry.getValue();
+			String [] tempArr = result.split(",");
+			int min = 3;
+			for (int[] combineArr : list) {
+				String[] combinestrArr = ArrayTool.intArr2StrArr(combineArr);
+				String[] intersectArr = ArrayTool.getIntersectArr(tempArr, combinestrArr);
+				if(min > intersectArr.length) {
+					min = intersectArr.length;
+				}
+			}
+			if(min < 3) {
+				resultmap.put(result, value);
+			}
+		}
+		MapTxtUtil.createScreenTxtMap(resultmap, "resultmapdeterminedclude");
 		
 	}
 

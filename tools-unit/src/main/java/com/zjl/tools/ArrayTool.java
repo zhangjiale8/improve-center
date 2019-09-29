@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class ArrayTool {
@@ -285,5 +286,41 @@ public class ArrayTool {
 		return ints;
 	
 	}
+	
+	/**
+	 * int数组转化成String数组
+	 * @param paramArr
+	 * @return
+	 */
+	public static String[] intArr2StrArr(int[] paramArr) {
+		String[] strArr = new String[paramArr.length];
+		for (int i = 0; i < paramArr.length; i++) {
+			strArr[i] = paramArr[i] + "";
+		}
+		return strArr;
+	
+	}
+	/**
+	 * 求两个string数组的交集
+	 */
+	 public static String[] getIntersectArr(String[] m, String[] n)
+	    {
+	        List<String> rs = new ArrayList<String>();
+
+	        // 将较长的数组转换为set
+	        Set<String> set = new HashSet<String>(Arrays.asList(m.length > n.length ? m : n));
+
+	        // 遍历较短的数组，实现最少循环
+	        for (String i : m.length > n.length ? n : m)
+	        {
+	            if (set.contains(i))
+	            {
+	                rs.add(i);
+	            }
+	        }
+
+	        String[] arr = {};
+	        return rs.toArray(arr);
+	    }
 
 }
