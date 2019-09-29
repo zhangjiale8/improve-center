@@ -1,8 +1,13 @@
 package com.zjl.lottery.test;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
 
+import com.zjl.lottery.util.HistoryScreenUtil;
+import com.zjl.lottery.util.MapTxtUtil;
 import com.zjl.lottery.util.MultipParamsListUtil;
+import com.zjl.lottery.util.OtherTicketScreenUtil;
 import com.zjl.lottery.util.ParamsListUtil;
 
 public class MultipParamsListTest {
@@ -35,6 +40,39 @@ public class MultipParamsListTest {
 		screenlist.add(paramArr1);
 		int[] screenarray = {1,2,3,5,6,7,8,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,30,31,32,33};
 	
-		MultipParamsListUtil.screenDetermined(screenlist, screenarray);
+		//MultipParamsListUtil.screenDetermined(screenlist, screenarray);
+		//historyscreen();
+		//otherticketscreen();
+	}
+	
+	/**
+	 * 历史开奖信息过滤
+	 */
+	private static void historyscreen() {
+		String [] filenameArr = {"resultmapdeterminedclude","resultmapdeterminedunclude"};
+		for (String filename : filenameArr) {
+			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
+			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			HistoryScreenUtil.screenhistory(datamap,filename);
+		}
+		
+	}
+	/**
+	 * 自购实体票信息过滤
+	 * @param:       
+	 */
+	private static void otherticketscreen() {
+		String [] filenameArr = {
+				"resultmapdeterminedcludehistoryclude",
+				"resultmapdeterminedcludehistoryunclude",
+				"resultmapdetermineduncludehistoryclude",
+				"resultmapdetermineduncludehistoryunclude"
+				};
+		for (String filename : filenameArr) {
+			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
+			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			OtherTicketScreenUtil.screenotherticket(datamap,filename);
+		}
+		
 	}
 }
