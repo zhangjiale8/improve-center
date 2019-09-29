@@ -2,7 +2,9 @@ package com.zjl.lottery.test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.zjl.lottery.util.HistoryScreenUtil;
 import com.zjl.lottery.util.MapTxtUtil;
@@ -46,7 +48,9 @@ public class MultipParamsListTest {
 		//historyscreen();
 		//otherticketscreen();
 		//threeScreen();
-		twoScreen();
+		//twoScreen();
+		pingtotal();
+		
 	}
 	
 
@@ -125,5 +129,33 @@ public class MultipParamsListTest {
 			TwoSreenUtil.twoScreen(datamap,filename);
 		}
 		
+	}
+	
+	/**
+	 * 组装所有
+	 * @param:       
+	 * @return: void      
+	 */
+	private static void pingtotal() {
+		String [] filenameArr = {
+				"resultmapdeterminedcludehistorycludeotherticketclude",
+				"resultmapdeterminedcludehistorycludeotherticketunclude",
+				"resultmapdeterminedcludehistoryuncludeotherticketclude",
+				"resultmapdeterminedcludehistoryuncludeotherticketunclude",
+				"resultmapdetermineduncludehistorycludeotherticketclude",
+				"resultmapdetermineduncludehistorycludeotherticketunclude",
+				"resultmapdetermineduncludehistoryuncludeotherticketclude",
+				"resultmapdetermineduncludehistoryuncludeotherticketunclude"
+				};
+		Map<String, Integer> totalmap = new HashMap<String, Integer>();
+		for (String filename : filenameArr) {
+			filename += "threescreen";
+			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
+			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			for (Entry<String, Integer> entry : datamap.entrySet()) {
+				totalmap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		MapTxtUtil.createScreenTxtMap(totalmap, "pingtotal");
 	}
 }
