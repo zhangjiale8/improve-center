@@ -75,7 +75,7 @@ public class FoolTest {
 			for (String filename : filenameArr) {
 				filename += "threescreen";
 				if(i > 0) {
-					filename += "threescreen"+i;
+					filename += i;
 				}
 				String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 				Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
@@ -88,8 +88,9 @@ public class FoolTest {
 					}
 					
 				}
-				MapTxtUtil.createScreenTxtMap(resultmap, filename+(i+1));
-			}			
+				String afterfilename = filename+(i+1);
+				MapTxtUtil.createScreenTxtMap(resultmap,afterfilename);
+			}		
 			
 		}
 		
