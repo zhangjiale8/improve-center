@@ -27,7 +27,7 @@ public class MapTxtUtil {
 	 * @param fileName
 	 */
 	public static void createScreenTxtMap(Map<String, Integer> map, String fileName) {
-		if(null != map && map.size() > 0 && StringUtils.isNotEmpty(fileName)){
+		//if(null != map && map.size() > 0 && StringUtils.isNotEmpty(fileName)){
 			try {
 				File file = new File("E:" + File.separator + "screen" + File.separator +fileName+ ".txt");
 		         if(!file.getParentFile().exists()){
@@ -44,7 +44,7 @@ public class MapTxtUtil {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		//}
 		
 	}
 	
