@@ -3,8 +3,11 @@ package com.zjl.lottery.test;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.util.HistoryScreenUtil;
 import com.zjl.lottery.util.MapTxtUtil;
@@ -17,20 +20,20 @@ import com.zjl.lottery.util.TwoSreenUtil;
 public class MultipParamsListTest {
 	public static void main(String[] args) {
 
-		int[] paramArr1 = {2,3,4,5,6,7,8,12,13,14,15,16,17,18,19,20,22,23,24,25,27,28,29,31,32};
-		int[] paramArr2 = {1,2,4,5,6,9,10,11,12,13,15,17,18,19,20,21,23,26,27,28,29,30,31,32,33};
-		int[] paramArr3 = {3,4,5,6,7,8,9,10,11,12,14,15,17,18,19,21,22,23,24,25,27,28,29,30,33};
-		int[] paramArr4 = {1,2,3,6,7,8,9,10,12,13,15,16,17,18,20,21,23,25,26,27,28,29,30,31,32};
-		int[] paramArr5 = {1,2,3,4,5,7,8,9,11,12,13,14,16,18,19,21,23,24,25,26,27,28,29,31,33};
-		int[] paramArr6 = {1,2,3,4,7,8,9,10,11,12,13,14,15,16,20,22,24,25,26,28,29,31,32,33};
-		int[] paramArr7 = {1,2,3,4,6,7,8,9,10,12,13,14,16,19,20,21,22,24,25,26,27,28,29,30,33};
-		int[] paramArr8 = {1,2,4,7,8,10,11,13,14,15,16,18,19,21,22,23,24,25,26,27,29,30,31,32,33};
-		int[] paramArr9 = {1,2,4,5,6,7,11,12,15,16,17,18,19,20,21,22,24,26,27,28,29,31,32,33};
-		int[] paramArr10 = {1,4,5,6,8,9,11,12,13,14,15,16,18,19,20,21,22,24,26,27,28,29,31,32,33};
-		int[] paramArr11 = {1,5,6,8,10,11,13,14,15,16,17,18,19,20,22,23,24,25,27,28,29,30,31,32,33};
-		//int[] paramArr12 = {};
+		int[] paramArr1 = {};
+		int[] paramArr2 = {};
+		int[] paramArr3 = {};
+		int[] paramArr4 = {};
+		int[] paramArr5 = {};
+		int[] paramArr6 = {};
+		int[] paramArr7 = {};
+		int[] paramArr8 = {};
+		int[] paramArr9 = {};
+		int[] paramArr10 = {};
+		int[] paramArr11 = {};
+		int[] paramArr12 = {};
 		ArrayList<int[]> screenlist = new ArrayList<int[]>();
-		//screenlist.add(paramArr12);
+		screenlist.add(paramArr12);
 		screenlist.add(paramArr11);
 		screenlist.add(paramArr10);
 		screenlist.add(paramArr9);
@@ -42,17 +45,71 @@ public class MultipParamsListTest {
 		screenlist.add(paramArr3);
 		screenlist.add(paramArr2);
 		screenlist.add(paramArr1);
-		int[] screenarray = {1,2,3,4,5,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33};
+		int[] screenarray = {};
 	
-		MultipParamsListUtil.screenDetermined(screenlist, screenarray);
+		//MultipParamsListUtil.screenDetermined(screenlist, screenarray);
 		//historyscreen();
 		//otherticketscreen();
 		//threeScreen();
 		//twoScreen();
 		//pingtotal();
+		randomaward(); 
 		
 	}
 	
+	private static void randomaward() {
+		String filepath = "E:" + File.separator + "screen" + File.separator +"pingtotal.txt";;
+		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+		List<String> initlist = new ArrayList<String>();
+		for (Entry<String, Integer> entry : datamap.entrySet()) {
+			initlist.add(entry.getKey());
+		}
+		Map<String, Integer> firstdraw = new HashMap<String, Integer>();
+		for (int i = 0; i < 8; i++) {
+			double random = (double) ((Math.random()*9+1)*1000)/10000;
+			int index = Integer.parseInt(new java.text.DecimalFormat("0").format(random*initlist.size()));
+			String draw = initlist.get(index);
+			System.out.println(draw);
+			if(StringUtils.isNotEmpty(draw)){
+				String [] drawArr = draw.split(",");
+				for (int j = 0; j < drawArr.length; j++) {
+					firstdraw.put(drawArr[j], 1);
+				}
+			}
+			
+		}
+		Map<String, Integer> screendraw = new HashMap<String, Integer>();
+		for (Entry<String, Integer> entry : datamap.entrySet()) {
+			String combine = entry.getKey();
+			if(StringUtils.isNotEmpty(combine)){
+				int count = 0;
+				String [] drawArr = combine.split(",");
+				for (int j = 0; j < drawArr.length; j++) {
+					Integer flg = firstdraw.get(drawArr[j]);
+					if(null != flg){
+						count ++;
+					}
+				}
+				if(count > 3){
+					screendraw.put(combine, entry.getValue());
+				}
+			}
+		}
+		
+		List<String> secondlist = new ArrayList<String>();
+		for (Entry<String, Integer> entry : screendraw.entrySet()) {
+			secondlist.add(entry.getKey());
+		}
+		for (int i = 0; i < 2; i++) {
+			double random = (double) ((Math.random()*9+1)*1000)/10000;
+			int index = Integer.parseInt(new java.text.DecimalFormat("0").format(random*secondlist.size()));
+			String draw = secondlist.get(index);
+			System.out.println(draw);
+		}
+		
+		
+	}
+
 	public void init(){
 
 		int[] paramArr1 = {};
@@ -185,7 +242,7 @@ public class MultipParamsListTest {
 				};
 		Map<String, Integer> totalmap = new HashMap<String, Integer>();
 		for (String filename : filenameArr) {
-			filename += "threescreen";
+			filename += "threescreen123456789123456789";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
