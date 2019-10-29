@@ -376,4 +376,58 @@ public class ScreenUtil {
 		return screen;
 	}
 
+	/**
+	 * 同尾号过滤
+	 * @Title: screensametails   
+	 * @param: @param datamap
+	 * @param: @param filename      
+	 * @return: void      
+	 * @throws
+	 */
+	public static Map<String, Integer> screensametails(Map<String, Integer> datamap, String filename) {
+		Map<String, Integer> resultmap = new HashMap<String, Integer>();
+		if(null != datamap && datamap.size() > 0 && StringUtils.isNotEmpty(filename)) {
+			for (Entry<String, Integer> entry : datamap.entrySet()) {
+				String combine = entry.getKey();
+				String[] combineArr = combine.split(",");
+				int[] intcombineArr = ArrayTool.strArr2InArr(combineArr);
+				int count = ScreenUtil.countSametails(intcombineArr);
+				if(count > 0 && count < 3) {
+					resultmap.put(combine, entry.getValue());
+				}
+			}
+		}
+		MapTxtUtil.createScreenTxtMap(resultmap, filename+"sametails");
+		return resultmap;
+	}
+
+	/**
+	 * 计算同尾号个数
+	 * @Title: countSametails   
+	 * @param: @param intcombineArr
+	 * @param: @return      
+	 * @return: int      
+	 * @throws
+	 */
+	public static int countSametails(int[] intcombineArr) {
+		int nums = 0;
+		if(null != intcombineArr && intcombineArr.length > 0) {
+			Map<Integer, Integer> datamap = new HashMap<Integer, Integer>();
+			for (int i = 0; i < intcombineArr.length; i++) {
+				int temp = intcombineArr[i];
+				int tail = temp%10;
+				int count = null == datamap.get(tail)?1:datamap.get(tail)+1;
+				datamap.put(tail, count);
+			}
+			for (Entry<Integer, Integer> entry : datamap.entrySet()) {
+				int count = entry.getValue();
+				if(count > 1) {
+					nums += count-1;
+				}
+				
+			}
+		}
+		return nums;
+	}
+
 }

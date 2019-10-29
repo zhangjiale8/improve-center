@@ -14,6 +14,7 @@ import com.zjl.lottery.util.MapTxtUtil;
 import com.zjl.lottery.util.MultipParamsListUtil;
 import com.zjl.lottery.util.OtherTicketScreenUtil;
 import com.zjl.lottery.util.ParamsListUtil;
+import com.zjl.lottery.util.ScreenUtil;
 import com.zjl.lottery.util.ThreeSreenUtil;
 import com.zjl.lottery.util.TwoSreenUtil;
 
@@ -53,19 +54,34 @@ public class MultipParamsListTest {
 		//threeScreen();
 		//twoScreen();
 		//pingtotal();
+		//sametails();
 		randomaward(); 
 		
 	}
-	
+	/**
+	 * 同尾号过滤
+	 * @Title: sametails   
+	 * @param:       
+	 * @return: void      
+	 * @throws
+	 */
+	private static void sametails() {
+		String filename = "pingtotal";
+		String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
+		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+		ScreenUtil.screensametails(datamap,filename);
+		
+	}
+	//随机选取
 	private static void randomaward() {
-		String filepath = "E:" + File.separator + "screen" + File.separator +"pingtotal.txt";;
+		String filepath = "E:" + File.separator + "screen" + File.separator +"pingtotalsametails.txt";;
 		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
 		List<String> initlist = new ArrayList<String>();
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
 			initlist.add(entry.getKey());
 		}
 		Map<String, Integer> firstdraw = new HashMap<String, Integer>();
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 5; i++) {
 			double random = (double) ((Math.random()*9+1)*1000)/10000;
 			int index = Integer.parseInt(new java.text.DecimalFormat("0").format(random*initlist.size()));
 			String draw = initlist.get(index);
@@ -78,7 +94,7 @@ public class MultipParamsListTest {
 			}
 			
 		}
-		Map<String, Integer> screendraw = new HashMap<String, Integer>();
+		/*Map<String, Integer> screendraw = new HashMap<String, Integer>();
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
 			String combine = entry.getKey();
 			if(StringUtils.isNotEmpty(combine)){
@@ -106,7 +122,7 @@ public class MultipParamsListTest {
 			String draw = secondlist.get(index);
 			System.out.println(draw);
 		}
-		
+		*/
 		
 	}
 
