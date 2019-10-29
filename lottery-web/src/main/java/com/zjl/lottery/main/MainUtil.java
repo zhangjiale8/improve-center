@@ -25,6 +25,7 @@ import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
 import com.zjl.lottery.util.JDBCPatchUtil;
 import com.zjl.lottery.util.ListTxtUtil;
 import com.zjl.lottery.util.MapTxtUtil;
+import com.zjl.lottery.util.ThreeSreenUtil;
 import com.zjl.tools.ArrayTool;
 
 public class MainUtil {
@@ -247,40 +248,9 @@ public class MainUtil {
 			MapTxtUtil.createScreenTxtMap(combinemap, "initcombinedoubleball");
 		}
 		
-		Map<String, Integer> screennothreemap = new HashMap<String, Integer>();
-		String filePath = "E:" + File.separator + "screen" + File.separator + "threecontinue.txt";
-		ArrayList<String> threecombine = getCombineList(filePath);
-		if(null != combinemap && combinemap.size() > 0){
-			for (Entry<String, Integer> entry : combinemap.entrySet()) {
-				String[] combineArr = entry.getKey().split(",");
-				int nums = 0;
-				for (String three : threecombine) {
-					String[] threeArr = three.split(",");
-					for (int i = 0; i < threeArr.length; i++) {
-						boolean flg = ArrayTool.isContains(threeArr[i], combineArr);
-						if(flg){
-							nums ++;
-						}
-					}
-					if(nums == 3){
-						screennothreemap.put(entry.getKey(), 1);
-						break;
-					}
-					nums = 0;
-				}
-				
-			}
-			
-			for (Entry<String, Integer> entry : screennothreemap.entrySet()) {
-				combinemap.remove(entry.getKey());
-			}
-			
-		}
-		
-		if(null != combinemap && combinemap.size() > 0){
-			MapTxtUtil.createScreenTxtMap(combinemap, "initnothreecombinedoubleball");
-		}
-		
+		String filepath = "E:" + File.separator + "screen" + File.separator +"initcombinedoubleball.txt";
+		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+		ThreeSreenUtil.threeScreen(datamap, "initcombinedoubleball");
 	}
 	
 }
