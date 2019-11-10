@@ -392,7 +392,7 @@ public class ScreenUtil {
 				String[] combineArr = combine.split(",");
 				int[] intcombineArr = ArrayTool.strArr2InArr(combineArr);
 				int count = ScreenUtil.countSametails(intcombineArr);
-				if(count > 0 && count < 3) {
+				if(count < 2) {
 					resultmap.put(combine, entry.getValue());
 				}
 			}

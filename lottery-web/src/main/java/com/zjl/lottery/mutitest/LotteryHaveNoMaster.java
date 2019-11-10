@@ -13,23 +13,29 @@ import org.apache.commons.lang.StringUtils;
 
 public class LotteryHaveNoMaster {
 	public static void main(String[] args) {
-		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource("063/0306.txt");
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource("058/0306.txt");
 		File file = new File(url.getFile());
 		Map<String, Map<String, Integer>> map = txt2Map(file);
 		Map<String, Integer> redMap = map.get("Red");
 		if(null != redMap && redMap.size() > 0) {
 			System.out.println("-------------red打印开始------------");
+			String redstrs = "";
 			for(Map.Entry<String, Integer> entry : redMap.entrySet()) {
+				redstrs += entry.getKey()+",";
 				System.out.println(entry.getKey() + " : " + entry.getValue());
 			}
+			System.out.println(redstrs);
 			System.out.println("-------------red打印结束------------");
 		}
 		Map<String, Integer> blueMap = map.get("Blue");
 		if(null != blueMap && blueMap.size() > 0) {
 			System.out.println("-------------blue打印开始------------");
+			String bluestrs = "";
 			for(Map.Entry<String, Integer> entry : blueMap.entrySet()) {
+				bluestrs += entry.getKey()+",";
 				System.out.println(entry.getKey() + " : " + entry.getValue());
 			}
+			System.out.println(bluestrs);
 			System.out.println("-------------blue打印结束------------");
 		}
 	}
