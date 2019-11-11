@@ -21,21 +21,21 @@ import com.zjl.lottery.util.TwoSreenUtil;
 public class MultipParamsListTest {
 	public static void main(String[] args) {
 
-		int[] paramArr1 = {1,2,3,4,5,6,8,9,10,11,12,15,16,17,20,21,22,24,25,26,29,30,31,32,33};
-		int[] paramArr2 = {2,5,6,7,8,10,11,13,15,16,17,18,21,22,23,24,26,27,28,29,30,31,32,33};
-		int[] paramArr3 = {1,2,4,5,6,7,8,9,10,11,12,13,14,16,17,18,24,25,26,28,29,30,31,32,33};
-		int[] paramArr4 = {1,2,3,5,6,7,8,9,10,11,13,14,15,17,19,20,22,23,24,26,27,29,30,31,33};
-		int[] paramArr5 = {1,2,4,5,6,7,9,10,11,15,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32};
-		int[] paramArr6 = {2,3,4,6,7,8,9,12,13,14,15,16,17,18,19,24,25,26,27,28,29,30,31,32,33};
-		int[] paramArr7 = {1,2,3,5,6,7,9,10,11,12,13,14,17,18,19,20,22,25,26,27,28,29,30,31,33};
-		int[] paramArr8 = {2,4,5,6,7,9,10,11,12,13,14,16,17,19,20,21,22,23,25,26,27,29,30,32,33};
-		int[] paramArr9 = {3,4,8,9,10,11,12,13,14,15,16,17,18,19,21,22,23,24,25,27,28,29,31,32,33};
-		int[] paramArr10 = {2,3,4,5,6,8,9,13,14,15,16,17,18,20,21,22,23,24,25,26,27,28,29,31,32};
-	//	int[] paramArr11 = {};
+		int[] paramArr1 = {1,2,3,4,5,6,7,9,10,13,14,15,16,18,19,20,21,23,24,25,26,27,29,32,33};
+		int[] paramArr2 = {1,2,3,4,7,8,9,11,12,13,14,15,16,18,19,20,21,22,23,25,26,27,28,30,33};
+		int[] paramArr3 = {1,2,3,5,6,7,8,10,12,13,14,15,16,17,20,21,22,23,26,27,28,29,30,32,33};
+		int[] paramArr4 = {1,2,3,4,5,7,8,10,12,13,14,15,16,17,21,23,24,25,27,28,29,30,31,32,33};
+		int[] paramArr5 = {2,3,6,7,8,9,12,13,14,15,16,17,19,20,21,22,23,24,25,26,27,30,31,32,33};
+		int[] paramArr6 = {2,3,4,6,7,8,9,10,11,12,13,14,15,16,17,18,19,24,26,27,29,30,31,32,33};
+		int[] paramArr7 = {1,3,4,5,9,11,12,13,15,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33};
+		int[] paramArr8 = {1,2,3,4,6,7,8,9,10,11,12,13,14,16,18,20,22,23,24,25,26,30,31,32,33};
+		int[] paramArr9 = {1,2,3,5,6,7,8,9,10,12,13,14,16,17,18,19,20,21,22,23,24,27,28,31,32};
+		int[] paramArr10 = {1,3,4,5,6,7,11,12,13,14,15,17,18,19,20,22,23,26,27,28,29,30,31,32,33};
+		int[] paramArr11 = {1,4,5,7,8,9,10,11,12,13,14,15,17,18,19,20,22,23,24,25,26,27,28,29,30};
 	//	int[] paramArr12 = {};
 		ArrayList<int[]> screenlist = new ArrayList<int[]>();
-		//screenlist.add(paramArr12);
-	//	screenlist.add(paramArr11);
+	//	screenlist.add(paramArr12);
+		screenlist.add(paramArr11);
 		screenlist.add(paramArr10);
 		screenlist.add(paramArr9);
 		screenlist.add(paramArr8);
@@ -46,16 +46,16 @@ public class MultipParamsListTest {
 		screenlist.add(paramArr3);
 		screenlist.add(paramArr2);
 		screenlist.add(paramArr1);
-		int[] screenarray = {4,5,7,8,10,14,16,19,20,24,28,29,30,31,33};
+		int[] screenarray = {2,3,4,6,7,8,9,10,11,12,14,15,16,17,19,21,22,23,24,26,27,28,29,30,31,32,33};
 	
-		MultipParamsListUtil.screenDetermined(screenlist, screenarray);
+		//MultipParamsListUtil.screenDetermined(screenlist, screenarray);
 		historyscreen();
 		//otherticketscreen();
 		//threeScreen();
 		//twoScreen();
 		//pingtotal();
 		//sametails();
-		randomaward(); 
+	//	randomaward(); 
 		
 	}
 	/**
