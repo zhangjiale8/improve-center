@@ -234,4 +234,74 @@ public class MapTxtUtil {
 		}
 		return map;
 	}
+	
+	/**
+	 * 获取22组数据
+	 */
+	public static Map<String, Integer> get22ArrayMap() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String path = "";
+		path = "Z22/001.txt";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if(null != file && file.exists()) {
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
+					Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+					Matcher m = p.matcher(line);
+					String temprp = m.replaceAll("");
+					String[] combineArr = temprp.split(":");
+					map.put(combineArr[1], 1);
+				}
+				br.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return map;
+	}
+	
+	/**
+	 * 获取22组组合数据
+	 */
+	public static Map<String, Integer> get22ArrayCombineMap() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String path = "";
+		path = "Z22/001.txt";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if(null != file && file.exists()) {
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
+					Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+					Matcher m = p.matcher(line);
+					String temprp = m.replaceAll("");
+					String[] combineArr = temprp.split(":");
+					String combine = combineArr[1];
+					String[] combinetempArr = combine.split(",");
+					int[] combinetempIntArr = ArrayTool.strArr2InArr(combinetempArr);
+					Map<String, Integer> screenmap = MultipParamsListUtil.getScreenMap(combinetempIntArr);
+					for (Entry<String, Integer> array22entry : screenmap.entrySet()) {
+						Integer count =  map.get(array22entry.getKey());
+						if(null == count){
+							count = 1;
+						}else{
+							count++;
+						}
+						map.put(array22entry.getKey(), count);
+					}
+				}
+				br.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		return map;
+	}
 }

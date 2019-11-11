@@ -12,8 +12,8 @@ import com.zjl.tools.ArrayTool;
 
 public class FoolTest {
 	public static void main(String[] args) {
-		//singlescreen();
-		multipscreen();
+		singlescreen();
+		//multipscreen();
 	}
 	
 	/**
@@ -32,22 +32,24 @@ public class FoolTest {
 				"resultmapdetermineduncludehistoryuncludeotherticketclude",
 				"resultmapdetermineduncludehistoryuncludeotherticketunclude"
 				};
-		int[] screenIntArr = {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,22,23,25,26,27,29,30,31};
+		//int[] screenIntArr = {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,22,23,25,26,27,29,30,31};
+		int[] screenIntArr = {16,19,21,28,32,33,12,15,24,4,25,29,3,30,22};
 		String[] screenArr = ArrayTool.intArr2StrArr(screenIntArr);
 		for (String filename : filenameArr) {
-			filename += "threescreen";
+			filename += "threescreen123456789123456789123456789123456789123456789123456789123456789123456789123456789"
+					+ "123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
 			Map<String, Integer> resultmap = new HashMap<String, Integer>();
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
 				String[] combineArr = entry.getKey().split(",");
 				String[] intersectArr = ArrayTool.getIntersectArr(screenArr, combineArr);
-				if(intersectArr.length > 3) {
+				if(intersectArr.length <6) {
 					resultmap.put(entry.getKey(), entry.getValue());
 				}
 				
 			}
-			MapTxtUtil.createScreenTxtMap(resultmap, filename+"0001");
+			MapTxtUtil.createScreenTxtMap(resultmap, filename+"2");
 		}
 		
 	}
@@ -83,7 +85,7 @@ public class FoolTest {
 				for (Entry<String, Integer> entry : datamap.entrySet()) {
 					String[] combineArr = entry.getKey().split(",");
 					String[] intersectArr = ArrayTool.getIntersectArr(screenArr, combineArr);
-					if(intersectArr.length > 1) {
+					if(intersectArr.length < 6) {
 						resultmap.put(entry.getKey(), entry.getValue());
 					}
 					
