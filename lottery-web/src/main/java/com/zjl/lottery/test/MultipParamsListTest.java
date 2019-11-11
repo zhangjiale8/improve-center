@@ -54,7 +54,7 @@ public class MultipParamsListTest {
 		//threeScreen();
 		//twoScreen();
 		//pingtotal();
-		//sametails();
+		sametails();
 	//	randomaward(); 
 		
 	}
@@ -260,8 +260,7 @@ public class MultipParamsListTest {
 				};
 		Map<String, Integer> totalmap = new HashMap<String, Integer>();
 		for (String filename : filenameArr) {
-			filename += "threescreen123456789123456789123456789123456789123456789123456789123456789123456789123456789"
-					+ "1234567891234567891234567891234567891234567891234567891234567891234567891234567891234567892";
+			filename += "threescreen123456789123456789123456";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {

@@ -73,7 +73,7 @@ public class FoolTest {
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"sceenlist.txt";;
 		List<String[]> screenarrlist = ListTxtUtil.getScreenList(screenfilepath);
 		for (String filename : filenameArr) {
-			filename += "threescreen1234567891234567891234";
+			filename += "threescreen12345678912345678912345";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
@@ -88,7 +88,7 @@ public class FoolTest {
 		}
 		
 		for (String filename : filenameArr) {
-			filename += "threescreen1234567891234567891234";
+			filename += "threescreen12345678912345678912345";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
 			Map<String, Integer> datamaptemp = new HashMap<String, Integer>();
@@ -99,7 +99,7 @@ public class FoolTest {
 					datamap.remove(entry.getKey());
 				}
 			}
-			MapTxtUtil.createScreenTxtMap(datamap, filename+"5");
+			MapTxtUtil.createScreenTxtMap(datamap, filename+"6");
 		}
 		
 		
