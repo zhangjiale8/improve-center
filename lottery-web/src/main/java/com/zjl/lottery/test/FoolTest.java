@@ -2,6 +2,7 @@ package com.zjl.lottery.test;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,8 +13,8 @@ import com.zjl.tools.ArrayTool;
 
 public class FoolTest {
 	public static void main(String[] args) {
-		singlescreen();
-		//multipscreen();
+		//singlescreen();
+		multipscreen();
 	}
 	
 	/**
@@ -33,11 +34,10 @@ public class FoolTest {
 				"resultmapdetermineduncludehistoryuncludeotherticketunclude"
 				};
 		//int[] screenIntArr = {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,22,23,25,26,27,29,30,31};
-		int[] screenIntArr = {16,19,21,28,32,33,12,15,24,4,25,29,3,30,22};
+		int[] screenIntArr = {3,4,6,10,19,25,26,28,29,31,32,33};
 		String[] screenArr = ArrayTool.intArr2StrArr(screenIntArr);
 		for (String filename : filenameArr) {
-			filename += "threescreen123456789123456789123456789123456789123456789123456789123456789123456789123456789"
-					+ "123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789";
+			filename += "threescreen123456789123456789123";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
 			Map<String, Integer> resultmap = new HashMap<String, Integer>();
@@ -49,7 +49,7 @@ public class FoolTest {
 				}
 				
 			}
-			MapTxtUtil.createScreenTxtMap(resultmap, filename+"2");
+			MapTxtUtil.createScreenTxtMap(resultmap, filename+"4");
 		}
 		
 	}
@@ -58,7 +58,6 @@ public class FoolTest {
 	 * @param:       
 	 */
 	private static void multipscreen() {
-
 
 		String [] filenameArr = {
 				"resultmapdeterminedcludehistorycludeotherticketclude",
@@ -70,31 +69,61 @@ public class FoolTest {
 				"resultmapdetermineduncludehistoryuncludeotherticketclude",
 				"resultmapdetermineduncludehistoryuncludeotherticketunclude"
 				};
+		Map<String, Integer> screenmap = new HashMap<String, Integer>();
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"sceenlist.txt";;
 		List<String[]> screenarrlist = ListTxtUtil.getScreenList(screenfilepath);
-		for (int i = 0; i < screenarrlist.size(); i++) {
-			String[] screenArr = screenarrlist.get(i);
-			for (String filename : filenameArr) {
-				filename += "threescreen";
-				if(i > 0) {
-					filename += i;
-				}
-				String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
-				Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
-				Map<String, Integer> resultmap = new HashMap<String, Integer>();
-				for (Entry<String, Integer> entry : datamap.entrySet()) {
+		for (String filename : filenameArr) {
+			filename += "threescreen1234567891234567891234";
+			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
+			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			for (Entry<String, Integer> entry : datamap.entrySet()) {
+				for (String[] screenArr : screenarrlist) {
 					String[] combineArr = entry.getKey().split(",");
 					String[] intersectArr = ArrayTool.getIntersectArr(screenArr, combineArr);
-					if(intersectArr.length < 6) {
-						resultmap.put(entry.getKey(), entry.getValue());
+					if(intersectArr.length ==6) {
+						screenmap.put(entry.getKey(), entry.getValue());
 					}
-					
 				}
-				String afterfilename = filename+(i+1);
-				MapTxtUtil.createScreenTxtMap(resultmap,afterfilename);
-			}		
-			
+			}
 		}
 		
+		for (String filename : filenameArr) {
+			filename += "threescreen1234567891234567891234";
+			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
+			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			Map<String, Integer> datamaptemp = new HashMap<String, Integer>();
+			mapCopy(datamap,datamaptemp);
+			for (Entry<String, Integer> entry : datamaptemp.entrySet()) {
+				Integer count = screenmap.get(entry.getKey());
+				if(null != count){
+					datamap.remove(entry.getKey());
+				}
+			}
+			MapTxtUtil.createScreenTxtMap(datamap, filename+"5");
+		}
+		
+		
+	}
+	
+	/**
+	 * 复制map对象
+	 * @explain 将paramsMap中的键值对全部拷贝到resultMap中；
+	 * paramsMap中的内容不会影响到resultMap（深拷贝）
+	 * @param paramsMap
+	 *     被拷贝对象
+	 * @param resultMap
+	 *     拷贝后的对象
+	 */
+	public static void mapCopy(Map paramsMap, Map resultMap) {
+	    if (resultMap == null) resultMap = new HashMap();
+	    if (paramsMap == null) return;
+
+	    Iterator it = paramsMap.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry entry = (Map.Entry) it.next();
+	        Object key = entry.getKey();
+	        resultMap.put(key, paramsMap.get(key) != null ? paramsMap.get(key) : "");
+
+	    }
 	}
 }
