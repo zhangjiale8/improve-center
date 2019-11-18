@@ -40,7 +40,7 @@ public class MultipParamsListUtil {
 			String combine = entry.getKey();
 			int count = entry.getValue();
 			boolean flg = screenmap.containsKey(combine);
-			if(count < 3 && flg) {
+			if(count < 3 && !flg) {
 				resultTemp.put(combine, count);
 			}
 		}
@@ -56,7 +56,7 @@ public class MultipParamsListUtil {
 					min = intersectArr.length;
 				}
 			}
-			if(min < 3) {
+			if(min > 2) {
 				resultmap.put(result, value);
 			}
 		}
@@ -99,7 +99,7 @@ public class MultipParamsListUtil {
 			String combine = entry.getKey();
 			int count = entry.getValue();
 			boolean flg = screenmap.containsKey(combine);
-			if(count < 3 && !flg) {
+			if(count < 3 && flg) {
 				resultTemp.put(combine, count);
 			}
 		}
@@ -115,7 +115,7 @@ public class MultipParamsListUtil {
 					min = intersectArr.length;
 				}
 			}
-			if(min < 3) {
+			if(min > 2) {
 				resultmap.put(result, value);
 			}
 		}
