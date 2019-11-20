@@ -40,7 +40,7 @@ public class MultipParamsListUtil {
 			String combine = entry.getKey();
 			int count = entry.getValue();
 			boolean flg = screenmap.containsKey(combine);
-			if(count < 3 && !flg) {
+			if(count < 4 && !flg) {
 				resultTemp.put(combine, count);
 			}
 		}
@@ -99,7 +99,7 @@ public class MultipParamsListUtil {
 			String combine = entry.getKey();
 			int count = entry.getValue();
 			boolean flg = screenmap.containsKey(combine);
-			if(count < 3 && flg) {
+			if(count < 4 && flg) {
 				resultTemp.put(combine, count);
 			}
 		}

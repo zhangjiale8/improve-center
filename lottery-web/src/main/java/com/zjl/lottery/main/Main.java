@@ -36,8 +36,8 @@ public class Main {
 		//初始化大乐透历史数据
 		//initGreatLottoHistory();
 		//temp();
-		for (int i = 0; i < 5; i++) {
-			System.out.println((double)((Math.random()*9+1)*1000)/10000*288);
+		for (int i = 0; i < 1; i++) {
+			System.out.println((double)((Math.random()*9+1)*1000)/10000*26520);
 
 		}
 		//单组数据过滤

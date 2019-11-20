@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+</style>
+</head>
+<body onload="onload()">
+	<button style="color: blue;" onclick="show1()">综合分析</button>
+	<button style="color: blue;" onclick="show2()">生产调度</button>
+	<button style="color: blue;" onclick="show3()">产线实时</button>
+	<div style="width: ;height: ;">
+		<img id="imgconent" alt="" src="" width="" height="">	
+	</div>
+</body>
+<script type="text/javascript">
+	function show1(){
+		document.getElementById("imgconent").src="综合分析.png";
+	}
+	function show2(){
+		document.getElementById("imgconent").src="生产调度.png";
+	}
+	function show3(){
+		document.getElementById("imgconent").src="产线实时.png";
+	}
+	function onload(){
+		show1();
+	}
+</script>
+</html>
