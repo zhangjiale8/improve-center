@@ -4,14 +4,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -275,7 +273,39 @@ public class HistoryUtil {
 		return map;
 	}
 	
+	/**
+	 * 获取前10期开奖数字数组
+	 * @Title: get10periodHistoryArr   
+	 * @param: @return      
+	 * @return: int[]      
+	 * @throws
+	 */
+	public static int [] get10periodHistoryArr() {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		List<String> getHistoryList = HistoryUtil.getHistoryList();
+		List<String> datalist = new ArrayList<String>();
+		for (int index = 0; index < 10; index++) {
+			String [] drawArr = getHistoryList.get(index).split(",");
+			for (int i = 0; i < drawArr.length; i++) {
+				datamap.put(drawArr[i], 1);
+			}
+		}
+		for (Entry<String, Integer> dataentry : datamap.entrySet()) {
+			datalist.add(dataentry.getKey());
+		}
+		
+		int[] dataArr = new int[datalist.size()];
+		for (int i = 0; i < datalist.size(); i++) {
+			dataArr[i] = Integer.valueOf(datalist.get(i));
+		}
+		Arrays.sort(dataArr);
+		return dataArr;
+	}
+	
 	public static void main(String[] args) {
+		int [] dataArr = get10periodHistoryArr();
+		System.out.println(dataArr);
+		/*
 		//双色球4个以上包括4个，大乐透3个以上包括3个
 		ArrayList<String> analysislist = new ArrayList<String>();
 		List<LotteryDto> list = HistoryUtil.getHistorydtoList();
@@ -344,6 +374,7 @@ public class HistoryUtil {
 		if(null != analysislist && analysislist.size() > 0){
 			ListDataUtil.createScreenTxt(analysislist,"analysislist");
 		}
-	}
+	*/
+		}
 
 }

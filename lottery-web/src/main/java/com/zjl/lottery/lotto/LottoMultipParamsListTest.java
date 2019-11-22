@@ -14,6 +14,8 @@ import com.zjl.lottery.doubleball.util.MultipParamsListUtil;
 import com.zjl.lottery.doubleball.util.OtherTicketScreenUtil;
 import com.zjl.lottery.doubleball.util.ParamsListUtil;
 import com.zjl.lottery.doubleball.util.ScreenUtil;
+import com.zjl.lottery.lotto.util.HistoryUtil;
+import com.zjl.lottery.lotto.util.MultipLottoUtil;
 import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.lottery.util.ThreeSreenUtil;
 import com.zjl.lottery.util.TwoSreenUtil;
@@ -45,9 +47,9 @@ public class LottoMultipParamsListTest {
 		screenlist.add(paramArr3);
 		screenlist.add(paramArr2);
 		screenlist.add(paramArr1);
-		int[] screenarray = {};
+		int[] screenarray = HistoryUtil.get10periodHistoryArr();
 	
-		//MultipParamsListUtil.screenDetermined(screenlist, screenarray);
+		MultipLottoUtil.screenDetermined(screenlist, screenarray);
 		//historyscreen();
 		//otherticketscreen();
 		//threeScreen();

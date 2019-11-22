@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -202,6 +204,34 @@ public class HistoryUtil {
 		if(null != analysislist && analysislist.size() > 0){
 			ListDataUtil.createScreenTxt(analysislist,"analysislist");
 		}
+	}
+	/**
+	 * 获取前10期开奖数字数组
+	 * @Title: get10periodHistoryArr   
+	 * @param: @return      
+	 * @return: int[]      
+	 * @throws
+	 */
+	public static int [] get10periodHistoryArr() {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		List<String> getHistoryList = HistoryUtil.getHistoryList();
+		List<String> datalist = new ArrayList<String>();
+		for (int index = 0; index < 10; index++) {
+			String [] drawArr = getHistoryList.get(index).split(",");
+			for (int i = 0; i < drawArr.length; i++) {
+				datamap.put(drawArr[i], 1);
+			}
+		}
+		for (Entry<String, Integer> dataentry : datamap.entrySet()) {
+			datalist.add(dataentry.getKey());
+		}
+		
+		int[] dataArr = new int[datalist.size()];
+		for (int i = 0; i < datalist.size(); i++) {
+			dataArr[i] = Integer.valueOf(datalist.get(i));
+		}
+		Arrays.sort(dataArr);
+		return dataArr;
 	}
 
 }

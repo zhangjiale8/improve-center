@@ -77,5 +77,5 @@ public class HistoryScreenUtil {
 		}
 		MapDataUtil.createScreenTxtMap(resultmap, filename+"historyclude");
 	}
-
+	
 }

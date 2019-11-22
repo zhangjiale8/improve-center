@@ -2,6 +2,7 @@ package com.zjl.lottery.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
@@ -71,5 +72,64 @@ public class CombineUtil {
 		}
 		return screenmap;
 	}
-
+	
+	/**
+     * 获取大乐透全组合Map
+     * @param: @param screenarray
+     * @param: @return      
+     * @return: Map<String,Integer>      
+     * @throws
+     */
+	public static Map<String, Integer> getLottoCombineMap() {
+		Map<String, Integer> screenmap = new HashMap<String, Integer>();
+		tmpArr = new ArrayList<Integer>();
+		List<String> combinelist = CombineUtil.getLottoCombineList();
+		for (String screen : combinelist) {
+			screenmap.put(screen, 1);
+		}
+		return screenmap;
+	}
+	
+	/**
+     * 获取大乐透全组合list
+     * @param paramArr
+     * @param screenNum
+     * @return
+     */
+	public static ArrayList<String> getLottoCombineList() {
+		
+		int screenNum = 5;
+		int[] paramArr = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35};
+		ArrayList<String> combinelist = CombineUtil.getScreenList(paramArr, screenNum);
+		return combinelist;
+	}
+	
+	/**
+     * 获取双色球全组合Map
+     * @param: @param screenarray
+     * @param: @return      
+     * @return: Map<String,Integer>      
+     * @throws
+     */
+	public static Map<String, Integer> getDoubleBallCombineMap() {
+		Map<String, Integer> screenmap = new HashMap<String, Integer>();
+		List<String> combinelist = CombineUtil.getDoubleBallCombineList();
+		for (String screen : combinelist) {
+			screenmap.put(screen, 1);
+		}
+		return screenmap;
+	}
+	
+	/**
+     * 获取双色球全组合list
+     * @param paramArr
+     * @param screenNum
+     * @return
+     */
+	public static ArrayList<String> getDoubleBallCombineList() {
+		int screenNum = 6;
+		int[] paramArr = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33};
+		ArrayList<String> combinelist = CombineUtil.getScreenList(paramArr, screenNum);
+		return combinelist;
+	}
 }
