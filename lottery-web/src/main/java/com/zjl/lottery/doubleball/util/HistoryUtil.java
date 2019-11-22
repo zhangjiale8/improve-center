@@ -323,9 +323,9 @@ public class HistoryUtil {
 						}
 					}
 					if(nums > 5){
-						result = "1";
 						total ++;
 					}
+					result = nums+"";
 					
 				}
 				
