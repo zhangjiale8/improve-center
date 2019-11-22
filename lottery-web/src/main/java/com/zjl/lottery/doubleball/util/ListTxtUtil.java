@@ -1,4 +1,4 @@
-package com.zjl.lottery.util;
+package com.zjl.lottery.doubleball.util;
 
 import java.io.BufferedReader;
 import java.io.File;

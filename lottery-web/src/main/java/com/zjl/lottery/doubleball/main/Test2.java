@@ -11,7 +11,7 @@ import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.combine.util.CombineUtil;
-import com.zjl.lottery.util.ListTxtUtil;
+import com.zjl.lottery.doubleball.util.ListTxtUtil;
 import com.zjl.tools.ArrayTool;
 
 public class Test2 {

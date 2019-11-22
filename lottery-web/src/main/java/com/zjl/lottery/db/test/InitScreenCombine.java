@@ -6,8 +6,8 @@ import java.util.Iterator;
 import com.zjl.lottery.db.DoubleBallDTO;
 import com.zjl.lottery.db.test.vo.CombineVo;
 import com.zjl.lottery.doubleball.main.MainUtil;
+import com.zjl.lottery.doubleball.util.ListTxtUtil;
 import com.zjl.lottery.util.JDBCPatchUtil;
-import com.zjl.lottery.util.ListTxtUtil;
 
 public class InitScreenCombine {
 	private static ArrayList<Integer> tmpArr = new ArrayList<Integer>();
