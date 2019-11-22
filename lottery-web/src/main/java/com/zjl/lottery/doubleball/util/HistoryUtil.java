@@ -276,6 +276,7 @@ public class HistoryUtil {
 	}
 	
 	public static void main(String[] args) {
+		//双色球4个以上包括4个，大乐透3个以上包括3个
 		ArrayList<String> analysislist = new ArrayList<String>();
 		List<LotteryDto> list = HistoryUtil.getHistorydtoList();
 		int total = 0;
@@ -322,7 +323,7 @@ public class HistoryUtil {
 							nums ++;
 						}
 					}
-					if(nums > 5){
+					if(nums > 3){
 						total ++;
 					}
 					result = nums+"";
