@@ -24,6 +24,7 @@ import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
 import com.zjl.lottery.dto.LotteryDto;
 import com.zjl.lottery.util.CombineUtil;
 import com.zjl.lottery.util.JDBCPatchUtil;
+import com.zjl.lottery.util.ListDataUtil;
 import com.zjl.tools.ArrayTool;
 import com.zjl.tools.TimeTools;
 
@@ -92,7 +93,7 @@ public class HistoryUtil {
 			String temp = paramArr[2];*/
 			historyList.add(param);
 		}
-		ListTxtUtil.createScreenTxt(historyList, "doubleballhistorydrawinfo");
+		ListDataUtil.createScreenTxt(historyList, "doubleballhistorydrawinfo");
 	}
 
 	
@@ -339,7 +340,7 @@ public class HistoryUtil {
 		System.out.println(total);
 		System.out.println(list.size() - total);
 		if(null != analysislist && analysislist.size() > 0){
-			ListTxtUtil.createScreenTxt(analysislist,"analysislist");
+			ListDataUtil.createScreenTxt(analysislist,"analysislist");
 		}
 	}
 

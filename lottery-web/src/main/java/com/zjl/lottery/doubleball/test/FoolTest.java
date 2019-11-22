@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.zjl.lottery.doubleball.util.ListTxtUtil;
 import com.zjl.lottery.doubleball.util.MapTxtUtil;
+import com.zjl.lottery.util.ListDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class FoolTest {
@@ -71,7 +71,7 @@ public class FoolTest {
 				};
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"sceenlist.txt";;
-		List<String[]> screenarrlist = ListTxtUtil.getScreenList(screenfilepath);
+		List<String[]> screenarrlist = ListDataUtil.getScreenList(screenfilepath);
 		for (String filename : filenameArr) {
 			filename += "threescreen123456789";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;

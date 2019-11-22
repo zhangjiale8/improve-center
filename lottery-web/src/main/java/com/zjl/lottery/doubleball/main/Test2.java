@@ -10,8 +10,8 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.zjl.lottery.doubleball.util.ListTxtUtil;
 import com.zjl.lottery.util.CombineUtil;
+import com.zjl.lottery.util.ListDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class Test2 {
@@ -45,7 +45,7 @@ public class Test2 {
 				br.close();
 				
 			}
-			ListTxtUtil.createScreenTxt(screenlist, filename+"003");
+			ListDataUtil.createScreenTxt(screenlist, filename+"003");
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -21,10 +21,10 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
-import com.zjl.lottery.doubleball.util.ListTxtUtil;
 import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.lottery.util.CombineUtil;
 import com.zjl.lottery.util.JDBCPatchUtil;
+import com.zjl.lottery.util.ListDataUtil;
 import com.zjl.lottery.util.ThreeSreenUtil;
 import com.zjl.tools.ArrayTool;
 
@@ -72,7 +72,7 @@ public class MainUtil {
 		}
 		
 		if(null != resultList && resultList.size() > 0){
-			ListTxtUtil.createScreenTxt(resultList,saveFileName);
+			ListDataUtil.createScreenTxt(resultList,saveFileName);
 		}
 	}
 	/**
@@ -137,7 +137,7 @@ public class MainUtil {
 		
 		}
 		
-		ListTxtUtil.createScreenTxt(screenlist, "tenarrscreen");
+		ListDataUtil.createScreenTxt(screenlist, "tenarrscreen");
 		
 	}
 
@@ -179,7 +179,7 @@ public class MainUtil {
 		
 		}
 		
-		ListTxtUtil.createScreenTxt(screenlist, "tenarrscreen");
+		ListDataUtil.createScreenTxt(screenlist, "tenarrscreen");
 		return map;
 		
 	}
