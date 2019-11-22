@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.zjl.lottery.combine.util.CombineUtil;
+import com.zjl.lottery.util.CombineUtil;
 import com.zjl.tools.ArrayTool;
 
 public class MultipParamsListUtil {	

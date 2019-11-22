@@ -1,4 +1,4 @@
-package com.zjl.lottery.combine.util;
+package com.zjl.lottery.util;
 
 import java.util.ArrayList;
 
