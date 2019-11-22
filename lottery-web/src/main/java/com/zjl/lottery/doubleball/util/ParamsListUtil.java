@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.zjl.lottery.util.CombineUtil;
+import com.zjl.lottery.util.MapDataUtil;
 
 public class ParamsListUtil {
 	public static void main(String[] args) {
@@ -68,7 +69,7 @@ public class ParamsListUtil {
             }
        }
 		
-		MapTxtUtil.createScreenTxtMap(resultmap, "resultmapdetermined");
+		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdetermined");
 		//ScreenUtil.screenTwo(ScreenUtil.screenThree(resultmap));
 		ScreenUtil.screenTwo(HistoryUtil.screenHistory(ScreenUtil.screenOtherTickets(ScreenUtil.screenThree(resultmap))));
 	}

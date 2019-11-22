@@ -4,8 +4,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.zjl.lottery.doubleball.util.HistoryUtil;
-import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.lottery.doubleball.util.MultipParamsListUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class Comparewith22ArrTest{
@@ -14,9 +14,9 @@ public class Comparewith22ArrTest{
 	}
 
 	private static void historycompare() {
-		Map<String, Integer> array22datamap = MapTxtUtil.get22ArrayMap();
+		Map<String, Integer> array22datamap = MapDataUtil.get22ArrayMap();
 		Map<String, Integer> historymap =  HistoryUtil.getHistoryMap();
-		Map<String, Integer> array22combinemap =  MapTxtUtil.get22ArrayCombineMap();
+		Map<String, Integer> array22combinemap =  MapDataUtil.get22ArrayCombineMap();
 		int[] combinetempIntArr = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33};
 		Map<String, Integer> screenmap = MultipParamsListUtil.getScreenMap(combinetempIntArr);
 		System.out.println(screenmap.size());
@@ -44,7 +44,7 @@ public class Comparewith22ArrTest{
 		}
 		System.out.println(count0);
 		System.out.println(countno0);
-		MapTxtUtil.createScreenTxtMap(historymap,"histroycomparewith22array");
-		MapTxtUtil.createScreenTxtMap(array22combinemap,"array22combinemap");
+		MapDataUtil.createScreenTxtMap(historymap,"histroycomparewith22array");
+		MapDataUtil.createScreenTxtMap(array22combinemap,"array22combinemap");
 	}
 }

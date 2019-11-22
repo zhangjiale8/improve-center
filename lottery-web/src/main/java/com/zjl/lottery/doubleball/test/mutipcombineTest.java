@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.lottery.util.CombineUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class mutipcombineTest {
@@ -34,11 +34,11 @@ public class mutipcombineTest {
 				"resultmapdetermineduncludehistoryuncludeotherticketunclude"
 				};
 		String filepath = "E:" + File.separator + "screen" + File.separator +"samecombine.txt";;
-		Map<String, Integer> samemap = MapTxtUtil.getDataMap(filepath);
+		Map<String, Integer> samemap = MapDataUtil.getDataMap(filepath);
 		for (String filename : filenameArr) {
 			filename += "threescreen1234567891";
 			filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
-			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			Map<String, Integer> resultmap = new HashMap<String, Integer>();
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
 				String combine = entry.getKey();
@@ -47,7 +47,7 @@ public class mutipcombineTest {
 					resultmap.put(combine, entry.getValue());
 				}
 			}
-			MapTxtUtil.createScreenTxtMap(resultmap, filename+"2");
+			MapDataUtil.createScreenTxtMap(resultmap, filename+"2");
 		}
 		
 	}
@@ -55,9 +55,9 @@ public class mutipcombineTest {
 	private static void samecombine() {
 		Map<String, Integer> combinemap = new HashMap<String, Integer>();
 		String filepath = "E:" + File.separator + "screen" + File.separator +"combinemap001.txt";;
-		Map<String, Integer> data1map = MapTxtUtil.getDataMap(filepath);
+		Map<String, Integer> data1map = MapDataUtil.getDataMap(filepath);
 		filepath = "E:" + File.separator + "screen" + File.separator +"combinemap002.txt";;
-		Map<String, Integer> data2map = MapTxtUtil.getDataMap(filepath);
+		Map<String, Integer> data2map = MapDataUtil.getDataMap(filepath);
 		for (Entry<String, Integer> entry : data1map.entrySet()) {
 			String combine = entry.getKey();
 			Integer count = data2map.get(combine);
@@ -66,7 +66,7 @@ public class mutipcombineTest {
 			}
 			
 		}
-		MapTxtUtil.createScreenTxtMap(combinemap, "samecombine");
+		MapDataUtil.createScreenTxtMap(combinemap, "samecombine");
 	}
 
 	private static void mutipcombine(int[] masterArr, int[] deputyArr) {
@@ -92,7 +92,7 @@ public class mutipcombineTest {
 			}
 		}
 		
-		MapTxtUtil.createScreenTxtMap(combinemap, "combinemap001");
+		MapDataUtil.createScreenTxtMap(combinemap, "combinemap001");
 		
 	}
 }

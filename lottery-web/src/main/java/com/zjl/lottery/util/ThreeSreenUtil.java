@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.tools.ArrayTool;
 
 public class ThreeSreenUtil {
@@ -14,7 +13,7 @@ public class ThreeSreenUtil {
 	 * @param: @param filename      
 	 */
 	public static void threeScreen(Map<String, Integer> datamap, String filename) {
-		Map<String, Integer> threemap =  MapTxtUtil.getThreeMap();
+		Map<String, Integer> threemap =  MapDataUtil.getThreeMap();
 		Map<String, Integer> resultmap = new HashMap<String, Integer>();
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
 			String combine = entry.getKey();
@@ -33,7 +32,7 @@ public class ThreeSreenUtil {
 				resultmap.put(combine, count);
 			}
 		}
-		MapTxtUtil.createScreenTxtMap(resultmap, filename+"threescreen");
+		MapDataUtil.createScreenTxtMap(resultmap, filename+"threescreen");
 	
 	}
 	

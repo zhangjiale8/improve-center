@@ -16,6 +16,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
 import com.zjl.lottery.util.CombineUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class ScreenUtil {
@@ -75,7 +76,7 @@ public class ScreenUtil {
 			map.remove(entry.getKey());
 		}
 		
-		MapTxtUtil.createScreenTxtMap(map, "threescreen");
+		MapDataUtil.createScreenTxtMap(map, "threescreen");
 		return map;
 	}
 
@@ -136,7 +137,7 @@ public class ScreenUtil {
 			map.remove(entry.getKey());
 		}
 		
-		MapTxtUtil.createScreenTxtMap(map, "twoscreen");
+		MapDataUtil.createScreenTxtMap(map, "twoscreen");
 		return map;
 	}
 	
@@ -149,7 +150,7 @@ public class ScreenUtil {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		String determinedpath = LotteryHaveNoMaster.class.getClassLoader().getResource("data/disticombinedetermined.txt").getPath();
 		determinedpath = determinedpath.substring(1, determinedpath.length());
-		Map<String, Integer> determinedmap = MapTxtUtil.getDataMap(determinedpath);
+		Map<String, Integer> determinedmap = MapDataUtil.getDataMap(determinedpath);
 		 for (Entry<String, Integer> entry : combineMap.entrySet()) {
 			 	String combine = entry.getKey();
 			 	Integer nums =  entry.getValue();
@@ -158,7 +159,7 @@ public class ScreenUtil {
 			 	}
 	            
         }
-		 MapTxtUtil.createScreenTxtMap(map, "screendetermined");
+		 MapDataUtil.createScreenTxtMap(map, "screendetermined");
 		return map; 
 		
 	}
@@ -166,7 +167,7 @@ public class ScreenUtil {
 
 	public static Map<String, Integer> screenFile(Map<String, Integer> determinedmap, String filepath, int screennum) {
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
 			String redStr = entry.getKey();
 			if(StringUtils.isNotEmpty(redStr)){
@@ -203,7 +204,7 @@ public class ScreenUtil {
 	 * @param saveFileName
 	 */
 	public static void screenCombineMapbydata(String filePath, int[] paramArr, int screenNum, int maxNum, String saveFileName) {
-		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filePath);
+		Map<String, Integer> datamap = MapDataUtil.getDataMap(filePath);
 		ArrayList<String> screenList = CombineUtil.getScreenList(paramArr,screenNum);
 		Map<String, Integer> resultmap = new HashMap<String, Integer>();
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
@@ -229,7 +230,7 @@ public class ScreenUtil {
 		}
 		
 		if(null != resultmap && resultmap.size() > 0){
-			 MapTxtUtil.createScreenTxtMap(resultmap, saveFileName);
+			 MapDataUtil.createScreenTxtMap(resultmap, saveFileName);
 		}
 	}
 
@@ -241,7 +242,7 @@ public class ScreenUtil {
 	 */
 	public static void screenCombineMapbycount(String filePath, int screenNum, String saveFileName) {
 
-		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filePath);
+		Map<String, Integer> datamap = MapDataUtil.getDataMap(filePath);
 		Map<String, Integer> resultmap = new HashMap<String, Integer>();
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
 			int count = entry.getValue();
@@ -252,7 +253,7 @@ public class ScreenUtil {
 		}
 		
 		if(null != resultmap && resultmap.size() > 0){
-			 MapTxtUtil.createScreenTxtMap(resultmap, saveFileName);
+			 MapDataUtil.createScreenTxtMap(resultmap, saveFileName);
 		}
 	
 		
@@ -264,7 +265,7 @@ public class ScreenUtil {
 	 * @return
 	 */
 	public static Map<String, Integer> screenTickets(Map<String, Integer> screenhistory) {
-		Map<String, Integer> tickets = MapTxtUtil.getTickets();
+		Map<String, Integer> tickets = MapDataUtil.getTickets();
 		Map<String, Integer> screen = new HashMap<String, Integer>();
 		for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
 			screen.put(historyentry.getKey(), historyentry.getValue());
@@ -292,7 +293,7 @@ public class ScreenUtil {
 			
 		}
 		
-		MapTxtUtil.createScreenTxtMap(screen, "ticketsscreen");
+		MapDataUtil.createScreenTxtMap(screen, "ticketsscreen");
 		return screen;
 	}
 	/**
@@ -301,7 +302,7 @@ public class ScreenUtil {
 	 * @return
 	 */
 	public static Map<String, Integer> screenOtherTickets(Map<String, Integer> screenhistory) {
-		Map<String, Integer> tickets = MapTxtUtil.getOtherTickets();
+		Map<String, Integer> tickets = MapDataUtil.getOtherTickets();
 		Map<String, Integer> screen = new HashMap<String, Integer>();
 		for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
 			screen.put(historyentry.getKey(), historyentry.getValue());
@@ -329,7 +330,7 @@ public class ScreenUtil {
 			
 		}
 		
-		MapTxtUtil.createScreenTxtMap(screen, "otherticketsscreen");
+		MapDataUtil.createScreenTxtMap(screen, "otherticketsscreen");
 		return screen;
 	}
 
@@ -372,7 +373,7 @@ public class ScreenUtil {
 			
 		}
 		
-		MapTxtUtil.createScreenTxtMap(screen, "randomticketsscreen");
+		MapDataUtil.createScreenTxtMap(screen, "randomticketsscreen");
 		return screen;
 	}
 
@@ -397,7 +398,7 @@ public class ScreenUtil {
 				}
 			}
 		}
-		MapTxtUtil.createScreenTxtMap(resultmap, filename+"sametails");
+		MapDataUtil.createScreenTxtMap(resultmap, filename+"sametails");
 		return resultmap;
 	}
 

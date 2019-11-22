@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.zjl.lottery.util.CombineUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class MultipParamsListUtil {	
@@ -60,7 +61,7 @@ public class MultipParamsListUtil {
 				resultmap.put(result, value);
 			}
 		}
-		MapTxtUtil.createScreenTxtMap(resultmap, "resultmapdeterminedunclude");
+		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedunclude");
 		
 	}
 	/**
@@ -119,7 +120,7 @@ public class MultipParamsListUtil {
 				resultmap.put(result, value);
 			}
 		}
-		MapTxtUtil.createScreenTxtMap(resultmap, "resultmapdeterminedclude");
+		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedclude");
 		
 	}
 

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class HistoryScreenUtil {
@@ -46,7 +47,7 @@ public class HistoryScreenUtil {
 				resultmap.put(combine, count);
 			}
 		}
-		MapTxtUtil.createScreenTxtMap(resultmap, filename+"historyunclude");
+		MapDataUtil.createScreenTxtMap(resultmap, filename+"historyunclude");
 	}
 	/**
 	 * 包括开奖结果超过四个
@@ -74,7 +75,7 @@ public class HistoryScreenUtil {
 				resultmap.put(combine, count);
 			}
 		}
-		MapTxtUtil.createScreenTxtMap(resultmap, filename+"historyclude");
+		MapDataUtil.createScreenTxtMap(resultmap, filename+"historyclude");
 	}
 
 }

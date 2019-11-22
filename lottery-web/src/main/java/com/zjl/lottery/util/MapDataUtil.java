@@ -128,7 +128,58 @@ public class MapDataUtil {
 		return map;
 	}
 
-	
+	public static Map<String, Integer> getTickets() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String path = "";
+		path = "data/tickets/double.txt";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if(null != file && file.exists()) {
+		 try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
+	               
+	                String[] strArr = line.split("\\|");
+	                String redStr = strArr[0];	               
+	                map.put(redStr,1);
+	            }
+	            br.close();
+		} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return map;
+	}
+	/**
+	 * 获取购买的实体票信息
+	 * @return
+	 */
+	public static Map<String, Integer> getOtherTickets() {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		String path = "";
+		path = "data/tickets/otherticket.txt";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if(null != file && file.exists()) {
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while((StringUtils.isNotEmpty(line = br.readLine()))){//使用readLine方法，一次读一行
+					
+					map.put(line.trim(),1);
+				}
+				br.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		return map;
+	}
 	/**
 	 * 获取三连数据
 	 */
@@ -234,7 +285,7 @@ public class MapDataUtil {
 					String combine = combineArr[1];
 					String[] combinetempArr = combine.split(",");
 					int[] combinetempIntArr = ArrayTool.strArr2InArr(combinetempArr);
-					Map<String, Integer> screenmap = CombineUtil.getCombineMap(combinetempIntArr,6);
+					Map<String, Integer> screenmap = MultipParamsListUtil.getScreenMap(combinetempIntArr);
 					for (Entry<String, Integer> array22entry : screenmap.entrySet()) {
 						Integer count =  map.get(array22entry.getKey());
 						if(null == count){

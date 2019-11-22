@@ -25,6 +25,7 @@ import com.zjl.lottery.dto.LotteryDto;
 import com.zjl.lottery.util.CombineUtil;
 import com.zjl.lottery.util.JDBCPatchUtil;
 import com.zjl.lottery.util.ListDataUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 import com.zjl.tools.TimeTools;
 
@@ -161,7 +162,7 @@ public class HistoryUtil {
 			map.remove(entry.getKey());
 		}
 		
-		MapTxtUtil.createScreenTxtMap(map, "historyscreen");
+		MapDataUtil.createScreenTxtMap(map, "historyscreen");
 		return map;
 	}
 	/**

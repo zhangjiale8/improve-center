@@ -3,6 +3,7 @@ package com.zjl.lottery.doubleball.util;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class TempUtil {
@@ -10,7 +11,7 @@ public class TempUtil {
 	 * 校验购买德实体票与实际开奖是否超过4个
 	 */
 	public static void checkBuyActualBeyondFour() {
-		Map<String, Integer> buymap = MapTxtUtil.getOtherTickets();
+		Map<String, Integer> buymap = MapDataUtil.getOtherTickets();
 		Map<String, Integer> historymap = HistoryUtil.getHistoryMap();
 		int total = 0;
 		for (Entry<String, Integer> historyentry : historymap.entrySet()) {

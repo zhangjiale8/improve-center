@@ -12,9 +12,9 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
 import com.zjl.lottery.doubleball.util.HistoryUtil;
-import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.lottery.doubleball.util.ScreenUtil;
 import com.zjl.lottery.util.JDBCPatchUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class Main {
@@ -84,11 +84,11 @@ public class Main {
         }
 		MapTxtUtil.createScreenTxtMap(determinedmap, "tenarrscreen00005");*/
 		String determinedpath = "E:" + File.separator + "screen" + File.separator +"tenarrscreen00006.txt";
-		Map<String, Integer> determinedmap = MapTxtUtil.getDataMap(determinedpath);
+		Map<String, Integer> determinedmap = MapDataUtil.getDataMap(determinedpath);
 		String path2 = LotteryHaveNoMaster.class.getClassLoader().getResource("0000/single.txt").getPath();
 		path2 = path2.substring(1, path2.length());
 		Map<String, Integer> map = ScreenUtil.screenFile(determinedmap,path2,5);
-		MapTxtUtil.createScreenTxtMap(determinedmap, "tenarrscreen00007");
+		MapDataUtil.createScreenTxtMap(determinedmap, "tenarrscreen00007");
 		
 	}
 	private static void mutipleArrScreen() {
@@ -177,7 +177,7 @@ public class Main {
 		 		historyMap.remove(combine);
 		 	}
         }*/
-		MapTxtUtil.createScreenTxtMap(historyMap, "tenarrscreen20190806");
+		MapDataUtil.createScreenTxtMap(historyMap, "tenarrscreen20190806");
 		
 		
 	}

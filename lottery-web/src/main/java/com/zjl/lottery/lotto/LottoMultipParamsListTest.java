@@ -10,11 +10,11 @@ import java.util.Map.Entry;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.doubleball.util.HistoryScreenUtil;
-import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.lottery.doubleball.util.MultipParamsListUtil;
 import com.zjl.lottery.doubleball.util.OtherTicketScreenUtil;
 import com.zjl.lottery.doubleball.util.ParamsListUtil;
 import com.zjl.lottery.doubleball.util.ScreenUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.lottery.util.ThreeSreenUtil;
 import com.zjl.lottery.util.TwoSreenUtil;
 
@@ -99,7 +99,7 @@ public class LottoMultipParamsListTest {
 		String [] filenameArr = {"resultmapdeterminedclude","resultmapdeterminedunclude"};
 		for (String filename : filenameArr) {
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
-			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			HistoryScreenUtil.screenhistory(datamap,filename);
 		}
 		
@@ -117,7 +117,7 @@ public class LottoMultipParamsListTest {
 				};
 		for (String filename : filenameArr) {
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
-			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			OtherTicketScreenUtil.screenotherticket(datamap,filename);
 		}
 		
@@ -139,7 +139,7 @@ public class LottoMultipParamsListTest {
 				};
 		for (String filename : filenameArr) {
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
-			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			ThreeSreenUtil.threeScreen(datamap,filename);
 		}
 		
@@ -163,7 +163,7 @@ public class LottoMultipParamsListTest {
 		for (String filename : filenameArr) {
 			filename += "threescreen";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
-			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			TwoSreenUtil.twoScreen(datamap,filename);
 		}
 		
@@ -189,11 +189,11 @@ public class LottoMultipParamsListTest {
 		for (String filename : filenameArr) {
 			filename += "threescreen1234567891234";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
-			Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
 				totalmap.put(entry.getKey(), entry.getValue());
 			}
 		}
-		MapTxtUtil.createScreenTxtMap(totalmap, "pingtotal");
+		MapDataUtil.createScreenTxtMap(totalmap, "pingtotal");
 	}
 }

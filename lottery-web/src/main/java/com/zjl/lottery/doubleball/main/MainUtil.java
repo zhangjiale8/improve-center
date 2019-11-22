@@ -21,10 +21,10 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
-import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.lottery.util.CombineUtil;
 import com.zjl.lottery.util.JDBCPatchUtil;
 import com.zjl.lottery.util.ListDataUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.lottery.util.ThreeSreenUtil;
 import com.zjl.tools.ArrayTool;
 
@@ -231,7 +231,7 @@ public class MainUtil {
 		}
 		
 		if(null != result && result.size() > 0){
-			MapTxtUtil.createScreenTxtMap(result, "initdoubleball");
+			MapDataUtil.createScreenTxtMap(result, "initdoubleball");
 		}
 		Map<String, Integer> combinemap = new HashMap<String, Integer>();
 		for (Entry<String, Integer> entry : result.entrySet()) {
@@ -245,11 +245,11 @@ public class MainUtil {
         }
 		 
 		if(null != combinemap && combinemap.size() > 0){
-			MapTxtUtil.createScreenTxtMap(combinemap, "initcombinedoubleball");
+			MapDataUtil.createScreenTxtMap(combinemap, "initcombinedoubleball");
 		}
 		
 		String filepath = "E:" + File.separator + "screen" + File.separator +"initcombinedoubleball.txt";
-		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		ThreeSreenUtil.threeScreen(datamap, "initcombinedoubleball");
 	}
 	

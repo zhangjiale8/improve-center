@@ -7,8 +7,8 @@ import java.util.Map.Entry;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.doubleball.util.HistoryUtil;
-import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.lottery.doubleball.util.ScreenUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class TestApp {
@@ -42,6 +42,6 @@ public class TestApp {
 			System.out.println(sum2);
 			System.out.println(sum3);
 		}
-		MapTxtUtil.createScreenTxtMap(resultmap, filename+"sametails");
+		MapDataUtil.createScreenTxtMap(resultmap, filename+"sametails");
 	}
 }

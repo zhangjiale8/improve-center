@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.lottery.util.ListDataUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class PingTotalTest {
@@ -21,9 +21,9 @@ public class PingTotalTest {
 	 */
 	private static void PingTotalScreen() {
 		String filepath = "E:" + File.separator + "screen" + File.separator +"pingtatalscreensametails.txt";;
-		Map<String, Integer> datamap = MapTxtUtil.getDataMap(filepath);
+		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		String pingfilepath = "E:" + File.separator + "screen" + File.separator +"sceenlist.txt";;
-		Map<String, Integer> pingdatamap = MapTxtUtil.getDataMap(pingfilepath);
+		Map<String, Integer> pingdatamap = MapDataUtil.getDataMap(pingfilepath);
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
 		Map<String, Integer> result = new HashMap<String, Integer>();
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
@@ -47,6 +47,6 @@ public class PingTotalTest {
 			}
 			
 		}		
-		MapTxtUtil.createScreenTxtMap(result,"pingtatalscreensametails"+"12");
+		MapDataUtil.createScreenTxtMap(result,"pingtatalscreensametails"+"12");
 	}
 }

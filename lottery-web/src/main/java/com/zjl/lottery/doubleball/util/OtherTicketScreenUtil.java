@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class OtherTicketScreenUtil {
 
 	public static void screenotherticket(Map<String, Integer> datamap, String filename) {
 
-		Map<String, Integer> otherticketmap =  MapTxtUtil.getOtherTickets();
+		Map<String, Integer> otherticketmap =  MapDataUtil.getOtherTickets();
 		//包括开奖结果超过四个
 		OtherTicketScreenUtil.screenOtherticketClude(otherticketmap, datamap,filename);
 		//包括开奖结果不超过四个
@@ -44,7 +45,7 @@ public class OtherTicketScreenUtil {
 				resultmap.put(combine, count);
 			}
 		}
-		MapTxtUtil.createScreenTxtMap(resultmap, filename+"otherticketunclude");
+		MapDataUtil.createScreenTxtMap(resultmap, filename+"otherticketunclude");
 	}
 	/**
 	 * 包括开奖结果超过四个
@@ -72,7 +73,7 @@ public class OtherTicketScreenUtil {
 				resultmap.put(combine, count);
 			}
 		}
-		MapTxtUtil.createScreenTxtMap(resultmap, filename+"otherticketclude");
+		MapDataUtil.createScreenTxtMap(resultmap, filename+"otherticketclude");
 	}
 
 }
