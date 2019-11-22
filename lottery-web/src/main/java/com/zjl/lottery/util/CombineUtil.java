@@ -1,6 +1,8 @@
 package com.zjl.lottery.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -52,7 +54,22 @@ public class CombineUtil {
 		combine(0 ,screenNum ,paramArr);
 		return loterryLsit;
 	}
-    
-    
+    /**
+     * 获取所有组合Map
+     * @param: @param screenarray
+     * @param: @return      
+     * @return: Map<String,Integer>      
+     * @throws
+     */
+	public static Map<String, Integer> getCombineMap(int[] paramArr,int screenNum) {
+		Map<String, Integer> screenmap = new HashMap<String, Integer>();
+		tmpArr = new ArrayList<Integer>();
+		loterryLsit = new ArrayList<String>();
+		combine(0 ,screenNum ,paramArr);
+		for (String screen : loterryLsit) {
+			screenmap.put(screen, 1);
+		}
+		return screenmap;
+	}
 
 }

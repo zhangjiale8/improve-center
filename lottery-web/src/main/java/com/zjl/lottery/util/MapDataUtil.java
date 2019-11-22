@@ -234,7 +234,7 @@ public class MapDataUtil {
 					String combine = combineArr[1];
 					String[] combinetempArr = combine.split(",");
 					int[] combinetempIntArr = ArrayTool.strArr2InArr(combinetempArr);
-					Map<String, Integer> screenmap = MultipParamsListUtil.getScreenMap(combinetempIntArr);
+					Map<String, Integer> screenmap = CombineUtil.getCombineMap(combinetempIntArr,6);
 					for (Entry<String, Integer> array22entry : screenmap.entrySet()) {
 						Integer count =  map.get(array22entry.getKey());
 						if(null == count){
