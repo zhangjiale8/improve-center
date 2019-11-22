@@ -265,7 +265,7 @@ public class ScreenUtil {
 	 * @return
 	 */
 	public static Map<String, Integer> screenTickets(Map<String, Integer> screenhistory) {
-		Map<String, Integer> tickets = MapDataUtil.getTickets();
+		Map<String, Integer> tickets = DobuleMapDataUtil.getTickets();
 		Map<String, Integer> screen = new HashMap<String, Integer>();
 		for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
 			screen.put(historyentry.getKey(), historyentry.getValue());
@@ -302,7 +302,7 @@ public class ScreenUtil {
 	 * @return
 	 */
 	public static Map<String, Integer> screenOtherTickets(Map<String, Integer> screenhistory) {
-		Map<String, Integer> tickets = MapDataUtil.getOtherTickets();
+		Map<String, Integer> tickets = DobuleMapDataUtil.getOtherTickets();
 		Map<String, Integer> screen = new HashMap<String, Integer>();
 		for (Entry<String, Integer> historyentry : screenhistory.entrySet()) {
 			screen.put(historyentry.getKey(), historyentry.getValue());

@@ -11,7 +11,7 @@ public class OtherTicketScreenUtil {
 
 	public static void screenotherticket(Map<String, Integer> datamap, String filename) {
 
-		Map<String, Integer> otherticketmap =  MapDataUtil.getOtherTickets();
+		Map<String, Integer> otherticketmap =  DobuleMapDataUtil.getOtherTickets();
 		//包括开奖结果超过四个
 		OtherTicketScreenUtil.screenOtherticketClude(otherticketmap, datamap,filename);
 		//包括开奖结果不超过四个
