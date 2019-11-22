@@ -17,7 +17,8 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.combine.util.CombineUtil;
-import com.zjl.lottery.mutitest.LotteryHaveNoMaster;
+import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
+import com.zjl.lottery.doubleball.util.MultipParamsListUtil;
 import com.zjl.tools.ArrayTool;
 
 public class MapTxtUtil {

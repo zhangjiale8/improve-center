@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.zjl.lottery.mutitZ22.LotteryHaveMaster;
+import com.zjl.lottery.doubleball.mutitZ22.LotteryHaveMaster;
 import com.zjl.tools.ArrayTool;
 
 public class CombineaaAndCompare22 {
