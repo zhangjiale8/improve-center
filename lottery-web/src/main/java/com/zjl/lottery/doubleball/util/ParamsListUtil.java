@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.zjl.lottery.combine.util.CombineUtil;
-import com.zjl.lottery.util.MapTxtUtil;
 
 public class ParamsListUtil {
 	public static void main(String[] args) {

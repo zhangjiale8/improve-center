@@ -16,7 +16,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.combine.util.CombineUtil;
 import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
-import com.zjl.lottery.util.MapTxtUtil;
 import com.zjl.tools.ArrayTool;
 
 public class ScreenUtil {

@@ -25,7 +25,6 @@ import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
 import com.zjl.lottery.dto.LotteryDto;
 import com.zjl.lottery.util.JDBCPatchUtil;
 import com.zjl.lottery.util.ListTxtUtil;
-import com.zjl.lottery.util.MapTxtUtil;
 import com.zjl.tools.ArrayTool;
 import com.zjl.tools.TimeTools;
 

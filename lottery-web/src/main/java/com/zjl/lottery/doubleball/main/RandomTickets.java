@@ -3,8 +3,8 @@ package com.zjl.lottery.doubleball.main;
 import java.io.File;
 import java.util.Map;
 
+import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.lottery.doubleball.util.ScreenUtil;
-import com.zjl.lottery.util.MapTxtUtil;
 
 public class RandomTickets {
 	public static void main(String[] args) {

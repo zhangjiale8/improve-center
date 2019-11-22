@@ -1,4 +1,4 @@
-package com.zjl.lottery.util;
+package com.zjl.lottery.doubleball.util;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,7 +18,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.combine.util.CombineUtil;
 import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
-import com.zjl.lottery.doubleball.util.MultipParamsListUtil;
 import com.zjl.tools.ArrayTool;
 
 public class MapTxtUtil {

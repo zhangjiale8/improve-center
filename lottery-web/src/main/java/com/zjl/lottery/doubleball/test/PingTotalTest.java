@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.zjl.lottery.doubleball.util.MapTxtUtil;
 import com.zjl.lottery.util.ListTxtUtil;
-import com.zjl.lottery.util.MapTxtUtil;
 import com.zjl.tools.ArrayTool;
 
 public class PingTotalTest {
