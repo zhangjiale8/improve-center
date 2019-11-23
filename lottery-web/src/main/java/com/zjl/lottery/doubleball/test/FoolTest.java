@@ -2,7 +2,6 @@ package com.zjl.lottery.doubleball.test;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -10,6 +9,7 @@ import java.util.Map.Entry;
 import com.zjl.lottery.util.ListDataUtil;
 import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
+import com.zjl.tools.MapUtil;
 
 public class FoolTest {
 	public static void main(String[] args) {
@@ -92,7 +92,7 @@ public class FoolTest {
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			Map<String, Integer> datamaptemp = new HashMap<String, Integer>();
-			mapCopy(datamap,datamaptemp);
+			MapUtil.mapCopy(datamap,datamaptemp);
 			for (Entry<String, Integer> entry : datamaptemp.entrySet()) {
 				Integer count = screenmap.get(entry.getKey());
 				if(null != count){
@@ -105,25 +105,4 @@ public class FoolTest {
 		
 	}
 	
-	/**
-	 * 复制map对象
-	 * @explain 将paramsMap中的键值对全部拷贝到resultMap中；
-	 * paramsMap中的内容不会影响到resultMap（深拷贝）
-	 * @param paramsMap
-	 *     被拷贝对象
-	 * @param resultMap
-	 *     拷贝后的对象
-	 */
-	public static void mapCopy(Map paramsMap, Map resultMap) {
-	    if (resultMap == null) resultMap = new HashMap();
-	    if (paramsMap == null) return;
-
-	    Iterator it = paramsMap.entrySet().iterator();
-	    while (it.hasNext()) {
-	        Map.Entry entry = (Map.Entry) it.next();
-	        Object key = entry.getKey();
-	        resultMap.put(key, paramsMap.get(key) != null ? paramsMap.get(key) : "");
-
-	    }
-	}
 }
