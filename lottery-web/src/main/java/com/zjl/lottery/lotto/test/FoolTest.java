@@ -13,8 +13,8 @@ import com.zjl.tools.MapUtil;
 
 public class FoolTest {
 	public static void main(String[] args) {
-	//	singlescreen();
-		multipscreen();
+		singlescreen();
+	//	multipscreen();
 	}
 	
 	/**
@@ -23,21 +23,21 @@ public class FoolTest {
 	 */
 	private static void singlescreen() {
 
-		int[] screenIntArr = {10,17,20,32,21,24};
+		int[] screenIntArr = {3,13,24,26,31,4,34,26,1,17};
 		String[] screenArr = ArrayTool.intArr2StrArr(screenIntArr);
-		String filename = "lottoscreenthreescreenscreenhistory";
+		String filename = "lottoscreenthreescreenscreenhistory123456789123";
 		String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		Map<String, Integer> resultmap = new HashMap<String, Integer>();
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
 			String[] combineArr = entry.getKey().split(",");
 			String[] intersectArr = ArrayTool.getIntersectArr(screenArr, combineArr);
-			if(intersectArr.length ==5) {
+			if(intersectArr.length <1) {
 				resultmap.put(entry.getKey(), entry.getValue());
 			}
 			
 		}
-		MapDataUtil.createScreenTxtMap(resultmap, filename+"1");
+		MapDataUtil.createScreenTxtMap(resultmap, filename+"4");
 	
 		
 	}
@@ -48,9 +48,9 @@ public class FoolTest {
 	private static void multipscreen() {
 
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
-		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"sceenlist.txt";;
+		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"screenlist.txt";;
 		List<String[]> screenarrlist = ListDataUtil.getScreenList(screenfilepath);
-		String filename = "lottoscreenthreescreenscreenhistory";
+		String filename = "lottoscreenthreescreenscreenhistory12345678";
 		String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
@@ -71,7 +71,7 @@ public class FoolTest {
 				datamap.remove(entry.getKey());
 			}
 		}
-		MapDataUtil.createScreenTxtMap(datamap, filename+"1");
+		MapDataUtil.createScreenTxtMap(datamap, filename+"9");
 		
 	
 	}
