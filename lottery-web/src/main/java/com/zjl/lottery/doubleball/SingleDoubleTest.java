@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import com.zjl.lottery.doubleball.util.HistoryUtil;
 
-class Test {
+class SingleDoubleTest {
 	public static void main(String[] args) {
 		Map<String, Integer> historymap =  HistoryUtil.getHistoryMap();
 		int doublecountmin2 = 0;
