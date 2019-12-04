@@ -12,7 +12,7 @@ public class test {
 		Map<String, Integer> resultmap = new HashMap<String, Integer>();
 		String filepath = "E:" + File.separator + "screen" + File.separator +"singlecombine.txt";
 		Map<String, Integer> screendatamap = MapDataUtil.getDataMap(filepath);
-		filepath = "E:" + File.separator + "screen" + File.separator +"pingtotalsametails.txt";
+		filepath = "E:" + File.separator + "screen" + File.separator +"resultmapdetermineduncludehistoryuncludeotherticketuncludethreescreen.txt";
 		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
 			Integer count = screendatamap.get(entry.getKey());
@@ -21,6 +21,6 @@ public class test {
 			}
 		}
 		
-		MapDataUtil.createScreenTxtMap(resultmap, "resultmap");
+		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdetermineduncludehistoryuncludeotherticketuncludethreescreen1");
 	}
 }
