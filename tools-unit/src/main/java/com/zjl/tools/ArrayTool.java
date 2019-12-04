@@ -34,6 +34,19 @@ public class ArrayTool {
 		}
 		return false;
 	}
+	/**
+	 * 数组中是否包含某一个值
+	 * 
+	 * @param param
+	 * @param arrParam
+	 * @return
+	 */
+	public static boolean isContains(int param, int[] arrParam) {
+		if (null != arrParam) {
+			return Arrays.asList(arrParam).contains(param);
+		}
+		return false;
+	}
 
 	/**
 	 * 从array中创建list

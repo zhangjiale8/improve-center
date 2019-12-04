@@ -463,4 +463,32 @@ public class ScreenUtil {
 		return datamap;
 	}
 
+	/**
+	 * 1,2,3三区过滤
+	 * @param resultmap
+	 * @return
+	 */
+	public static Map<String, Integer> areascreen(Map<String, Integer> resultmap) {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		String [] area1 = {"1","2","3","4","5","6","7","8","9","10","11"};
+		String [] area2 = {"12","13","14","15","16","17","18","19","20","21","22"};
+		String [] area3 = {"23","24","25","26","27","28","29","30","31","32","33"};
+		for (Entry<String, Integer> entry : resultmap.entrySet()) {
+			String[] combinestrArr = entry.getKey().split(",");
+			String[] area1intersectArr = ArrayTool.getIntersectArr(area1, combinestrArr);
+			
+			String[] area2intersectArr = ArrayTool.getIntersectArr(area2, combinestrArr);
+			
+			String[] area3intersectArr = ArrayTool.getIntersectArr(area3, combinestrArr);
+			if(area1intersectArr.length != 0 
+				&& area2intersectArr.length != 0 
+				&& area3intersectArr.length != 0){
+				
+				datamap.put(entry.getKey(), entry.getValue());
+				
+			}
+		}
+		return datamap;
+	}
+
 }
