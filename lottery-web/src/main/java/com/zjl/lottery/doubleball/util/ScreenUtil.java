@@ -431,4 +431,36 @@ public class ScreenUtil {
 		return nums;
 	}
 
+	/**
+	 * 去掉 偶数<2 与 奇数<2	
+	 * @param: @param resultmap
+	 * @param: @return      
+	 * @return: Map<String,Integer>      
+	 * @throws
+	 */
+	public static Map<String, Integer> singledoublemin2(Map<String, Integer> resultmap) {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		for (Entry<String, Integer> entry : resultmap.entrySet()) {
+			String[] combinestrArr = entry.getKey().split(",");
+			int doublecount = 0;
+			int singlecount = 0;
+			for (int i = 0; i < combinestrArr.length; i++) {
+				int postion = Integer.parseInt(combinestrArr[i]);
+				if(postion % 2 == 0) {
+					doublecount ++;
+				}else {
+					singlecount ++;
+				}
+				
+				
+			}
+			
+			if(!(singlecount <2) && !(doublecount <2)) {
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+			
+		}
+		return datamap;
+	}
+
 }

@@ -61,6 +61,7 @@ public class MultipParamsListUtil {
 				resultmap.put(result, value);
 			}
 		}
+	//	resultmap = ScreenUtil.singledoublemin2(resultmap);
 		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedunclude");
 		
 	}
@@ -120,6 +121,7 @@ public class MultipParamsListUtil {
 				resultmap.put(result, value);
 			}
 		}
+		//resultmap = ScreenUtil.singledoublemin2(resultmap);
 		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedclude");
 		
 	}

@@ -49,12 +49,12 @@ public class MultipParamsListTest {
 		int[] screenarray = HistoryUtil.get10periodHistoryArr();	
 	
 	
-	//	MultipParamsListUtil.screenDetermined(screenlist, screenarray);
+		MultipParamsListUtil.screenDetermined(screenlist, screenarray);
 	//	historyscreen();
 	//	otherticketscreen();
 	//	threeScreen();
 		//twoScreen();
-		pingtotal();
+	//	pingtotal();
 	//	sametails();
 	//	randomaward(); 
 		
@@ -157,7 +157,7 @@ public class MultipParamsListTest {
 		screenlist.add(paramArr2);
 		screenlist.add(paramArr1);
 		int[] screenarray = HistoryUtil.get10periodHistoryArr();	
-		//MultipParamsListUtil.screenDetermined(screenlist, screenarray);
+		MultipParamsListUtil.screenDetermined(screenlist, screenarray);
 		//historyscreen();
 		//otherticketscreen();
 		//threeScreen();
