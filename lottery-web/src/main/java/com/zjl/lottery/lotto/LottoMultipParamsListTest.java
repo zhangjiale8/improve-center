@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.zjl.lottery.lotto.util.HistoryScreenUtil;
 import com.zjl.lottery.lotto.util.HistoryUtil;
+import com.zjl.lottery.lotto.util.MultipLottoUtil;
 import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.lottery.util.ThreeSreenUtil;
 
@@ -38,9 +39,9 @@ public class LottoMultipParamsListTest {
 		screenlist.add(paramArr1);
 		int[] screenarray = HistoryUtil.get10periodHistoryArr();
 	
-	//	MultipLottoUtil.screenDetermined(screenlist, screenarray);
+		MultipLottoUtil.screenDetermined(screenlist, screenarray);
 	//	threeScreen();
-		historyscreen();
+	//	historyscreen();
 		//twoScreen();
 		//pingtotal();
 		

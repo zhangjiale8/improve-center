@@ -1,10 +1,12 @@
 package com.zjl.lottery.doubleball.test.caihongduo;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.zjl.lottery.doubleball.util.ScreenUtil;
 import com.zjl.lottery.util.CombineUtil;
 import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
@@ -13,7 +15,7 @@ public class Test {
 	public static void main(String[] args) {
 		Map<String, Integer> resultmap = new HashMap<String, Integer>();
 		Map<String, Integer> resultmaptemp = new HashMap<String, Integer>();
-		String filepath = "E:" + File.separator + "screen" + File.separator +"caihongduo.txt";
+		String filepath = "E:" + File.separator + "screen" + File.separator+ "data" + File.separator +"caihongduo.txt";
 		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
@@ -45,6 +47,16 @@ public class Test {
 				}
 			}
 		}
+		ArrayList<int[]> list = new ArrayList<int[]>();
+		for (Entry<String, Integer> entry : datamap.entrySet()) {
+			String datastr = entry.getKey();
+			String [] dataArr = datastr.split(",");
+			int [] datainArr = ArrayTool.strArr2InArr(dataArr);
+			list.add(datainArr);
+		}
+		resultmaptemp = ScreenUtil.singledoublemin2(resultmaptemp);
+		resultmaptemp = ScreenUtil.areascreen(resultmaptemp);
+		resultmaptemp = ScreenUtil.combine5MultipScreen(resultmaptemp,list);
 		MapDataUtil.createScreenTxtMap(resultmaptemp,"caihongduocombine");
 	}
 }

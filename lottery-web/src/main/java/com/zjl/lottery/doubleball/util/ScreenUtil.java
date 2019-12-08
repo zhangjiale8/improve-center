@@ -491,4 +491,31 @@ public class ScreenUtil {
 		return datamap;
 	}
 
+	/**
+	 * 组合大于5的个数过滤
+	 * @param resultmap
+	 * @param list
+	 * @return
+	 */
+	public static Map<String, Integer> combine5MultipScreen(Map<String, Integer> resultmap, ArrayList<int[]> list) {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		for (Entry<String, Integer> entry : resultmap.entrySet()) {
+			String combinestr = entry.getKey();
+			String[] combineArr = combinestr.split(",");
+			int count = 0;
+			for (int[] datatempArr : list) {
+				String [] datatemstrArr = ArrayTool.intArr2StrArr(datatempArr);
+				String[] intersectArr = ArrayTool.getIntersectArr(combineArr, datatemstrArr);
+				if(intersectArr.length == 5){
+					count ++;
+				}
+			}
+			if(count <6){
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+			
+		}
+		return datamap;
+	}
+
 }
