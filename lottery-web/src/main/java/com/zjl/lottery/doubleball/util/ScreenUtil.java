@@ -510,7 +510,7 @@ public class ScreenUtil {
 					count ++;
 				}
 			}
-			if(count <6){
+			if(count >3 && count <8){
 				datamap.put(entry.getKey(), entry.getValue());
 			}
 			

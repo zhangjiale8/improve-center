@@ -37,7 +37,10 @@ public class MapDataUtil {
 	           //2：准备输出流
 	           Writer out = new FileWriter(file);
 	           for (Entry<String, Integer> entry : map.entrySet()) {
-		           	String temp = entry.getKey()+"|"+entry.getValue();
+	        	   String temp = entry.getKey()+"|"+entry.getValue();
+	        	   	if(entry.getValue() == null){
+	        	   		temp = entry.getKey();
+	        	   	}
 		            out.write(temp+System.getProperty("line.separator"));
 	           }
 	           out.close();

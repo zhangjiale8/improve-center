@@ -274,6 +274,42 @@ public class HistoryUtil {
 	}
 	
 	/**
+	 * 获取历史开奖Map
+	 * @return
+	 */
+	public static Map<String, String> getPeriodHistoryMap() {
+		Map<String, String> map = new HashMap<String, String>();
+		String path = "";
+		path = "data/doubleballhistorydrawinfo.txt";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if (null != file && file.exists()) {
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while ((StringUtils.isNotEmpty(line = br.readLine()))) {// 使用readLine方法，一次读一行
+					Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+					Matcher m = p.matcher(line);
+					String temprp = m.replaceAll("");
+					String[] strArr = temprp.split("@");
+					String period = strArr[0];
+					String[] params = strArr[2].split("\\|");
+					if (null != params && params.length == 2) {
+						String redStr = params[0];
+						redStr = redStr.replaceAll("，", ",");
+						map.put(period, redStr);
+					}
+				}
+				br.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		return map;
+	}
+	
+	/**
 	 * 获取前10期开奖数字数组
 	 * @Title: get10periodHistoryArr   
 	 * @param: @return      
@@ -376,5 +412,26 @@ public class HistoryUtil {
 		}
 	*/
 		}
+
+
+	/**
+	 * 重组开奖号码
+	 * @param drawinfo
+	 * @return
+	 */
+	public static String recombination(String drawinfo) {
+		String[] drawinfoArr = drawinfo.split(",");
+		String result = "";
+		for (int i = 0; i < drawinfoArr.length; i++) {
+			int postion = Integer.parseInt(drawinfoArr[i]);
+			if(postion < 10){
+				result += "0"+postion+",";
+			}else{
+				result += postion+",";
+			}
+		}
+		
+		return result.substring(0, result.length() -1);
+	}
 
 }

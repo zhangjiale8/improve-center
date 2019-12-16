@@ -29,40 +29,35 @@ public class combine5Test {
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"screenlist.txt";;
 		List<String[]> screenarrlist = ListDataUtil.getScreenList(screenfilepath);
 		for (String filename : filenameArr) {
-			filename += "threescreen123456789123456";
+			filename += "threescreen123456789";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
+				int count = 0;
 				for (String[] screenArr : screenarrlist) {
 					String[] combineArr = entry.getKey().split(",");
 					String[] intersectArr = ArrayTool.getIntersectArr(screenArr, combineArr);
 					if(intersectArr.length >4) {
-						Integer count = screenmap.get(entry.getKey());
-						if(null == count){
-							screenmap.put(entry.getKey(), 1);
-
-						}else{
-							count ++;
-							screenmap.put(entry.getKey(), count);
-						}
+						count ++;
 					}
 				}
+				screenmap.put(entry.getKey(), count);
 			}
 		}
 		
 		for (String filename : filenameArr) {
-			filename += "threescreen123456789123456";
+			filename += "threescreen123456789";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			Map<String, Integer> datamaptemp = new HashMap<String, Integer>();
 			MapUtil.mapCopy(datamap,datamaptemp);
 			for (Entry<String, Integer> entry : datamaptemp.entrySet()) {
 				Integer count = screenmap.get(entry.getKey());
-				if(null != count && count >5){
+				if(null != count && (count >5 || count <1)){
 					datamap.remove(entry.getKey());
 				}
 			}
-			MapDataUtil.createScreenTxtMap(datamap, filename+"7");
+			MapDataUtil.createScreenTxtMap(datamap, filename+"1");
 		}		
 	
 	}
