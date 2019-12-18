@@ -29,7 +29,7 @@ public class combine5Test {
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"screenlist.txt";;
 		List<String[]> screenarrlist = ListDataUtil.getScreenList(screenfilepath);
 		for (String filename : filenameArr) {
-			filename += "threescreen123456789";
+			filename += "threescreen1234567";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
@@ -46,7 +46,7 @@ public class combine5Test {
 		}
 		
 		for (String filename : filenameArr) {
-			filename += "threescreen123456789";
+			filename += "threescreen1234567";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			Map<String, Integer> datamaptemp = new HashMap<String, Integer>();
@@ -57,7 +57,7 @@ public class combine5Test {
 					datamap.remove(entry.getKey());
 				}
 			}
-			MapDataUtil.createScreenTxtMap(datamap, filename+"1");
+			MapDataUtil.createScreenTxtMap(datamap, filename+"8");
 		}		
 	
 	}

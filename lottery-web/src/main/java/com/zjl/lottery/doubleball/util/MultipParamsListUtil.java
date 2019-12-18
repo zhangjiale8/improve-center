@@ -61,10 +61,10 @@ public class MultipParamsListUtil {
 				resultmap.put(result, value);
 			}
 		}
-		resultmap = ScreenUtil.singledoublemin2(resultmap);
+		/*resultmap = ScreenUtil.singledoublemin2(resultmap);
 		resultmap = ScreenUtil.areascreen(resultmap);
-		resultmap = ScreenUtil.combine5MultipScreen(resultmap,list);
-		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedunclude");
+		resultmap = ScreenUtil.combine5MultipScreen(resultmap,list);*/
+		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedunclude1");
 		
 	}
 	/**
@@ -123,10 +123,10 @@ public class MultipParamsListUtil {
 				resultmap.put(result, value);
 			}
 		}
-		resultmap = ScreenUtil.singledoublemin2(resultmap);
+		/*resultmap = ScreenUtil.singledoublemin2(resultmap);
 		resultmap = ScreenUtil.areascreen(resultmap);
-		resultmap = ScreenUtil.combine5MultipScreen(resultmap,list);
-		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedclude");
+		resultmap = ScreenUtil.combine5MultipScreen(resultmap,list);*/
+		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedclude1");
 		
 	}
 

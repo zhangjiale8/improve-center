@@ -26,7 +26,7 @@ public class combineTest {
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"caihongduocombine.txt";
 		Map<String, Integer> screenmap = MapDataUtil.getDataMap(screenfilepath);
 		for (String filename : filenameArr) {
-			filename += "threescreen";
+			filename += "threescreen1";
 			Map<String, Integer> resultmap = new HashMap<String, Integer>();
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
@@ -36,7 +36,7 @@ public class combineTest {
 					resultmap.put(entry.getKey(), datamap.get(entry.getKey()));
 				}
 			}
-			MapDataUtil.createScreenTxtMap(resultmap, filename+"1");
+			MapDataUtil.createScreenTxtMap(resultmap, filename+"2");
 		}
 	}
 	

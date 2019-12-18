@@ -25,7 +25,7 @@ public class splittest {
 			}
 			if(temp.length() > 2 ) {
 				temp = temp.substring(0, temp.length()-1);
-				datamaptemp.put(temp, entry.getValue());
+				datamaptemp.put(temp, null);
 			}
 		}
 		MapDataUtil.createScreenTxtMap(datamaptemp, filename);

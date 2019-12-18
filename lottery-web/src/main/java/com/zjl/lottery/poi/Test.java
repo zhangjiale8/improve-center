@@ -21,7 +21,7 @@ import com.zjl.tools.poi.ExcelUtils;
 public class Test {
 	public static void main(String[] args) {
 		int draw1count = 0;
-		for (int i = 46; i < 146; i++) {
+		for (int i = 145; i < 147; i++) {
 			String filename = "";
 			if(i < 100){
 				filename += "20190"+i;
@@ -59,7 +59,7 @@ public class Test {
 					
 					System.out.println(filename+":"+draw1 +"----------"+draw6 );
 				}
-				MapDataUtil.createScreenTxtMap(datamap, filename);
+			//	MapDataUtil.createScreenTxtMap(datamap, filename);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
