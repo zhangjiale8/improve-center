@@ -21,7 +21,7 @@ import com.zjl.tools.poi.ExcelUtils;
 public class Test {
 	public static void main(String[] args) {
 		int draw1count = 0;
-		for (int i = 145; i < 147; i++) {
+		for (int i = 147; i < 148; i++) {
 			String filename = "";
 			if(i < 100){
 				filename += "20190"+i;
@@ -47,7 +47,7 @@ public class Test {
 					String red24val = maptemp.get("24RED_VAL");
 					datamap.put(red24val, null);
 				}
-				Map<String, String> historymap = HistoryUtil.getPeriodHistoryMap();
+				/*Map<String, String> historymap = HistoryUtil.getPeriodHistoryMap();
 				String drawinfo = historymap.get(filename);
 				if(StringUtils.isNotEmpty(drawinfo)){
 					drawinfo = HistoryUtil.recombination(drawinfo);
@@ -58,8 +58,8 @@ public class Test {
 					int draw6 = drawmax6(drawinfo,datamap);
 					
 					System.out.println(filename+":"+draw1 +"----------"+draw6 );
-				}
-			//	MapDataUtil.createScreenTxtMap(datamap, filename);
+				}*/
+				MapDataUtil.createScreenTxtMap(datamap, filename);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

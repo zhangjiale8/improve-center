@@ -18,7 +18,7 @@ public class Test2 {
 				"resultmapdeterminedunclude"			
 				};
 
-		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"2019146.txt";
+		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"2019147.txt";
 		Map<String, Integer> screenmap = MapDataUtil.getDataMap(screenfilepath);
 		for (String filename : filenameArr) {
 			Map<String, Integer> resultmap = new HashMap<String, Integer>();
@@ -33,7 +33,7 @@ public class Test2 {
 				}
 
 			}
-			MapDataUtil.createScreenTxtMap(resultmap, filename);
+			MapDataUtil.createScreenTxtMap(resultmap, filename+"1");
 		}
 
 
