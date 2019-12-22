@@ -13,8 +13,8 @@ import com.zjl.tools.MapUtil;
 
 public class FoolTest {
 	public static void main(String[] args) {
-		singlescreen();
-	//	multipscreen();
+	//	singlescreen();
+		multipscreen();
 	}
 	
 	/**
@@ -50,14 +50,14 @@ public class FoolTest {
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"screenlist.txt";;
 		List<String[]> screenarrlist = ListDataUtil.getScreenList(screenfilepath);
-		String filename = "lottoscreenthreescreenscreenhistory12345678";
+		String filename = "customizecombine123456789";
 		String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
 			for (String[] screenArr : screenarrlist) {
 				String[] combineArr = entry.getKey().split(",");
 				String[] intersectArr = ArrayTool.getIntersectArr(screenArr, combineArr);
-				if(intersectArr.length ==5) {
+				if(intersectArr.length >0) {
 					screenmap.put(entry.getKey(), entry.getValue());
 				}
 			}
@@ -71,7 +71,7 @@ public class FoolTest {
 				datamap.remove(entry.getKey());
 			}
 		}
-		MapDataUtil.createScreenTxtMap(datamap, filename+"9");
+		MapDataUtil.createScreenTxtMap(datamap, filename+"1");
 		
 	
 	}

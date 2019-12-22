@@ -14,7 +14,7 @@ import com.zjl.lottery.util.MapDataUtil;
 public class randomtest {
 	public static void main(String[] args) {
 
-		String filepath = "E:" + File.separator + "screen" + File.separator +"lottoscreenthreescreenscreenhistory123456789123.txt";;
+		String filepath = "E:" + File.separator + "screen" + File.separator +"customizecombine.txt";;
 		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		List<String> initlist = new ArrayList<String>();
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
@@ -22,7 +22,7 @@ public class randomtest {
 		}
 		Map<String, Integer> firstdraw = new HashMap<String, Integer>();
 		String data = "";
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 1; i++) {
 			double random = (double) ((Math.random()*9+1)*1000)/10000;
 			int index = Integer.parseInt(new java.text.DecimalFormat("0").format(random*initlist.size()));
 			String draw = initlist.get(index);

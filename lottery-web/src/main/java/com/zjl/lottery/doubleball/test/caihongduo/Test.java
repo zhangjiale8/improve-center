@@ -54,8 +54,8 @@ public class Test {
 			int [] datainArr = ArrayTool.strArr2InArr(dataArr);
 			list.add(datainArr);
 		}
-		resultmaptemp = ScreenUtil.singledoublemin2(resultmaptemp);
-		resultmaptemp = ScreenUtil.areascreen(resultmaptemp);
+		//resultmaptemp = ScreenUtil.singledoublemin2(resultmaptemp);
+	//	resultmaptemp = ScreenUtil.areascreen(resultmaptemp);
 		resultmaptemp = ScreenUtil.combine5MultipScreen(resultmaptemp,list);
 		MapDataUtil.createScreenTxtMap(resultmaptemp,"caihongduocombine");
 	}

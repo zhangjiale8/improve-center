@@ -7,6 +7,9 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.zjl.tools.ArrayTool;
+import com.zjl.tools.ListUtil;
+
 public class CombineUtil {
 	private static ArrayList<Integer> tmpArr = new ArrayList<Integer>();
 	private static ArrayList<String> loterryLsit = new ArrayList<String>();
@@ -131,5 +134,47 @@ public class CombineUtil {
 		int[] paramArr = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33};
 		ArrayList<String> combinelist = CombineUtil.getScreenList(paramArr, screenNum);
 		return combinelist;
+	}
+	
+	
+	/**
+	 * @throws Exception 
+     * 获取自定义组合
+     * @param: @param screenarray
+     * @param: @return      
+     * @return: Map<String,Integer>      
+     * @throws
+     */
+	public static Map<String, Integer> getCustomizeCombineMap(int[] paramarr1,int screennum1,int[] paramarr2,int screennum2) throws Exception {
+		Map<String, Integer> screenmap = new HashMap<String, Integer>();
+		tmpArr = new ArrayList<Integer>();
+		loterryLsit = new ArrayList<String>();
+		combine(0 ,screennum1 ,paramarr1);
+		List<String> combinelist1 =  ListUtil.deepCopy(loterryLsit);
+		tmpArr = new ArrayList<Integer>();
+		loterryLsit = new ArrayList<String>();
+		combine(0 ,screennum2 ,paramarr2);
+		List<String> combinelist2 =  ListUtil.deepCopy(loterryLsit);
+		for (String combine1 : combinelist1) {
+			for (String combine2 : combinelist2) {
+				String combine = "";
+				if(StringUtils.isNotEmpty(combine1) && StringUtils.isNotEmpty(combine2)){
+					combine = combine1 +","+combine2;
+					String combinetemp = "";
+					String[] combineArr = combine.split(",");
+					int[] combineIntArr = ArrayTool.strArr2InArr(combineArr);
+					combineIntArr = ArrayTool.sort(combineIntArr);
+					for (int i = 0; i < combineIntArr.length; i++) {
+						combinetemp += combineIntArr[i]+",";
+					}
+					if(StringUtils.isNotEmpty(combinetemp)){
+						combinetemp = combinetemp.substring(0, combinetemp.length() -1);
+						screenmap.put(combinetemp, 1);
+					}
+				}
+			}
+			
+		}
+		return screenmap;
 	}
 }
