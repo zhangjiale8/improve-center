@@ -13,8 +13,8 @@ import com.zjl.lottery.util.MapDataUtil;
 
 public class Selection {
 	public static void main(String[] args) {
-		pingtotal();
-	//	randomaward();
+	//	pingtotal();
+		randomaward();
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class Selection {
 				};
 		Map<String, Integer> totalmap = new HashMap<String, Integer>();
 		for (String filename : filenameArr) {
-			filename += "1";
+			filename += "";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {

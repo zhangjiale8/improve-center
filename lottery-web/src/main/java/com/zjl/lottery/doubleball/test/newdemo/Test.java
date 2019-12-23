@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.zjl.lottery.doubleball.util.ScreenUtil;
 import com.zjl.lottery.util.ListDataUtil;
 import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
@@ -62,14 +63,14 @@ public class Test {
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"screenlist.txt";;
 		List<String[]> screenarrlist = ListDataUtil.getScreenList(screenfilepath);
 		for (String filename : filenameArr) {
-			filename += "1";
+			filename += "1234567891";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
 				for (String[] screenArr : screenarrlist) {
 					String[] combineArr = entry.getKey().split(",");
 					String[] intersectArr = ArrayTool.getIntersectArr(screenArr, combineArr);
-					if(intersectArr.length >0 && intersectArr.length <3) {
+					if(intersectArr.length >4) {
 						screenmap.put(entry.getKey(), entry.getValue());
 					}
 				}
@@ -77,7 +78,7 @@ public class Test {
 		}
 		
 		for (String filename : filenameArr) {
-			filename += "1";
+			filename += "1234567891";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			Map<String, Integer> datamaptemp = new HashMap<String, Integer>();
@@ -88,6 +89,8 @@ public class Test {
 					datamap.remove(entry.getKey());
 				}
 			}
+			datamap = ScreenUtil.singledoublemin2(datamap);
+			datamap = ScreenUtil.areascreen(datamap);
 			MapDataUtil.createScreenTxtMap(datamap, filename+"2");
 		}
 		
