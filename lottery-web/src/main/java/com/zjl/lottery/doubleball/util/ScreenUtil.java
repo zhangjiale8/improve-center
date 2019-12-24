@@ -537,7 +537,7 @@ public class ScreenUtil {
 					count ++;
 				}
 			}
-			if(count > 1){
+			if(count > 0){
 				datamap.put(entry.getKey(), entry.getValue());
 			}
 		}
