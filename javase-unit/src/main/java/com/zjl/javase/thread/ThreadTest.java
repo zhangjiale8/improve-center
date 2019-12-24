@@ -3,25 +3,30 @@ package com.zjl.javase.thread;
 public class ThreadTest {
 	public static void main(String[] args) {
 		class MyThread extends Thread {
-			private int tickets = 10;
+			
+			public MyThread(String name) {
+				super(name);
+			}
+
 			@Override
 			public void run() {
-				for (int i = 0; i < 20; i++) {
-					if(this.tickets > 0){
-						System.out.println(this.getName()+"买票：ticket"+this.tickets--);
+				synchronized(this) {
+					for (int i = 0; i < 10; i++) {
+						try {
+							Thread.sleep(100);
+							System.out.println(Thread.currentThread().getName() +" loop "+i);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			}
 			
 		}
 		
-		// 启动3个线程t1,t2,t3；每个线程各卖10张票！
-        // 和上面的结果对比，并揣摩 “Runnable还可以用于“资源共享”。即，多个线程都是基于某个Runnable对象建立的，它们会共享Runnable对象上的资源”这句话。
-		MyThread t1 = new MyThread();
-		MyThread t2 = new MyThread();
-		MyThread t3 = new MyThread();
+		MyThread t1 = new MyThread("t1");
+		MyThread t2 = new MyThread("t2");
 		t1.start();
 		t2.start();
-		t3.start();
 	}
 }
