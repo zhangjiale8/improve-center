@@ -517,5 +517,69 @@ public class ScreenUtil {
 		}
 		return datamap;
 	}
+	/**
+	 * 尾号过滤
+	 * @param resultmap
+	 * @return
+	 */
+	public static Map<String, Integer> termscreen(Map<String, Integer> resultmap) {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		
+		for (Entry<String, Integer> entry : resultmap.entrySet()) {
+			String[] sametermArr = ScreenUtil.getSameterm(entry.getKey());
+			Map<String, String> historymap = HistoryUtil.getPeriodHistoryMap();
+			int count = 0;
+			for (Entry<String, String> entry2 : historymap.entrySet()) {
+				String combine2 = entry2.getValue();
+				String [] combineArr = combine2.split(",");
+				String[] intersectArr = ArrayTool.getIntersectArr(sametermArr, combineArr);
+				if(intersectArr.length == 6){
+					count ++;
+				}
+			}
+			if(count > 1){
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return datamap;
+	}
+	
+	/**
+	 * 获取同尾所有数
+	 * @param curdraw
+	 * @return
+	 */
+	public static String[] getSameterm(String curdraw) {
+		String sameterm = "";
+		String[] drawArr = curdraw.split(",");
+		for (int i = 0; i < drawArr.length; i++) {
+			int index = Integer.parseInt(drawArr[i]);
+			if(index%10 == 0){
+				sameterm +="10,20,30"+",";
+			}else if(index%10 == 1){
+				sameterm +="1,11,21,31"+",";
+			}else if(index%10 == 2){
+				sameterm +="2,12,22,32"+",";
+			}else if(index%10 == 3){
+				sameterm +="3,13,23,33"+",";
+			}else if(index%10 == 4){
+				sameterm +="4,14,24"+",";
+			}else if(index%10 == 5){
+				sameterm +="5,15,25"+",";
+			}else if(index%10 == 6){
+				sameterm +="6,16,26"+",";
+			}else if(index%10 == 7){
+				sameterm +="7,17,27"+",";
+			}else if(index%10 == 8){
+				sameterm +="8,18,28"+",";
+			}else if(index%10 == 9){
+				sameterm +="9,19,29"+",";
+			}
+		}
+		if(StringUtils.isNotEmpty(sameterm) && sameterm.length() > 1){
+			sameterm = sameterm.substring(0,sameterm.length() -1);
+		}
+		return sameterm.split(",");
+	}
 
 }

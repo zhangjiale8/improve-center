@@ -14,11 +14,11 @@ public class Test2 {
 
 
 		String [] filenameArr = {
-				"resultmapdeterminedclude",
-				"resultmapdeterminedunclude"			
+				"resultmapdeterminedclude123",
+				"resultmapdeterminedunclude123"			
 				};
 
-		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"2019147.txt";
+		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"2019148.txt";
 		Map<String, Integer> screenmap = MapDataUtil.getDataMap(screenfilepath);
 		for (String filename : filenameArr) {
 			Map<String, Integer> resultmap = new HashMap<String, Integer>();
@@ -33,7 +33,7 @@ public class Test2 {
 				}
 
 			}
-			MapDataUtil.createScreenTxtMap(resultmap, filename+"1");
+			MapDataUtil.createScreenTxtMap(resultmap, filename+"4");
 		}
 
 

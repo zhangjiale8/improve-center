@@ -63,14 +63,14 @@ public class Test {
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"screenlist.txt";;
 		List<String[]> screenarrlist = ListDataUtil.getScreenList(screenfilepath);
 		for (String filename : filenameArr) {
-			filename += "1234567891";
+			filename += "1";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
 				for (String[] screenArr : screenarrlist) {
 					String[] combineArr = entry.getKey().split(",");
 					String[] intersectArr = ArrayTool.getIntersectArr(screenArr, combineArr);
-					if(intersectArr.length >4) {
+					if(intersectArr.length <2 || intersectArr.length >5) {
 						screenmap.put(entry.getKey(), entry.getValue());
 					}
 				}
@@ -78,7 +78,7 @@ public class Test {
 		}
 		
 		for (String filename : filenameArr) {
-			filename += "1234567891";
+			filename += "1";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			Map<String, Integer> datamaptemp = new HashMap<String, Integer>();
@@ -89,8 +89,8 @@ public class Test {
 					datamap.remove(entry.getKey());
 				}
 			}
-			datamap = ScreenUtil.singledoublemin2(datamap);
-			datamap = ScreenUtil.areascreen(datamap);
+		//	datamap = ScreenUtil.singledoublemin2(datamap);
+		//	datamap = ScreenUtil.areascreen(datamap);
 			MapDataUtil.createScreenTxtMap(datamap, filename+"2");
 		}
 		

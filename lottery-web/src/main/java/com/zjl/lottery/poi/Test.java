@@ -21,7 +21,7 @@ import com.zjl.tools.poi.ExcelUtils;
 public class Test {
 	public static void main(String[] args) {
 		int draw1count = 0;
-		for (int i = 147; i < 148; i++) {
+		for (int i = 148; i < 149; i++) {
 			String filename = "";
 			if(i < 100){
 				filename += "20190"+i;

@@ -16,8 +16,8 @@ public class combine5Test {
 
 
 		String [] filenameArr = {
-				"resultmapdeterminedclude",
-				"resultmapdeterminedunclude"			
+				"resultmapdeterminedclude123456",
+				"resultmapdeterminedunclude123456"			
 				};
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"screenlist.txt";;
@@ -51,7 +51,7 @@ public class combine5Test {
 					datamap.remove(entry.getKey());
 				}
 			}
-			MapDataUtil.createScreenTxtMap(datamap, filename+"1");
+			MapDataUtil.createScreenTxtMap(datamap, filename+"7");
 		}		
 	
 	}
