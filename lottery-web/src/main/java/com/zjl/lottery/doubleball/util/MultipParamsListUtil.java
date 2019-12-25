@@ -65,7 +65,7 @@ public class MultipParamsListUtil {
 		resultmap = ScreenUtil.singledoublemin2(resultmap);
 		resultmap = ScreenUtil.areascreen(resultmap);
 		resultmap = ScreenUtil.termscreen(resultmap);
-		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedunclude99");
+		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedunclude");
 		
 	}
 	/**
@@ -128,7 +128,7 @@ public class MultipParamsListUtil {
 		resultmap = ScreenUtil.singledoublemin2(resultmap);
 		resultmap = ScreenUtil.areascreen(resultmap);
 		resultmap = ScreenUtil.termscreen(resultmap);
-		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedclude99");
+		MapDataUtil.createScreenTxtMap(resultmap, "resultmapdeterminedclude");
 		
 	}
 

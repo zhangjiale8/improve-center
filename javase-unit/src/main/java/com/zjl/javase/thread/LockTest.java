@@ -24,7 +24,7 @@ public class LockTest {
             }
 		}
 		
-		public synchronized void cSyncA() {
+		public static synchronized void cSyncA() {
 			for(int i=0;i<5;i++){
                 try {
                     Thread.sleep(100);
@@ -35,7 +35,7 @@ public class LockTest {
             }
 		}
 		
-		public synchronized void cSyncB() {
+		public static synchronized void cSyncB() {
 			for(int i=0;i<5;i++){
                 try {
                     Thread.sleep(100);
@@ -55,16 +55,16 @@ public class LockTest {
 		Thread t11 = new Thread(new Runnable(){
             public void run() {
                 x.isSyncA();    
-                //x.cSyncA();
+              //  x.cSyncA();
             }
         },"t11");
 
         Thread t12 = new Thread(new Runnable(){
             public void run() {
              //   x.isSyncB();
-                y.isSyncA();
-                //y.cSyncB();
-                //Something.cSyncA();
+             //   y.isSyncA();
+             //   y.cSyncB();
+                Something.cSyncA();
             }
         },"t12");
 
