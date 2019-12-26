@@ -91,6 +91,20 @@ public class ArrayTool {
 		return null;
 
 	}
+	
+	/**
+	 * String数组转成string
+	 * 
+	 * @param array
+	 * @return
+	 */
+	public static String strArr2String(String[] array) {
+		if (null != array) {
+			return Arrays.toString(array);
+		}
+		return null;
+
+	}
 
 	/**
 	 * 获取int数组长度

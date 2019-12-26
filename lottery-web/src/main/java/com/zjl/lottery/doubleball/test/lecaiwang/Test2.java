@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.zjl.lottery.doubleball.util.HistoryUtil;
+import com.zjl.lottery.doubleball.util.ScreenUtil;
 import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
@@ -14,11 +15,11 @@ public class Test2 {
 
 
 		String [] filenameArr = {
-				"resultmapdeterminedclude123",
-				"resultmapdeterminedunclude123"			
+				"resultmapdeterminedclude12",
+				"resultmapdeterminedunclude12"			
 				};
 
-		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"2019148.txt";
+		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"2019149.txt";
 		Map<String, Integer> screenmap = MapDataUtil.getDataMap(screenfilepath);
 		for (String filename : filenameArr) {
 			Map<String, Integer> resultmap = new HashMap<String, Integer>();
@@ -28,12 +29,13 @@ public class Test2 {
 				String combine = HistoryUtil.recombination(dataentry.getKey());
 				int draw1 = drawmin1(combine,screenmap);
 				int draw6 = drawmax6(combine,screenmap);
-				if((draw1 >0 && draw1<3) && (draw6 > 27 && draw6 <46)){
+				if((draw1<4) && (draw6 > 27 && draw6 <46)){
 					resultmap.put(dataentry.getKey(), dataentry.getValue());
 				}
 
 			}
-			MapDataUtil.createScreenTxtMap(resultmap, filename+"4");
+			resultmap = ScreenUtil.screensametails(resultmap);
+			MapDataUtil.createScreenTxtMap(resultmap, filename+"3");
 		}
 
 

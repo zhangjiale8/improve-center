@@ -393,12 +393,36 @@ public class ScreenUtil {
 				String[] combineArr = combine.split(",");
 				int[] intcombineArr = ArrayTool.strArr2InArr(combineArr);
 				int count = ScreenUtil.countSametails(intcombineArr);
-				if(count < 2) {
+				if(count < 3) {
 					resultmap.put(combine, entry.getValue());
 				}
 			}
 		}
 		MapDataUtil.createScreenTxtMap(resultmap, filename+"sametails");
+		return resultmap;
+	}
+	
+	/**
+	 * 同尾号过滤
+	 * @Title: screensametails   
+	 * @param: @param datamap
+	 * @param: @param filename      
+	 * @return: void      
+	 * @throws
+	 */
+	public static Map<String, Integer> screensametails(Map<String, Integer> datamap) {
+		Map<String, Integer> resultmap = new HashMap<String, Integer>();
+		if(null != datamap && datamap.size() > 0) {
+			for (Entry<String, Integer> entry : datamap.entrySet()) {
+				String combine = entry.getKey();
+				String[] combineArr = combine.split(",");
+				int[] intcombineArr = ArrayTool.strArr2InArr(combineArr);
+				int count = ScreenUtil.countSametails(intcombineArr);
+				if(count < 3) {
+					resultmap.put(combine, entry.getValue());
+				}
+			}
+		}
 		return resultmap;
 	}
 

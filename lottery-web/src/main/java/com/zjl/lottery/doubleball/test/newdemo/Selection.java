@@ -11,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.util.MapDataUtil;
 
+
 public class Selection {
 	public static void main(String[] args) {
 		pingtotal();
@@ -29,7 +30,7 @@ public class Selection {
 				};
 		Map<String, Integer> totalmap = new HashMap<String, Integer>();
 		for (String filename : filenameArr) {
-			filename += "12";
+			filename += "";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
@@ -48,20 +49,23 @@ public class Selection {
 					initlist.add(entry.getKey());
 			}
 			Map<String, Integer> firstdraw = new HashMap<String, Integer>();
+			Map<String, Integer> randommap = new HashMap<String, Integer>();
 			String data = "";
 			for (int i = 0; i < 1; i++) {
 				double random = (double) ((Math.random()*9+1)*1000)/10000;
 				int index = Integer.parseInt(new java.text.DecimalFormat("0").format(random*initlist.size()));
 				String draw = initlist.get(index);
 				System.out.println(draw);
-
+				randommap.put(draw, null);
 				if(StringUtils.isNotEmpty(draw)){
 					String [] drawArr = draw.split(",");
 					for (int j = 0; j < drawArr.length; j++) {
-						firstdraw.put(drawArr[j], 1);
+						firstdraw.put(drawArr[j], null);
 					}
 				}
 				data += ","+draw;
 			}		
+		//	MapDataUtil.createScreenTxtMap(randommap, "1000-10");
+
 		}
 }

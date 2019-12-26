@@ -16,9 +16,45 @@ public class Test {
 
 	public static void main(String[] args) {
 	//	singlescreen();
-		multipscreen();
+	//	multipscreen();
+		extrememultipscreen();
 	}
-	
+	/**
+	 * 极端测试
+	 */
+	private static void extrememultipscreen() {
+
+
+		String [] filenameArr = {
+				"resultmapdeterminedclude",
+				"resultmapdeterminedunclude"			
+				};
+		Map<String, Integer> totalmap = new HashMap<String, Integer>();
+		Map<String, Integer> result = new HashMap<String, Integer>();
+		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"screenlist.txt";;
+		List<String[]> screenarrlist = ListDataUtil.getScreenList(screenfilepath);
+		for (String filename : filenameArr) {
+			filename += "";
+			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
+			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
+			for (Entry<String, Integer> entry : datamap.entrySet()) {
+				totalmap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		for (String[] screenArr : screenarrlist) {
+			String draw = "";
+			for (int i = 0; i < screenArr.length; i++) {
+				draw += screenArr[i]+",";
+			}
+			draw = draw.substring(0, draw.length() -1);
+			if(!totalmap.containsKey(draw)){
+				result.put(draw, totalmap.get(draw));
+			}
+		}
+		MapDataUtil.createScreenTxtMap(result, "pingtotal");
+		
+	}
+
 	/**
 	 * 单组过滤
 	 * @param:       
@@ -63,7 +99,7 @@ public class Test {
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"screenlist.txt";;
 		List<String[]> screenarrlist = ListDataUtil.getScreenList(screenfilepath);
 		for (String filename : filenameArr) {
-			filename += "1";
+			filename += "12345";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
@@ -78,7 +114,7 @@ public class Test {
 		}
 		
 		for (String filename : filenameArr) {
-			filename += "1";
+			filename += "12345";
 			String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			Map<String, Integer> datamaptemp = new HashMap<String, Integer>();
@@ -91,7 +127,7 @@ public class Test {
 			}
 		//	datamap = ScreenUtil.singledoublemin2(datamap);
 		//	datamap = ScreenUtil.areascreen(datamap);
-			MapDataUtil.createScreenTxtMap(datamap, filename+"2");
+			MapDataUtil.createScreenTxtMap(datamap, filename+"6");
 		}
 		
 		

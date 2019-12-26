@@ -42,6 +42,6 @@ public class TestApp {
 			System.out.println(sum2);
 			System.out.println(sum3);
 		}
-		MapDataUtil.createScreenTxtMap(resultmap, filename+"sametails");
+		//MapDataUtil.createScreenTxtMap(resultmap, filename+"sametails");
 	}
 }
