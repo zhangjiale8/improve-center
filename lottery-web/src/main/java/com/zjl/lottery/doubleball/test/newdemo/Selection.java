@@ -14,8 +14,8 @@ import com.zjl.lottery.util.MapDataUtil;
 
 public class Selection {
 	public static void main(String[] args) {
-		pingtotal();
-	//	randomaward();
+	//	pingtotal();
+		randomaward();
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public class Selection {
 	
 	//随机选取
 		private static void randomaward() {
-			String filepath = "E:" + File.separator + "screen" + File.separator +"pingtotal.txt";;
+			String filepath = "E:" + File.separator + "screen" + File.separator +"combinemaps33.txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			List<String> initlist = new ArrayList<String>();
 			for (Entry<String, Integer> entry : datamap.entrySet()) {

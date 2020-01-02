@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.zjl.lottery.doubleball.util.HistoryUtil;
+import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
 public class Test {
@@ -13,7 +14,7 @@ public class Test {
 		int tailmin4 = 0;
 		int tailmax6 = 0;
 		Map<String, String> historymap =  HistoryUtil.getPeriodHistoryMap();
-		Map<String, String> resultmap = new HashMap<String, String>();
+		Map<String, Integer> resultmap = new HashMap<String, Integer>();
 		Map<String, Integer> tailsmap = new HashMap<String, Integer>();
 		for (Entry<String, String> entry : historymap.entrySet()) {
 			Map<String, Integer> tailmap =  new HashMap<String, Integer>();
@@ -32,7 +33,7 @@ public class Test {
 			if(tailmap.size() >5) {
 				tailmax6 ++;
 			}
-			/*String tailstr = "";
+			String tailstr = "";
 			for (Entry<String, Integer> tailentry : tailmap.entrySet()) {
 				tailstr += tailentry.getKey()+",";
 			}
@@ -44,12 +45,21 @@ public class Test {
 			for (int i = 0; i < tailintarr.length; i++) {
 				tailintstr += tailintarr[i]+",";
 			}
-			tailintstr = tailintstr.substring(0, tailstr.length()-1);
-			resultmap.put(entry.getKey(), tailintstr);
-			Integer count = tailsmap.get(tailintstr);*/
+			tailintstr = tailintstr.substring(0, tailintstr.length()-1);
+			resultmap.put(entry.getKey()+" : "+tailintstr, null);
+			Integer count = tailsmap.get(tailintstr);
+			if(null != count) {
+				count ++;
+			}else {
+				count = 1;
+			}
+			tailsmap.put(tailintstr, count);
 		}
 		System.out.println(tailmin3);
 		System.out.println(tailmin4);
 		System.out.println(tailmax6);
+		MapDataUtil.createScreenTxtMap(tailsmap, "tailsmap");
+		MapDataUtil.createScreenTxtMap(resultmap, "periodtailsmap");
+		
 	}
 }

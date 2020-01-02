@@ -1,12 +1,15 @@
 package com.zjl.lottery.doubleball.test.wangcai;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import com.zjl.lottery.doubleball.util.MultipParamsListUtil;
+import com.zjl.lottery.doubleball.util.ScreenUtil;
 import com.zjl.lottery.util.MapDataUtil;
+import com.zjl.tools.ArrayTool;
 
 public class Test33 {
 	public static void main(String[] args) {
@@ -27,9 +30,72 @@ public class Test33 {
 				combinemaps33.put(combine, count+1);
 			} 
 		}
-		
+		combinemaps33 = ScreenUtil.tailspanscreen(combinemaps33);
+		combinemaps33 = ScreenUtil.singledoublemin2(combinemaps33);
+		combinemaps33 = ScreenUtil.screenThree(combinemaps33);
+		combinemaps33 = ScreenUtil.areascreen(combinemaps33);
+		combinemaps33 = tailscreen(combinemaps33);
+		combinemaps33 = tailscreen2(combinemaps33);
 		MapDataUtil.createScreenTxtMap(combinemaps33, "combinemaps33");
 
+	}
+
+	private static Map<String, Integer> tailscreen2(Map<String, Integer> combinemaps33) {
+		Map<String, Integer> screenmap = new HashMap<String, Integer>();
+		String [] tails = {"2","3","7","8"};
+		for (Entry<String, Integer> entry : combinemaps33.entrySet()) {
+			int count = 0;
+			Map<String, Integer> tailmap =  new HashMap<String, Integer>();
+			String[] drawstrarr = entry.getKey().split(",");
+			int[] drawintarr = ArrayTool.strArr2InArr(drawstrarr);
+			for (int i = 0; i < drawintarr.length; i++) {
+				String tail = drawintarr[i] %10 +"";
+				Integer tailcount = tailmap.get(tail);
+				if(null != tailcount) {
+					tailcount ++;
+				}else {
+					tailcount = 1;
+				}
+				tailmap.put(tail, tailcount);
+				boolean flg = Arrays.asList(tails).contains(tail);
+				if(flg) {
+					count ++;
+				}
+			}
+			if(count == 4 && tailmap.size() >4 && tailmap.get("2") == 1) {
+				screenmap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return screenmap;
+	}
+
+	private static Map<String, Integer> tailscreen(Map<String, Integer> combinemaps33) {
+		Map<String, Integer> screenmap = new HashMap<String, Integer>();
+		String [] tails = {"2","3","7","8"};
+		for (Entry<String, Integer> entry : combinemaps33.entrySet()) {
+			int count = 0;
+			Map<String, Integer> tailmap =  new HashMap<String, Integer>();
+			String[] drawstrarr = entry.getKey().split(",");
+			int[] drawintarr = ArrayTool.strArr2InArr(drawstrarr);
+			for (int i = 0; i < drawintarr.length; i++) {
+				String tail = drawintarr[i] %10 +"";
+				Integer tailcount = tailmap.get(tail);
+				if(null != tailcount) {
+					tailcount ++;
+				}else {
+					tailcount = 1;
+				}
+				tailmap.put(tail, tailcount);
+				boolean flg = Arrays.asList(tails).contains(tail);
+				if(flg) {
+					count ++;
+				}
+			}
+			if(count == 4 && tailmap.size() >4) {
+				screenmap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return screenmap;
 	}
 
 }

@@ -76,7 +76,7 @@ public class ScreenUtil {
 			map.remove(entry.getKey());
 		}
 		
-		MapDataUtil.createScreenTxtMap(map, "threescreen");
+		//MapDataUtil.createScreenTxtMap(map, "threescreen");
 		return map;
 	}
 
@@ -456,7 +456,7 @@ public class ScreenUtil {
 	}
 
 	/**
-	 * 去掉 偶数<2 与 奇数<2	
+	 * 去掉 偶数<1 与 奇数<1	
 	 * @param: @param resultmap
 	 * @param: @return      
 	 * @return: Map<String,Integer>      
@@ -479,7 +479,7 @@ public class ScreenUtil {
 				
 			}
 			
-			if(!(singlecount <2) && !(doublecount <2)) {
+			if(!(singlecount <1) && !(doublecount <1)) {
 				datamap.put(entry.getKey(), entry.getValue());
 			}
 			
@@ -604,6 +604,30 @@ public class ScreenUtil {
 			sameterm = sameterm.substring(0,sameterm.length() -1);
 		}
 		return sameterm.split(",");
+	}
+	/**
+	 * 尾数3个以上
+	 * @param: @param resultmap
+	 * @param: @return      
+	 * @return: Map<String,Integer>      
+	 * @throws
+	 */
+	public static Map<String, Integer> tailspanscreen(Map<String, Integer> resultmap) {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		
+		for (Entry<String, Integer> entry : resultmap.entrySet()) {
+			Map<String, Integer> tailmap =  new HashMap<String, Integer>();
+			String[] drawstrarr = entry.getKey().split(",");
+			int[] drawintarr = ArrayTool.strArr2InArr(drawstrarr);
+			for (int i = 0; i < drawintarr.length; i++) {
+				String tail = drawintarr[i] %10 +"";
+				tailmap.put(tail, 1);
+			}
+			if(tailmap.size() >3) {
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return datamap;
 	}
 
 }
