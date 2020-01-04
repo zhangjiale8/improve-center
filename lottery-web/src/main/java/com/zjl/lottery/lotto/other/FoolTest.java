@@ -1,4 +1,4 @@
-package com.zjl.lottery.lotto.test;
+package com.zjl.lottery.lotto.other;
 
 import java.io.File;
 import java.util.HashMap;
@@ -23,21 +23,21 @@ public class FoolTest {
 	 */
 	private static void singlescreen() {
 
-		int[] screenIntArr = {3,13,24,26,31,4,34,26,1,17};
+		int[] screenIntArr = {1,2,9};
 		String[] screenArr = ArrayTool.intArr2StrArr(screenIntArr);
-		String filename = "lottomap";
+		String filename = "lottomap1";
 		String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		Map<String, Integer> resultmap = new HashMap<String, Integer>();
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
 			String[] combineArr = entry.getKey().split(",");
 			String[] intersectArr = ArrayTool.getIntersectArr(screenArr, combineArr);
-			if(intersectArr.length <1) {
+			if(intersectArr.length == 3) {
 				resultmap.put(entry.getKey(), entry.getValue());
 			}
 			
 		}
-		MapDataUtil.createScreenTxtMap(resultmap, filename+"4");
+		MapDataUtil.createScreenTxtMap(resultmap, filename+"2");
 	
 		
 	}
@@ -50,14 +50,14 @@ public class FoolTest {
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
 		String screenfilepath = "E:" + File.separator + "screen" + File.separator +"screenlist.txt";;
 		List<String[]> screenarrlist = ListDataUtil.getScreenList(screenfilepath);
-		String filename = "lottomap";
+		String filename = "newlottomap";
 		String filepath = "E:" + File.separator + "screen" + File.separator +filename+".txt";;
 		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		for (Entry<String, Integer> entry : datamap.entrySet()) {
 			for (String[] screenArr : screenarrlist) {
 				String[] combineArr = entry.getKey().split(",");
 				String[] intersectArr = ArrayTool.getIntersectArr(screenArr, combineArr);
-				if(intersectArr.length >0) {
+				if(intersectArr.length >4) {
 					screenmap.put(entry.getKey(), entry.getValue());
 				}
 			}

@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import com.zjl.lottery.doubleball.util.MultipParamsListUtil;
 import com.zjl.lottery.doubleball.util.ScreenUtil;
+import com.zjl.lottery.doubleball.util.TailUtil;
 import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
@@ -34,10 +35,28 @@ public class Test33 {
 		combinemaps33 = ScreenUtil.singledoublemin2(combinemaps33);
 		combinemaps33 = ScreenUtil.screenThree(combinemaps33);
 		combinemaps33 = ScreenUtil.areascreen(combinemaps33);
-		combinemaps33 = tailscreen(combinemaps33);
-		combinemaps33 = tailscreen2(combinemaps33);
-		MapDataUtil.createScreenTxtMap(combinemaps33, "combinemaps33");
+		//combinemaps33 = tailscreen(combinemaps33);
+		combinemaps33 = tailscreen3(combinemaps33);
+		MapDataUtil.createScreenTxtMap(combinemaps33, "combinemaps331");
 
+	}
+
+	private static Map<String, Integer> tailscreen3(Map<String, Integer> combinemaps33) {
+
+		Map<String, Integer> screenmap = new HashMap<String, Integer>();
+		String [] tails = {"0","2","3","5","6","9"};
+		String [] pretails = {"4","5","6","8","9"};
+		for (Entry<String, Integer> entry : combinemaps33.entrySet()) {
+			String[] combine = entry.getKey().split(",");
+			String [] combinetails = TailUtil.getTailsArry(combine);
+			int count = TailUtil.getCountSameTail(tails, combinetails);
+			int precount = TailUtil.getCountSameTail(pretails, combinetails);
+			if(count > 1 && count <5 && combine.length >3 && precount >0 && precount <5){
+				screenmap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return screenmap;
+	
 	}
 
 	private static Map<String, Integer> tailscreen2(Map<String, Integer> combinemaps33) {
