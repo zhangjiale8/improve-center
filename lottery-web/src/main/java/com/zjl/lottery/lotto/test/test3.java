@@ -1,5 +1,5 @@
 package com.zjl.lottery.lotto.test;
 
-public class Test {
+public class test3 {
 
 }

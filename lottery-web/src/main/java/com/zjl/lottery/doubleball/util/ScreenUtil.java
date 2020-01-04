@@ -629,5 +629,24 @@ public class ScreenUtil {
 		}
 		return datamap;
 	}
+	
+	/**
+	 * 组合数过滤
+	 * @param datamap
+	 * @return
+	 */
+	public static Map<String, Integer> screencombinecount(Map<String, Integer> resultmap) {
+
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		
+		for (Entry<String, Integer> entry : resultmap.entrySet()) {
+			
+			if(entry.getValue() < 4){
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return datamap;
+	
+	}
 
 }
