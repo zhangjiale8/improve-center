@@ -649,4 +649,107 @@ public class ScreenUtil {
 	
 	}
 
+	/**
+	 * 不包括map内容
+	 * @param combinemaps
+	 * @param wangcai20map
+	 * @return
+	 */
+	public static Map<String, Integer> uncludedmap(Map<String, Integer> combinemaps,
+			Map<String, Integer> wangcai20map) {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		
+		for (Entry<String, Integer> entry : combinemaps.entrySet()) {
+			if(null == wangcai20map.get(entry.getKey())){
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+		
+		}
+		return datamap;
+	}
+	
+	/**
+	 * 包括map内容
+	 * @param combinemaps
+	 * @param wangcai20map
+	 * @return
+	 */
+	public static Map<String, Integer> cludedmap(Map<String, Integer> combinemaps,
+			Map<String, Integer> wangcai20map) {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		
+		for (Entry<String, Integer> entry : combinemaps.entrySet()) {
+			if(null != wangcai20map.get(entry.getKey())){
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+		
+		}
+		return datamap;
+	}
+
+	/**
+	 * 组合中至少有几个
+	 * @param combinemaps
+	 * @param list
+	 * @param nums
+	 * @return
+	 */
+	public static Map<String, Integer> listcontaimin(Map<String, Integer> combinemaps, List<String[]> list,
+			int nums) {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		
+		for (Entry<String, Integer> entry : combinemaps.entrySet()) {
+			int min = 6;
+			for (String[] divinearr : list) {
+				String[] combinearr = entry.getKey().split(",");
+				String[] intersectArr = ArrayTool.getIntersectArr(divinearr, combinearr);
+				if(intersectArr.length < min){
+					min = intersectArr.length;
+				}
+			}
+			if(min >= nums){
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+		
+		}
+		return datamap;
+	}
+
+	/**
+	 * 组合中至少有几个最多有几个
+	 * @param combinemaps
+	 * @param list
+	 * @param minnums
+	 * @param maxnums
+	 * @return
+	 */
+	public static Map<String, Integer> listcontain(Map<String, Integer> combinemaps, List<String[]> list,
+			int minnums, int maxnums) {
+
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		
+		for (Entry<String, Integer> entry : combinemaps.entrySet()) {
+			int min = 6;
+			int max = 0;
+			for (String[] divinearr : list) {
+				String[] combinearr = entry.getKey().split(",");
+				String[] intersectArr = ArrayTool.getIntersectArr(divinearr, combinearr);
+				if(intersectArr.length < min){
+					min = intersectArr.length;
+				}
+				if(intersectArr.length > max){
+					max = intersectArr.length;
+				}
+			}
+			if(min >= minnums && max <= maxnums){
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+			
+			
+		
+		}
+		return datamap;
+	
+	}
+
 }
