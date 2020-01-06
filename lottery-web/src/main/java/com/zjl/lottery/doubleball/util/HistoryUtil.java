@@ -274,6 +274,41 @@ public class HistoryUtil {
 	}
 	
 	/**
+	 * 获取历史开机号Map
+	 * @return
+	 */
+	public static Map<String, String> getHistoryKaijihaoMap() {
+		Map<String, String> map = new HashMap<String, String>();
+		String path = "";
+		path = "data/kaijihao.txt";
+		URL url = LotteryHaveNoMaster.class.getClassLoader().getResource(path);
+		File file = new File(url.getFile());
+		if (null != file && file.exists()) {
+			try {
+				BufferedReader br = new BufferedReader(new FileReader(file));
+				String line = null;
+				while ((StringUtils.isNotEmpty(line = br.readLine()))) {// 使用readLine方法，一次读一行
+					Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+					Matcher m = p.matcher(line);
+					String temprp = m.replaceAll("");
+					String[] strArr = temprp.split("@");
+					String[] params = strArr[2].split("\\|");
+					if (null != params && params.length == 2) {
+						String redStr = params[0];
+						redStr = redStr.replaceAll("，", ",");
+						map.put(strArr[0], redStr);
+					}
+				}
+				br.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		return map;
+	}
+	
+	/**
 	 * 获取历史开奖Map
 	 * @return
 	 */
