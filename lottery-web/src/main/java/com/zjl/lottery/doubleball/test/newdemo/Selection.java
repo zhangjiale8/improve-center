@@ -42,7 +42,7 @@ public class Selection {
 	
 	//随机选取
 		private static void randomaward() {
-			String filepath = "E:" + File.separator + "screen" + File.separator +"wangcai25map.txt";;
+			String filepath = "E:" + File.separator + "screen" + File.separator +"niucaiwang20combinemaps.txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			List<String> initlist = new ArrayList<String>();
 			for (Entry<String, Integer> entry : datamap.entrySet()) {

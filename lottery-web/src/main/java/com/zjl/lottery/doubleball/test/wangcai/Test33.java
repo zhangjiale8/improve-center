@@ -36,8 +36,8 @@ public class Test33 {
 		combinemaps33 = ScreenUtil.screenThree(combinemaps33);
 		combinemaps33 = ScreenUtil.areascreen(combinemaps33);*/
 		//combinemaps33 = tailscreen(combinemaps33);
-		combinemaps33 = tailscreen3(combinemaps33);
-		MapDataUtil.createScreenTxtMap(combinemaps33, "combinemaps331");
+		//combinemaps33 = tailscreen3(combinemaps33);
+		MapDataUtil.createScreenTxtMap(combinemaps33, "combinemaps33");
 
 	}
 

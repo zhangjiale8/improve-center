@@ -23,7 +23,7 @@ public class Test3 {
 				String[] drawarr = entry.getValue().split(",");
 				String[] kaijihaoarr = kaijihao.split(",");
 				same = TailUtil.getCountSameTail(drawarr,kaijihaoarr);
-				if(same >4){
+				if(same >3){
 					min2 ++;
 				}
 				kaijihaosamemap.put(entry.getKey(), same);

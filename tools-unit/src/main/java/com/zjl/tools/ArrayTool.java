@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
+
 public class ArrayTool {
 	/**
 	 * 将数组转成set集合；
@@ -308,7 +310,10 @@ public class ArrayTool {
 	public static int[] strArr2InArr(String[] paramArr) {
 		int[] ints = new int[paramArr.length];
 		for (int i = 0; i < paramArr.length; i++) {
-			ints[i] = Integer.parseInt(paramArr[i].trim());
+			if(StringUtils.isNotEmpty(paramArr[i].trim())){
+				
+				ints[i] = Integer.parseInt(paramArr[i].trim());
+			}
 		}
 		return ints;
 	
