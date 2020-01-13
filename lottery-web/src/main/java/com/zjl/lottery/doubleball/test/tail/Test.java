@@ -109,8 +109,8 @@ public class Test {
 		}
 		System.out.println(min2);
 		System.out.println(max5);
-		MapDataUtil.createScreenTxtMap(tailsmap22, "tailsmap3");
-	//	MapDataUtil.createScreenTxtMap(resultmap, "periodtailsmap");
+	//	MapDataUtil.createScreenTxtMap(tailsmap22, "tailsmap3");
+		MapDataUtil.createScreenTxtMap(resultmap, "periodtailsmap");
 		
 	}
 }

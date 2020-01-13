@@ -21,12 +21,14 @@ import com.zjl.tools.poi.ExcelUtils;
 public class Test {
 	public static void main(String[] args) {
 		int draw1count = 0;
-		for (int i = 149; i < 150; i++) {
+		for (int i = 5; i < 6; i++) {
 			String filename = "";
-			if(i < 100){
-				filename += "20190"+i;
+			if(i < 10){
+				filename += "202000"+i;
+			}else if(i < 100){
+				filename += "20200"+i;
 			}else{
-				filename += "2019"+i;
+				filename += "2020"+i;
 			}
 			String filepath = "E:" + File.separator + "screen" + File.separator+ "46144" + File.separator +filename+"双色球预测汇总数据.xls";
 			String [] fileds = {"USER_NAM","PERIOD_VAL",

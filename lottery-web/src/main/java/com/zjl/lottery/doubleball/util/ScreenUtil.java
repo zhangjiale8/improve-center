@@ -752,4 +752,26 @@ public class ScreenUtil {
 	
 	}
 
+	/**
+	 * 
+	 * 最多出现次数过滤
+	 * @param combinemaps
+	 * @param maxnums
+	 * @return
+	 */
+	public static Map<String, Integer> timesscreen(Map<String, Integer> combinemaps, int maxnums) {
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		
+		for (Entry<String, Integer> entry : combinemaps.entrySet()) {
+			Integer count = entry.getValue();
+			if(null != count && count <= maxnums){
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+			
+			
+		
+		}
+		return datamap;
+	}
+
 }

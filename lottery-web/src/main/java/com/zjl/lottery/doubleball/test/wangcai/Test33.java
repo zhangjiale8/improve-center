@@ -31,13 +31,13 @@ public class Test33 {
 				combinemaps33.put(combine, count+1);
 			} 
 		}
-		combinemaps33 = ScreenUtil.tailspanscreen(combinemaps33);
+		/*combinemaps33 = ScreenUtil.tailspanscreen(combinemaps33);
 		combinemaps33 = ScreenUtil.singledoublemin2(combinemaps33);
 		combinemaps33 = ScreenUtil.screenThree(combinemaps33);
-		combinemaps33 = ScreenUtil.areascreen(combinemaps33);
+		combinemaps33 = ScreenUtil.areascreen(combinemaps33);*/
 		//combinemaps33 = tailscreen(combinemaps33);
-		combinemaps33 = tailscreen3(combinemaps33);
-		MapDataUtil.createScreenTxtMap(combinemaps33, "combinemaps331");
+		//combinemaps33 = tailscreen3(combinemaps33);
+		MapDataUtil.createScreenTxtMap(combinemaps33, "combinemaps33");
 
 	}
 
@@ -46,12 +46,17 @@ public class Test33 {
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
 		String [] tails = {"0","2","3","5","6","9"};
 		String [] pretails = {"4","5","6","8","9"};
+		String [] kaijihaotails = {"0","1","6","8","9"};
 		for (Entry<String, Integer> entry : combinemaps33.entrySet()) {
 			String[] combine = entry.getKey().split(",");
 			String [] combinetails = TailUtil.getTailsArry(combine);
 			int count = TailUtil.getCountSameTail(tails, combinetails);
 			int precount = TailUtil.getCountSameTail(pretails, combinetails);
-			if(count > 1 && count <5 && combine.length >3 && precount >0 && precount <5){
+			int kaijihaocount = TailUtil.getCountSameTail(kaijihaotails, combinetails);
+			if(count > 1 
+			&& count <5 && combine.length >3 
+			&& precount >0 && precount <5
+			&& kaijihaocount>0 && kaijihaocount <5){
 				screenmap.put(entry.getKey(), entry.getValue());
 			}
 		}
