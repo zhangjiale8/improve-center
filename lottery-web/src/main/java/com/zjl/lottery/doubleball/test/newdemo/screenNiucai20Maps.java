@@ -13,76 +13,73 @@ import com.zjl.lottery.util.ListDataUtil;
 import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
-public class ScreenCombineMaps {
+public class screenNiucai20Maps {
 	public static void main(String[] args) {
-		String filepath = "E:" + File.separator + "screen" + File.separator +"combinemaps12345678912.txt";
+		String filepath = "E:" + File.separator + "screen" + File.separator +"niucaiwang20combinemaps.txt";
 		Map<String, Integer> combinemaps = MapDataUtil.getDataMap(filepath);
-		/*combinemaps = ScreenUtil.timesscreen(combinemaps,3);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1");
+		combinemaps = timesscreen(combinemaps,3);
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps1");
 		combinemaps = ScreenUtil.tailspanscreen(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12");
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps12");
 		combinemaps = ScreenUtil.singledoublemin2(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123");
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps123");
 		combinemaps = ScreenUtil.areascreen(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234");
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps1234");
 		filepath = "E:" + File.separator + "screen" + File.separator+ "lecaiwang" + File.separator +"300.txt";
 		Map<String, Integer> lecaiwang300map = MapDataUtil.getDataMap(filepath);
 		combinemaps = lecaiwangscreen(combinemaps,lecaiwang300map);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12345");
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps12345");
 		combinemaps = tailscreen3(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456");
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps123456");
 		filepath = "E:" + File.separator + "screen" + File.separator+ "caihongduo" + File.separator +"25.txt";
 		List<String[]> caihongduo25list = ListDataUtil.getScreenList(filepath);
 		filepath = "E:" + File.separator + "screen" + File.separator+ "wangcai" + File.separator +"25.txt";
 		List<String[]> wangcai25list = ListDataUtil.getScreenList(filepath);
 		combinemaps = ScreenUtil.listcontain(combinemaps,wangcai25list,2,6);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234567");
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps1234567");
 		combinemaps = ScreenUtil.listcontain(combinemaps,caihongduo25list,2,6);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12345678");*/
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps12345678");
 		
-		
-	/*	filepath = "E:" + File.separator + "screen" + File.separator+ "other" + File.separator +"0-4.txt";
+		filepath = "E:" + File.separator + "screen" + File.separator+ "other" + File.separator +"0-4.txt";
 		List<String[]> wangcai0_4list = ListDataUtil.getScreenList(filepath);
 		combinemaps = ScreenUtil.listcontain(combinemaps,wangcai0_4list,0,4);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456789");
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps123456789");
 		filepath = "E:" + File.separator + "screen" + File.separator+ "other" + File.separator +"1-4.txt";
 		List<String[]> wangcai1_4list = ListDataUtil.getScreenList(filepath);
 		combinemaps = ScreenUtil.listcontain(combinemaps,wangcai1_4list,1,4);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234567891");
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps1234567891");
 		filepath = "E:" + File.separator + "screen" + File.separator+ "other" + File.separator +"0-3.txt";
 		List<String[]> wangcai0_3list = ListDataUtil.getScreenList(filepath);
 		combinemaps = ScreenUtil.listcontain(combinemaps,wangcai0_3list,0,3);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12345678912");*/
-		/*
-		combinemaps = niucaiwangscreen(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456789123");
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps12345678912");
 		combinemaps = niucaiwangscreenlow20(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234567891234");
-		combinemaps = niucaiwangscreenup20(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12345678912345");
-		combinemaps = niucaiwangscreen20(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456789123456");
-		*/
+		MapDataUtil.createScreenTxtMap(combinemaps, "niucaiwang20combinemaps123456789123");
 		
-	/*	filepath = "E:" + File.separator + "screen" + File.separator +"caihongduo20map.txt";
-		Map<String, Integer> caihongduo20map = MapDataUtil.getDataMap(filepath);
-		combinemaps = ScreenUtil.uncludedmap(combinemaps,caihongduo20map);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234567891234567");
-		filepath = "E:" + File.separator + "screen" + File.separator +"wangcai20map.txt";
-		Map<String, Integer> wangcai20map = MapDataUtil.getDataMap(filepath);
-		combinemaps = ScreenUtil.uncludedmap(combinemaps,wangcai20map);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12345678912345678");
-		
-		combinemaps = ScreenUtil.screenThree(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456789123456789");*/
-		
-		filepath = "E:" + File.separator + "screen" + File.separator+ "other" + File.separator +"6.txt";
-		List<String[]> wangcai6list = ListDataUtil.getScreenList(filepath);
-		combinemaps = ScreenUtil.listcontain(combinemaps,wangcai6list,6,6);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234567891234567891");
 	}
 	
+	/**
+	 * 3次过滤
+	 * @param combinemaps
+	 * @param i
+	 * @return
+	 */
+	private static Map<String, Integer> timesscreen(Map<String, Integer> niucaicombinemaps, int maxnums) {
+		String filepath = "E:" + File.separator + "screen" + File.separator +"combinemaps.txt";
+		Map<String, Integer> combinemaps = MapDataUtil.getDataMap(filepath);
+		Map<String, Integer> datamap = new HashMap<String, Integer>();
+		
+		for (Entry<String, Integer> entry : niucaicombinemaps.entrySet()) {
+			Integer count = combinemaps.get(entry.getKey());
+			if(null != count && count <= maxnums && entry.getValue() <3){
+				datamap.put(entry.getKey(), entry.getValue());
+			}
+		
+		}
+		return datamap;
 	
+	}
+
+
 	/**
 	 * 20个组合有一个
 	 * @param combinemaps
@@ -169,28 +166,18 @@ public class ScreenCombineMaps {
 	private static Map<String, Integer> tailscreen3(Map<String, Integer> combinemaps) {
 
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
-		String [] tails = {"0","2","3","4","5","6"};
-		String [] othertails = {"1","7","8","9"};
-		String [] pretails = {"0","3","6","4","5","9"};
-		String [] kaijitails = {"0","1","4","5","8","9"};
-		String [] myboytails = {"2","3","4"};
-		String [] myboytails2 = {"0","3","8","9"};
+		String [] tails = {"1","2","6","7"};
+		String [] pretails = {"0","5","6","8","9"};
+		String [] kaijitails = {"0","4","2","6","9"};
+		String [] myboytails = {"1","5","6"};
 		for (Entry<String, Integer> entry : combinemaps.entrySet()) {
 			String[] combine = entry.getKey().split(",");
 			String [] combinetails = TailUtil.getTailsArry(combine);
 			int count = TailUtil.getCountSameTail(tails, combinetails);
-			int othercount = TailUtil.getCountSameTail(othertails, combinetails);
 			int precount = TailUtil.getCountSameTail(pretails, combinetails);
 			int kaijicount = TailUtil.getCountSameTail(kaijitails, combinetails);
 			int myboycount = TailUtil.getCountSameTail(myboytails, combinetails);
-			int myboycount2 = TailUtil.getCountSameTail(myboytails2, combinetails);
-			if(count > 1 && count <5 && combinetails.length >3 
-				&& precount >0 && precount <5 
-				&& kaijicount >0 && kaijicount <5 
-				&& myboycount >0 && myboycount <3
-				&& othercount > 0 && othercount <4
-				&& myboycount2 > 0
-				){
+			if(count > 1 && count <5 && combinetails.length >3 && precount >0 && precount <5 && kaijicount >0 && kaijicount <5 && myboycount >0 && myboycount <3){
 				screenmap.put(entry.getKey(), entry.getValue());
 			}
 		}

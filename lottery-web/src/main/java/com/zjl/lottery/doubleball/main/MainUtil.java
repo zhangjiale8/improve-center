@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
+import com.zjl.lottery.doubleball.util.HistoryUtil;
 import com.zjl.lottery.util.CombineUtil;
 import com.zjl.lottery.util.JDBCPatchUtil;
 import com.zjl.lottery.util.ListDataUtil;
@@ -213,7 +214,7 @@ public class MainUtil {
 	public static void main(String[] args) {
 		Map<String, Integer> result = new HashMap<String, Integer>();
 		int[] paramArr = {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,22,23,25,26,27,29,30,31};
-		List<String> list1 = CombineUtil.getScreenList(paramArr , 5);
+		List<String> list1 = CombineUtil.getScreenList(paramArr , 6);
 		int[] paramArr2 = {1,2,19,20,21,24,28,32,33};
 		List<String> list2 = CombineUtil.getScreenList(paramArr2  , 2);
 		for (String bine1 : list1) {
@@ -231,15 +232,22 @@ public class MainUtil {
 		}
 		
 		if(null != result && result.size() > 0){
-			MapDataUtil.createScreenTxtMap(result, "initdoubleball");
+			//MapDataUtil.createScreenTxtMap(result, "initdoubleball");
 		}
+		Map<String, Integer> historymap = HistoryUtil.getHistoryMap();
 		Map<String, Integer> combinemap = new HashMap<String, Integer>();
+		int sum6 = 0;
 		for (Entry<String, Integer> entry : result.entrySet()) {
 			 String temp = entry.getKey();
 			 String [] tempArr = temp.split(",");
 			 int [] tempIntArr = ArrayTool.strArr2InArr(tempArr);
+			 ArrayTool.sort(tempIntArr);
 			 List<String> combinelist = CombineUtil.getScreenList(tempIntArr , 6);
 			 for (String combine : combinelist) {
+				 Integer count = historymap.get(combine);
+				 if(null != count && null == combinemap.get(combine)){
+					 sum6 ++;
+				 }
 				 combinemap.put(combine, 1);
 			}
         }
@@ -247,10 +255,10 @@ public class MainUtil {
 		if(null != combinemap && combinemap.size() > 0){
 			MapDataUtil.createScreenTxtMap(combinemap, "initcombinedoubleball");
 		}
-		
-		String filepath = "E:" + File.separator + "screen" + File.separator +"initcombinedoubleball.txt";
+		System.out.println(sum6);
+		/*String filepath = "E:" + File.separator + "screen" + File.separator +"initcombinedoubleball.txt";
 		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
-		ThreeSreenUtil.threeScreen(datamap, "initcombinedoubleball");
+		ThreeSreenUtil.threeScreen(datamap, "initcombinedoubleball");*/
 	}
 	
 }
