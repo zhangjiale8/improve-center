@@ -42,7 +42,7 @@ public class Selection {
 	
 	//随机选取
 		private static void randomaward() {
-			String filepath = "E:" + File.separator + "screen" + File.separator +"combinemaps1234567891234567891.txt";;
+			String filepath = "E:" + File.separator + "screen" + File.separator +"combinemaps12345678.txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			List<String> initlist = new ArrayList<String>();
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
@@ -51,7 +51,7 @@ public class Selection {
 			Map<String, Integer> firstdraw = new HashMap<String, Integer>();
 			Map<String, Integer> randommap = new HashMap<String, Integer>();
 			String data = "";
-			for (int i = 0; i < 1; i++) {
+			for (int i = 0; i < 5; i++) {
 				double random = (double) ((Math.random()*9+1)*1000)/10000;
 				int index = Integer.parseInt(new java.text.DecimalFormat("0").format(random*initlist.size()));
 				String draw = initlist.get(index);

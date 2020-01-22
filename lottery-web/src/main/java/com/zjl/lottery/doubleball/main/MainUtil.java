@@ -214,7 +214,7 @@ public class MainUtil {
 	public static void main(String[] args) {
 		Map<String, Integer> result = new HashMap<String, Integer>();
 		int[] paramArr = {3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,22,23,25,26,27,29,30,31};
-		List<String> list1 = CombineUtil.getScreenList(paramArr , 6);
+		List<String> list1 = CombineUtil.getScreenList(paramArr , 5);
 		int[] paramArr2 = {1,2,19,20,21,24,28,32,33};
 		List<String> list2 = CombineUtil.getScreenList(paramArr2  , 2);
 		for (String bine1 : list1) {
@@ -232,9 +232,9 @@ public class MainUtil {
 		}
 		
 		if(null != result && result.size() > 0){
-			//MapDataUtil.createScreenTxtMap(result, "initdoubleball");
+			MapDataUtil.createScreenTxtMap(result, "init7combinedoubleball");
 		}
-		Map<String, Integer> historymap = HistoryUtil.getHistoryMap();
+		/*Map<String, Integer> historymap = HistoryUtil.getHistoryMap();
 		Map<String, Integer> combinemap = new HashMap<String, Integer>();
 		int sum6 = 0;
 		for (Entry<String, Integer> entry : result.entrySet()) {
@@ -255,7 +255,7 @@ public class MainUtil {
 		if(null != combinemap && combinemap.size() > 0){
 			MapDataUtil.createScreenTxtMap(combinemap, "initcombinedoubleball");
 		}
-		System.out.println(sum6);
+		System.out.println(sum6);*/
 		/*String filepath = "E:" + File.separator + "screen" + File.separator +"initcombinedoubleball.txt";
 		Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 		ThreeSreenUtil.threeScreen(datamap, "initcombinedoubleball");*/

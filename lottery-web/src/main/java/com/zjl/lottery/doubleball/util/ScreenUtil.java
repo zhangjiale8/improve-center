@@ -16,6 +16,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.zjl.lottery.doubleball.mutitest.LotteryHaveNoMaster;
 import com.zjl.lottery.util.CombineUtil;
+import com.zjl.lottery.util.ListDataUtil;
 import com.zjl.lottery.util.MapDataUtil;
 import com.zjl.tools.ArrayTool;
 
@@ -761,10 +762,12 @@ public class ScreenUtil {
 	 */
 	public static Map<String, Integer> timesscreen(Map<String, Integer> combinemaps, int maxnums) {
 		Map<String, Integer> datamap = new HashMap<String, Integer>();
-		
+		String filepath = "E:" + File.separator + "screen" + File.separator +"initcombinedoubleball.txt";
+		Map<String, Integer> initmaps = MapDataUtil.getDataMap(filepath);
 		for (Entry<String, Integer> entry : combinemaps.entrySet()) {
 			Integer count = entry.getValue();
-			if(null != count && count <= maxnums){
+			Integer initcount = initmaps.get(entry.getKey());
+			if(null != count && count <= maxnums && null != initcount){
 				datamap.put(entry.getKey(), entry.getValue());
 			}
 			
@@ -773,5 +776,6 @@ public class ScreenUtil {
 		}
 		return datamap;
 	}
+
 
 }

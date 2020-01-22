@@ -1,12 +1,14 @@
 package com.zjl.lottery.doubleball.test.newdemo;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import com.zjl.lottery.doubleball.util.HistoryUtil;
+import com.zjl.lottery.doubleball.util.MultipParamsListUtil;
 import com.zjl.lottery.doubleball.util.ScreenUtil;
 import com.zjl.lottery.doubleball.util.TailUtil;
 import com.zjl.lottery.util.ListDataUtil;
@@ -15,9 +17,10 @@ import com.zjl.tools.ArrayTool;
 
 public class ScreenCombineMaps {
 	public static void main(String[] args) {
-		String filepath = "E:" + File.separator + "screen" + File.separator +"combinemaps12345678912.txt";
+		String filepath = "E:" + File.separator + "screen" + File.separator +"combinemaps.txt";
 		Map<String, Integer> combinemaps = MapDataUtil.getDataMap(filepath);
-		/*combinemaps = ScreenUtil.timesscreen(combinemaps,3);
+		combinemaps = ScreenUtil.timesscreen(combinemaps,3);
+		combinemaps = fiveselect(combinemaps);
 		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1");
 		combinemaps = ScreenUtil.tailspanscreen(combinemaps);
 		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12");
@@ -38,10 +41,10 @@ public class ScreenCombineMaps {
 		combinemaps = ScreenUtil.listcontain(combinemaps,wangcai25list,2,6);
 		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234567");
 		combinemaps = ScreenUtil.listcontain(combinemaps,caihongduo25list,2,6);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12345678");*/
+		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12345678");
 		
 		
-	/*	filepath = "E:" + File.separator + "screen" + File.separator+ "other" + File.separator +"0-4.txt";
+		/*filepath = "E:" + File.separator + "screen" + File.separator+ "other" + File.separator +"0-4.txt";
 		List<String[]> wangcai0_4list = ListDataUtil.getScreenList(filepath);
 		combinemaps = ScreenUtil.listcontain(combinemaps,wangcai0_4list,0,4);
 		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456789");
@@ -53,18 +56,18 @@ public class ScreenCombineMaps {
 		List<String[]> wangcai0_3list = ListDataUtil.getScreenList(filepath);
 		combinemaps = ScreenUtil.listcontain(combinemaps,wangcai0_3list,0,3);
 		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12345678912");*/
-		/*
-		combinemaps = niucaiwangscreen(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456789123");
-		combinemaps = niucaiwangscreenlow20(combinemaps);
+		
+	/*	combinemaps = niucaiwangscreen(combinemaps);
+		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456789123");*/
+		/*combinemaps = niucaiwangscreenlow20(combinemaps);
 		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234567891234");
 		combinemaps = niucaiwangscreenup20(combinemaps);
 		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps12345678912345");
 		combinemaps = niucaiwangscreen20(combinemaps);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456789123456");
-		*/
+		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456789123456");*/
 		
-	/*	filepath = "E:" + File.separator + "screen" + File.separator +"caihongduo20map.txt";
+		
+		/*filepath = "E:" + File.separator + "screen" + File.separator +"caihongduo20map.txt";
 		Map<String, Integer> caihongduo20map = MapDataUtil.getDataMap(filepath);
 		combinemaps = ScreenUtil.uncludedmap(combinemaps,caihongduo20map);
 		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234567891234567");
@@ -76,13 +79,45 @@ public class ScreenCombineMaps {
 		combinemaps = ScreenUtil.screenThree(combinemaps);
 		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps123456789123456789");*/
 		
-		filepath = "E:" + File.separator + "screen" + File.separator+ "other" + File.separator +"6.txt";
+		/*filepath = "E:" + File.separator + "screen" + File.separator+ "other" + File.separator +"6.txt";
 		List<String[]> wangcai6list = ListDataUtil.getScreenList(filepath);
 		combinemaps = ScreenUtil.listcontain(combinemaps,wangcai6list,6,6);
-		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234567891234567891");
+		MapDataUtil.createScreenTxtMap(combinemaps, "combinemaps1234567891234567891");*/
 	}
 	
+	/**
+	 * 5组精选过滤
+	 * @param combinemaps
+	 * @return
+	 */
+	private static Map<String, Integer> fiveselect(Map<String, Integer> combinemaps) {
+
+		ArrayList<int[]> list25 = new ArrayList<int[]>();
+		String filepath = "E:" + File.separator + "screen" + File.separator+ "fiveselect.txt";
+		List<String[]> combinelist = ListDataUtil.getScreenList(filepath);
+		for (String[] combinearr : combinelist) {
+			int[] combine = ArrayTool.strArr2InArr(combinearr);
+			list25.add(combine);
+		}
+		
+		Map<String, Integer> combinemaps25 = new HashMap<String,Integer>();
+		for (int[] conbineArr : list25) {
+			Map<String, Integer> combinemap = MultipParamsListUtil.getScreenMap(conbineArr);
+			for (Entry<String, Integer> entry : combinemap.entrySet()) {
+				String combine = entry.getKey();
+				int count = null == combinemaps25.get(combine)?0:combinemaps25.get(combine);
+				combinemaps25.put(combine, count+1);
+				combinemaps.remove(combine);
+			} 
+		}
+		
+		MapDataUtil.createScreenTxtMap(combinemaps25, "fiveselectmap");
+		
+		return combinemaps;
 	
+	}
+
+
 	/**
 	 * 20个组合有一个
 	 * @param combinemaps
@@ -169,12 +204,12 @@ public class ScreenCombineMaps {
 	private static Map<String, Integer> tailscreen3(Map<String, Integer> combinemaps) {
 
 		Map<String, Integer> screenmap = new HashMap<String, Integer>();
-		String [] tails = {"0","2","3","4","5","6"};
-		String [] othertails = {"1","7","8","9"};
-		String [] pretails = {"0","3","6","4","5","9"};
-		String [] kaijitails = {"0","1","4","5","8","9"};
-		String [] myboytails = {"2","3","4"};
-		String [] myboytails2 = {"0","3","8","9"};
+		String [] tails = {"0","4","1","6","8"};
+		String [] othertails = {"2","3","5","9","7"};
+		String [] pretails = {"2","3","6","0","5","7"};
+		String [] kaijitails = {"0","1","4","5","8"};
+		String [] myboytails = {"1","2","5"};
+		String [] myboytails2 = {"0","2","8","6"};
 		for (Entry<String, Integer> entry : combinemaps.entrySet()) {
 			String[] combine = entry.getKey().split(",");
 			String [] combinetails = TailUtil.getTailsArry(combine);
@@ -187,9 +222,9 @@ public class ScreenCombineMaps {
 			if(count > 1 && count <5 && combinetails.length >3 
 				&& precount >0 && precount <5 
 				&& kaijicount >0 && kaijicount <5 
-				&& myboycount >0 && myboycount <3
-				&& othercount > 0 && othercount <4
-				&& myboycount2 > 0
+			//	&& myboycount >0 && myboycount <3
+				&& othercount > 0 && othercount <5
+			//	&& myboycount2 > 0
 				){
 				screenmap.put(entry.getKey(), entry.getValue());
 			}
