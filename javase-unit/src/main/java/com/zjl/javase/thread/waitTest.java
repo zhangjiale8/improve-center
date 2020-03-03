@@ -33,7 +33,7 @@ public class waitTest {
 				e.printStackTrace();
 			}
 			
-			System.out.println(Thread.currentThread().getName() +"continue");
+			System.out.println(Thread.currentThread().getName() +" continue");
 			
 		}
 	}
