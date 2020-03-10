@@ -11,7 +11,7 @@ public class LockTest {
                     e.printStackTrace();
                 }
             }
-		}
+		}	
 		
 		public synchronized void isSyncB() {
 			for(int i=0;i<5;i++){
