@@ -21,6 +21,7 @@ public class Test {
 		Map<String, Integer> resultmap = new HashMap<String, Integer>();
 		Map<String, String> periodtailsmap = new HashMap<String, String>();
 		Map<String, Integer> tailsmap = new HashMap<String, Integer>();
+		Map<String, Integer> tailsmap24 = new HashMap<String, Integer>();
 		for (Entry<String, String> entry : historymap.entrySet()) {
 			Map<String, Integer> tailmap =  new HashMap<String, Integer>();
 			String[] drawstrarr = entry.getValue().split(",");
@@ -60,6 +61,9 @@ public class Test {
 				count = 1;
 			}
 			tailsmap.put(tailintstr, count);
+			if(tailintarr.length >3){
+				tailsmap24.put(tailintstr, count);
+			}
 		}
 		System.out.println(tailmin3);
 		System.out.println(tailmin4);
@@ -111,6 +115,8 @@ public class Test {
 		System.out.println(max5);
 	//	MapDataUtil.createScreenTxtMap(tailsmap22, "tailsmap3");
 		MapDataUtil.createScreenTxtMap(resultmap, "periodtailsmap");
+		MapDataUtil.createScreenTxtMap(tailsmap, "tailsmap");
+		MapDataUtil.createScreenTxtMap(tailsmap24, "tailsmap24");
 		
 	}
 }
