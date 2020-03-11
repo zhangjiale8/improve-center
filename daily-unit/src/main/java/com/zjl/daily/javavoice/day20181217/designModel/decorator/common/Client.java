@@ -1,9 +1,0 @@
-package com.zjl.daily.javavoice.day20181217.designModel.decorator.common;
-
-public class Client {
-    public static void main(String[] args) {
-        //用装饰器包裹女孩show出来
-        new Decorator(new Girl()).show();
-        //结果：粉饰(女孩的素颜)
-    }
-}
