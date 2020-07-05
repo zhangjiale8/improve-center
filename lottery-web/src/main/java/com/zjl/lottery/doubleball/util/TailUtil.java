@@ -84,6 +84,27 @@ public class TailUtil {
 		String[] tailstrarr = tailstr.split(",");
 		return tailstrarr;
 	}
+	
+	/**
+	 * 获取组合尾数字符串
+	 * @param drawarr
+	 * @return
+	 */
+	public static String getTailsStr(String[] drawarr) {
+		int[] drawintarr = ArrayTool.strArr2InArr(drawarr);
+		Map<String, Integer> tailmap =  new HashMap<String, Integer>();
+		for (int i = 0; i < drawintarr.length; i++) {
+			String tail = drawintarr[i] %10 +"";
+			tailmap.put(tail, 1);
+		}
+		String tailstr = "";
+		for (Entry<String, Integer> tailentry : tailmap.entrySet()) {
+			tailstr += tailentry.getKey()+",";
+		}
+		tailstr = tailstr.substring(0,tailstr.length() -1);
+		
+		return tailstr;
+	}
 	/**
 	 * 计算两个数组相同尾数的个数
 	 * @param tails

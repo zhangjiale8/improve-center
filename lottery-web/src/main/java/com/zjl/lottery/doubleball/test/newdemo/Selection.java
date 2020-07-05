@@ -42,7 +42,7 @@ public class Selection {
 	
 	//随机选取
 		private static void randomaward() {
-			String filepath = "E:" + File.separator + "screen" + File.separator +"combinemaps12345678.txt";;
+			String filepath = "E:" + File.separator + "screen" + File.separator +"currentrandomdoubleball.txt";;
 			Map<String, Integer> datamap = MapDataUtil.getDataMap(filepath);
 			List<String> initlist = new ArrayList<String>();
 			for (Entry<String, Integer> entry : datamap.entrySet()) {
